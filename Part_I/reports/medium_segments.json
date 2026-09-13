@@ -1,0 +1,210 @@
+[
+ {
+  "type": "html",
+  "html": "<p><em>Accuracy, latency and cost on the Emotions Dataset for NLP. CMPE 255 Data Science, Assignment 1.</em></p>\n<h3>Abstract</h3>\n<p>We ask whether a small open-weight language model beats a classical machine-learning\nmodel on a six-class emotion classification task, and whether any gain is worth its\nextra latency and compute. Following CRISP-DM, we fixed a single train/validation/test\nsplit, a primary metric (macro F1), and a decision rule before fitting any model: a\nlanguage model is <em>worth it</em> only if it beats the best classical model by at least 3\nmacro F1 points while keeping p95 single-row latency within 50 ms. Every model was timed\nunder one protocol, on one audited machine.</p>\n<p>The answer depends sharply on how the language model is used. A <strong>prompted</strong> generative\nmodel (Qwen2.5-1.5B-Instruct) loses badly: macro F1 0.411 zero-shot and 0.343 few-shot,\nagainst 0.858 for a TF-IDF linear SVM. It also misses the latency budget (p95 61–110 ms)\nand costs 6,557–23,803× more per prediction. Adding in-prompt examples made it <em>worse</em>,\nand the result varied by 12 macro F1 points depending on which examples were drawn. A\n<strong>fine-tuned</strong> pre-trained encoder (DistilBERT, 67 M parameters) wins: macro F1 0.898\n(0.893 ± 0.004 over three seeds) and accuracy 0.931. It stays inside the budget on GPU\n(p95 3.5 ms) and on CPU (p95 18.3 ms). Its superiority is statistically established\n(McNemar p = 5.3 × 10⁻⁷). Its margin over the 3-point threshold is probable (P = 0.85),\nnot certain. At one million messages a month, it costs $0.07 (GPU) to $0.40 (CPU) more\nthan the SVM, and avoids about 31,500 misclassifications.</p>\n<p>Error analysis shows that the residual error is increasingly annotation ambiguity. In\nthe training labels themselves, several cue words are split almost evenly between two\nemotions.</p>\n\n<h3>1. Introduction</h3>\n<h4>1.1 The question</h4>\n<blockquote>\n<p>For a multi-class text classification task, does a small open-weight LLM beat a\nclassical ML model — and is it worth the extra latency and compute?</p>\n</blockquote>\n<p>The question has two halves in deliberate tension. The first is about <strong>quality</strong>: does\na model pre-trained on internet-scale text extract more signal from a short utterance\nthan a bag-of-words model fitted to 16,000 labelled examples? The second is about\n<strong>systems</strong>: what does any such gain cost? A sparse linear model answers in\nmicroseconds from a few hundred kilobytes. A billion-parameter decoder needs gigabytes\nof weights and a GPU. A study that reports accuracy alone cannot answer the question\nthat was asked. So accuracy and cost are treated here as co-equal outcomes.</p>\n<h4>1.2 Framing</h4>\n<p>We assume a realistic host application: <strong>inline triage of short user messages</strong>. Each\nmessage is tagged with one emotion so it can be routed — angry and fearful messages\nescalate to a human, sad ones enter a retention workflow. The framing fixes four\notherwise arbitrary choices. Each message gets one hard label, so top-k metrics are\nirrelevant. The tail classes matter, so <strong>macro F1</strong> is primary. The user waits, so the\nlatency budget is <strong>p95 ≤ 50 ms</strong>. And the scale is <strong>1,000,000 messages per month</strong>,\nthe scale at which costs are read.</p>\n<h4>1.3 Contributions</h4>\n<ol>\n<li>A pre-registered, cost-aware comparison of <strong>eight models across four families</strong> —\n   naive baselines, three classical models, a prompted decoder LLM (zero- and\n   few-shot), and a fine-tuned encoder — on one frozen split and one audited machine.</li>\n<li>Evidence that <strong>how a language model is used matters more than its size</strong>. A 67 M\n   fine-tuned encoder beats a 1.5 B prompted decoder by 48.7 macro F1 points, and is 17×\n   faster on the same GPU.</li>\n<li>A demonstration that <strong>few-shot prompting with randomly drawn examples transmits label\n   noise</strong>. It is extremely sensitive to which examples are chosen, and here it performs\n   below zero-shot.</li>\n<li>A characterisation of the benchmark that bounds every claim: a <strong>templated corpus</strong>,\n   a small <strong>second text genre</strong>, <strong>HTML residue</strong>, near-duplicate and contradictory\n   rows across splits, and <strong>word-level annotation inconsistency</strong>.</li>\n<li>A full record of <strong>measurement defects found and corrected</strong> during the study (§10).</li>\n</ol>\n\n<h3>2. Data</h3>\n<h4>2.1 Dataset and split</h4>\n<p>The corpus is the Kaggle <em>Emotions dataset for NLP</em> (<code>praveengovi/emotions-dataset-for-nlp</code>):\none <code>text;label</code> pair per line, with six labels. Its upstream provenance was not verified\nfor this study. Row counts and training label counts matched the specification exactly.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/medium/table01.png",
+  "caption": "The frozen split and its class counts."
+ },
+ {
+  "type": "html",
+  "html": "<p>The dataset's own split was <strong>frozen before any modelling</strong> and never re-drawn. Training\nand tuning used <code>train</code> and <code>val</code> only; <code>test</code> was scored once per model. The class mix\nis consistent across splits: the total variation distance between train and test is\n0.015. The classes are imbalanced 9.4 : 1, so a constant <code>joy</code> predictor reaches 34.75%\naccuracy but only 0.086 macro F1.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig01_class_balance.png",
+  "caption": "The training set is imbalanced 9.4 : 1, yet train, val and test carry the same class mix."
+ },
+ {
+  "type": "html",
+  "html": "<h4>2.2 What the corpus is</h4>\n<p>Characterising the data before modelling shaped every later interpretation. Five\nproperties matter.</p>\n<p><strong>It is pre-normalised.</strong> The corpus contains exactly 27 characters: lowercase letters\nand the space. The standard cleaning pipeline changes <strong>0 of 20,000</strong> rows, so no\ncleaning transform was applied.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig02_length_distribution.png",
+  "caption": "Documents are short: median 17 words, maximum 66, so a 128-token sequence covers the corpus."
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig03_length_by_class.png",
+  "caption": "Document length carries no class signal: every class has almost the same length distribution."
+ },
+ {
+  "type": "html",
+  "html": "<p><strong>It is templated.</strong> 97.3% of documents contain <em>feel</em>, <em>feeling</em>, <em>feels</em> or <em>felt</em>, and\n37.9% begin with <em>i feel</em> or <em>im feeling</em>. The dominant form is <em>i feel ‹adjective›</em>.\nAcross all classes, the distinctive words (by log-odds with an informative Dirichlet\nprior) are <strong>emotion adjectives</strong>. Association-rule mining shows that single adjectives\nfix the label with near-certainty: <code>sympathetic</code> → love 54 of 54 times, <code>apprehensive</code> →\nfear 58 of 58, <code>listless</code> → sadness 48 of 48. Word <em>pairs</em> add nothing over single words:\nacross 5,446 pairs, the mean confidence gain is −0.009. <strong>This benchmark rewards lexical\nlookup</strong>, which favours bag-of-words models.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig04_vocabulary_structure.png",
+  "caption": "The vocabulary is Zipfian: 49 word types cover half of all tokens, and half of all types occur once."
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig05_distinctive_words.png",
+  "caption": "The words that best separate each class are emotion adjectives, not topics."
+ },
+ {
+  "type": "html",
+  "html": "<p><strong>It contains a second genre.</strong> 2.8% of training rows do not report a feeling. They\ndescribe the <em>situation</em> that caused one — <em>\"when my father passed away\"</em> → sadness —\nwith non-native phrasing and terse answers, in the style of a survey response. These\nrows cannot be classified from a cue word; they need world knowledge. This is inferred\nfrom style, not from documented provenance.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig07_outliers.png",
+  "caption": "Even 2-word documents almost always contain an emotion cue; rare-word density falls with length."
+ },
+ {
+  "type": "html",
+  "html": "<p><strong>It contains residue.</strong> 1.7% of training rows contain HTML or URL tokens (<code>a href http\n…</code>) left behind when punctuation was stripped. Character-level audits could not see\nthese. A clustering analysis found them.</p>\n<p><strong>Its labels are inconsistent in measurable ways.</strong> 51 of 52 repeated texts carry\n<em>different</em> labels. That is consistent with de-duplication on the (text, label) pair.\nAnnotator collisions are strongly concentrated: joy ↔ love occurs 7.8× more often than\nchance, and fear ↔ surprise 12.3×. Joy ↔ sadness, the <em>lexically</em> closest pair, never\ncollides.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig06_class_overlap.png",
+  "caption": "All six classes are lexically close, because the shared “i feel …” frame dominates every class."
+ },
+ {
+  "type": "html",
+  "html": "<h4>2.3 Cleaning, and the validity of the test set</h4>\n<p>Cleaning touched <strong>only the training data</strong>: 77 rows (0.48%) were removed — 16 whose text\nalso appears in val or test, 60 carrying contradictory labels, and 1 redundant repeat.\n<code>val</code> and <code>test</code> are byte-identical to the originals, so no cleaning choice can flatter\na result. The cleaned training set has 15,923 rows.</p>\n<p>Two kinds of test row are not clean measurements of generalisation. <strong>42 rows (2.1%)</strong> are\nnear-duplicates (cosine ≥ 0.90) of a same-label training row. <strong>14 rows (0.7%)</strong> have a\ndifferently labelled copy elsewhere. Measured from per-row predictions, their net effect\non reported accuracy is <strong>−0.28 points for the linear SVM and −0.26 for DistilBERT</strong>. It is\nsmall, it slightly understates clean-row accuracy, and it is nearly identical across\nmodels, so <strong>model comparisons are unaffected</strong>. (An earlier estimate of \"+1.4 points\" was\nwrong; see §10.)</p>\n\n<h3>3. Methods</h3>\n<h4>3.1 Process and pre-registration</h4>\n<p>The study followed the 18 CRISP-DM phases in order. Three things were fixed in Phase 1,\nbefore any model existed:</p>\n<ul>\n<li><strong>Primary metric: macro F1</strong>, with accuracy and all per-class F1 scores reported\n  alongside.</li>\n<li><strong>Target: macro F1 ≥ 0.85</strong> on test.</li>\n<li><strong>Decision rule: a language model is <em>worth it</em> only if its macro F1 exceeds the best\n  classical model's by ≥ 0.03, <em>and</em> its p95 single-row latency is ≤ 50 ms.</strong></li>\n</ul>\n<p>Several predictions were registered in intermediate phases before the corresponding\nmodels were fitted. They are reported as confirmed, partly confirmed, or refuted (§5).</p>\n<h4>3.2 Measurement protocol</h4>\n<p>All models were scored through one shared harness.</p>\n<ul>\n<li><strong>Latency is end to end</strong>, from a raw text string to a label string. It includes\n  vectorisation, tokenisation, generation and parsing as applicable.</li>\n<li><strong>Single-row latency:</strong> 20 warm-up runs discarded, then 200 timed runs cycling real test\n  rows. p50, p95 and p99 are reported.</li>\n<li><strong>Batched throughput</strong> is measured separately at batch sizes 1, 8, 32 and 128. A batch\n  size that exceeds GPU memory is recorded as a result, not a crash.</li>\n<li><strong>Cost per 1,000 predictions</strong> = (1000 / rows per second) / 3600 × hourly rate, with CPU\n  at $0.192/h and GPU at $0.60/h. These rates are assumptions: ratios between models are\n  robust, absolute dollars are not. The figure is compute only — a lower bound.</li>\n<li><strong>Model size</strong> counts real files on disk, never symlinks. <strong>Peak memory</strong> is GPU peak\n  allocation for GPU runs and process peak RSS for CPU runs; the two are not compared.</li>\n</ul>\n<h4>3.3 Hardware and reproducibility</h4>\n<p>Every metrics file carries a hardware block next to its numbers. A fingerprint of the\nstable fields was frozen at the start, and <strong>all 19 metrics files were audited against\nit</strong> before the comparison table was built.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/medium/table02.png",
+  "caption": "The machine every timing was measured on."
+ },
+ {
+  "type": "html",
+  "html": "<p>Seed 42 was used throughout. Exact package versions are pinned in <code>requirements.lock.txt</code>.</p>\n<h4>3.4 Models</h4>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/medium/table03.png",
+  "caption": "The eight models, what each was trained and tuned on, and where it ran."
+ },
+ {
+  "type": "html",
+  "html": "<p><strong>Classical models.</strong> The cross-validation grid encoded three questions raised by earlier\nphases: unigrams versus bigrams, <code>min_df</code> 1 versus 2, and balanced class weights or none.\nEach was decided by cross-validation, not asserted. All three models selected unigrams\nand balanced class weights.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig12_classical.png",
+  "caption": "Per-class F1 tracks class size (ρ = +0.94); cross-validation settles three design questions."
+ },
+ {
+  "type": "html",
+  "html": "<p><strong>Prompted LLM.</strong> The prompt, greedy decoding and parser were fixed before any output was\nseen. Parsing is <strong>strict</strong>: the whole output must equal one of the six labels. Anything\nelse is counted as an error, with no retries, repair or constrained decoding. Few-shot\nexamples were stratified across classes (seed 42), drawn from training rows with no\noutlier flag; the number per class was chosen on val from {1, 2, 4}.</p>\n<p><strong>Fine-tuned encoder.</strong> DistilBERT was trained with class-weighted cross-entropy, AdamW\n(learning rate 5 × 10⁻⁵), a linear schedule with 10% warm-up, at most 4 epochs, keeping\nthe best val macro F1, and maximum length 128 (the longest document is 87 WordPiece\ntokens).</p>\n\n<h3>4. Results</h3>\n<h4>4.1 Quality</h4>\n<p>Test split, scored once per model.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/medium/table04.png",
+  "caption": "Test-split quality for every model. The decision bar is the SVM's 0.858 + 0.030 = 0.888."
+ },
+ {
+  "type": "html",
+  "html": "<p>The linear SVM is the best classical model, so the decision bar is <strong>0.858 + 0.030 =\n0.888</strong>. Only DistilBERT clears it, and it beats the SVM on <strong>every class</strong>; its largest\ngain is on the smallest class, <code>surprise</code> (+8.1 points). Its CPU (fp32) and GPU (bf16)\npredictions agree on all 2,000 test rows.</p>\n<h4>4.2 Latency, throughput and cost</h4>\n<p>Timings are separated by the device each model actually ran on and are never mixed within\na column.</p>\n<p><strong>Served on CPU</strong></p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/medium/table05.png",
+  "caption": "Latency, throughput and cost for models served on CPU."
+ },
+ {
+  "type": "html",
+  "html": "<p><strong>Served on GPU</strong></p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/medium/table06.png",
+  "caption": "Latency, throughput and cost for models served on GPU. ✗ marks p95 outside the 50 ms budget."
+ },
+ {
+  "type": "html",
+  "html": "<h4>4.3 The decision rule</h4>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/medium/table07.png",
+  "caption": "The pre-registered decision rule applied to every language-model configuration."
+ },
+ {
+  "type": "html",
+  "html": "<p><strong>The pass/fail split falls exactly on whether the model was trained on the labelled\ndata.</strong></p>\n<h4>4.4 How certain is the fine-tuned model's win?</h4>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/medium/table08.png",
+  "caption": "How certain the fine-tuned model's win is: paired tests, bootstrap and three training seeds."
+ },
+ {
+  "type": "html",
+  "html": "<p><strong>That the fine-tuned model is better than the SVM is established. That it is better by at\nleast 3 points is probable, not certain.</strong> Every seed clears the threshold on its point\nestimate, two of them narrowly, and the reported seed is the most favourable of the three.\nThe rule was applied as pre-registered and was not tightened after the result was known.</p>\n<h4>4.5 The efficient frontier and deployment-scale cost</h4>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig13_tradeoff.png",
+  "caption": "Macro F1 against cost per 1,000 predictions (left) and p95 latency (right). The top row shows all models; the bottom row zooms on the contenders. The dashed line is the decision bar, the dotted line the 50 ms budget, and the vertical bars span three training seeds."
+ },
+ {
+  "type": "html",
+  "html": "<p>Only four models are Pareto-optimal on accuracy against cost: majority, stratified, <strong>the\nlinear SVM</strong>, and <strong>fine-tuned DistilBERT</strong>. Logistic regression, LightGBM and both prompted\nQwen configurations are dominated — for each, some other model is both more accurate and\ncheaper.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/medium/table09.png",
+  "caption": "What moving from the linear SVM to fine-tuned DistilBERT costs and buys at 1 M messages a month."
+ },
+ {
+  "type": "html",
+  "html": "<p>The ratio is large, but the dollars are negligible. The fine-tuned model's real cost is\n<strong>operational</strong>: a 624× larger artefact (256 MB against 411 KB), a PyTorch runtime of about\n1.5 GB, retraining that needs a GPU, and slower cold starts.</p>\n\n<h3>5. Error analysis</h3>\n<p>Per-row test predictions for every model were regenerated from the saved configurations.\nEach reproduced its reported macro F1 exactly. Slices were defined by rules fixed in earlier\nphases.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig14_error_slices.png",
+  "caption": "Accuracy within slices for the linear SVM, fine-tuned DistilBERT and zero-shot Qwen, with 95% Wilson intervals. The dashed verticals mark each model's overall accuracy."
+ },
+ {
+  "type": "html",
+  "html": "<p><strong>Errors concentrate on annotation ambiguity as models improve (confirmed).</strong> The share of\nerrors on joy ↔ love or fear ↔ surprise rises with model quality: LightGBM 37.4%, SVM 40.3%,\n<strong>DistilBERT 55.8%</strong>. Better models remove avoidable errors and leave the ambiguous ones.\nFifty-six test rows are missed by all four trained models, and 57% of those sit on the same\ntwo pairs. By the author's reading, many of those gold labels are no more defensible than\nthe models' answers. One example: <em>\"whenever i put myself in others shoes and try to make\nthe person happy\"</em> is labelled <em>anger</em>.</p>\n<p><strong>Where fine-tuning wins.</strong> Its clearest specific advantage is on <strong>long documents</strong> (46+\nwords): SVM 75.0% against DistilBERT 91.1%, with 11 rows fixed and 2 broken (p = 0.023).\nLong documents contain several competing cue words. A bag-of-words model sums them; a\ntransformer can weigh each against its context. <strong>Negation is not the source of the gain</strong>:\nrows containing negation improve at exactly the overall rate (33 fixed to 14 broken, the\nsame 2.4 : 1 ratio). On the situation-description genre, DistilBERT gains +10 points against\n+3 on the template rows. That is the direction predicted, but it rests on 40 rows and is not\nsignificant (p = 0.34).</p>\n<p><strong>Why the prompted LLM fails.</strong> It refuses the taxonomy: 143 zero-shot outputs (7.2%) were\nout-of-set words such as <code>stress</code>, <code>anxiety</code> or <code>curiosity</code>, reaching 24% of <code>surprise</code> rows.\nIt also draws its own label boundaries: 27% of <code>joy</code> rows were called <code>love</code>. Few-shot\nexamples fixed the formatting (143 → 19 unparseable outputs) but damaged the classification.\nA single mislabelled-looking example — tiredness labelled <code>anger</code> — redefined a class for\nhundreds of test rows. Across four random draws of 12 examples, none beat zero-shot on val,\nand one draw labelled 1,225 of 2,000 rows <code>love</code>.</p>\n<p><strong>What the prompted LLM can do that trained models cannot.</strong> On 14 rows (0.7%), zero-shot\nQwen was right when both the SVM and DistilBERT were wrong. It did so through genuine\ncomposition: <em>\"i feel </em><em>hated</em><em>\"</em> → sadness, where the keyword models said anger. It also\ninferred emotion from a described situation. The capability is real, but it is swamped by\n1,005 errors elsewhere.</p>\n<p><strong>Exploratory: the labels disagree with themselves.</strong> Several cue words are split almost\nevenly between two labels <strong>in the training annotations</strong>: <code>agitated</code> (anger 51% / fear\n47%), <code>passionate</code> (love 52% / joy 44%), <code>stressed</code> (sadness 52% / anger 37%). On rows\ncontaining them, every model scores near chance (30–54%). By contrast, the consistently\nlabelled <code>amazed</code> (94% surprise) is classified <strong>perfectly</strong> by DistilBERT. These words were\nidentified after reading errors, so this is a hypothesis, not a confirmed finding. It does\nexplain the SVM's otherwise unpredicted sadness ↔ anger confusion.</p>\n\n<h3>6. What the unsupervised analyses contributed</h3>\n<p>Three analyses fitted no classifier, yet they shaped and predicted the supervised results.</p>\n<p><strong>Clustering showed that the pre-trained space does not encode the label set globally.</strong>\nOn sentence embeddings (all-MiniLM-L6-v2), KMeans reached ARI 0.049 against the labels, and\nsilhouette never exceeded 0.044 for any k from 2 to 20. The clusters formed around grammar\n(pronoun person, verb tense), provenance (HTML residue) and valence. The only pure cluster\nmerged joy with love, independently reproducing the annotator confusion. DBSCAN found no\ndensity structure at any setting. Locally, however, the embeddings were informative: a\nparameter-free 10-nearest-neighbour vote reached 65.8% accuracy. The conclusion — that\nfrozen representations do not solve the task, so any language-model gain must come from\ntraining or instruction-following — held.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig08_clustering_metrics.png",
+  "caption": "Silhouette stays near zero at every k, and agreement with the labels (ARI, NMI) stays near chance."
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig09_cluster_label_contingency.png",
+  "caption": "KMeans clusters do not recover the emotions: every cluster mixes every label."
+ },
+ {
+  "type": "html",
+  "html": "<p><strong>Locality-sensitive hashing lost to brute force.</strong> Random-hyperplane LSH never beat exact\nsearch: its best recall of 62.5% came with a 4.2× slowdown. The measured cause matched\ntheory. True nearest neighbours sit at a cosine of only 0.54, and exact search over 15,923\nvectors is a single matrix multiply taking 0.23 ms. Near-duplicate detection with the same\nembeddings found 138 cross-split near-copies that string matching had missed.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig10_lsh.png",
+  "caption": "No LSH setting beats exact search: true neighbours sit at cosine 0.54, on the shoulder of the bulk."
+ },
+ {
+  "type": "html",
+  "html": "<p><strong>Association rules predicted the classical grid.</strong> Word pairs added no confidence over\nsingle words, so the analysis predicted bigrams would not help. Cross-validation found they\n<em>cost</em> 2.2 macro F1 points.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/fig11_apriori.png",
+  "caption": "Word pairs add nothing over single words; one adjective is enough to fix the label."
+ },
+ {
+  "type": "html",
+  "html": "<p>A recurring pattern: on this small, short, templated corpus, <strong>sophisticated methods\nrepeatedly failed to justify themselves against simple ones</strong>. KMeans, even with an oracle\nlabel mapping, only barely beat a majority baseline (43.0% against 34.75%). LSH lost to one\nmatrix multiply. A prompted LLM lost to a linear SVM. The exception was the one method that\nlearned the task from the full training data.</p>\n\n<h3>7. Discussion</h3>\n<h4>7.1 The answer to the research question</h4>\n<p><strong>Does a small open-weight LLM beat a classical ML model?</strong> It depends on how the model is\nused, and the two uses give opposite answers.</p>\n<ul>\n<li><strong>Used by prompting, no.</strong> A 1.5 B-parameter instruct model loses by 45–52 macro F1 points,\n  misses the latency budget, and costs thousands of times more. Adding examples makes it\n  worse.</li>\n<li><strong>Used by fine-tuning, yes.</strong> A 67 M-parameter pre-trained encoder beats the best classical\n  model on every class. It wins by 4.0 macro F1 points on the reported seed and 3.5 on the\n  seed mean, with statistical significance.</li>\n</ul>\n<p><strong>Is it worth the extra latency and compute?</strong> Under the pre-registered rule, <strong>the fine-tuned\nmodel is worth it and the prompted model is not.</strong> The fine-tuned model stays inside the\nlatency budget even on a CPU. Its compute cost at the study's scale is under a dollar a\nmonth, and it buys about 31,500 fewer misrouted messages each month. Its margin over the\ndecision threshold is probable rather than certain, and its real cost is operational\ncomplexity, not compute.</p>\n<h4>7.2 Why prompting failed and fine-tuning succeeded</h4>\n<p>Both outcomes trace to one property of this dataset: <strong>its label boundaries are\nconventions.</strong> Joy versus love, fear versus surprise, and whether <em>stressed</em> means sadness or\nanger are drawn inconsistently by the annotators and cannot be recovered from general\nknowledge of English. A supervised model learns the dataset's convention from 16,000\nexamples. A prompted model brings its own convention, which differs. A dozen examples cannot\nconvey the dataset's convention reliably — and when they happen to be noisy, they convey the\nwrong one.</p>\n<p>Size did not compensate. On the same GPU, the 67 M fine-tuned encoder was 17× faster, 49×\ncheaper and 11.5× smaller than the 1.5 B prompted model — and 48.7 macro F1 points more\naccurate. <strong>On a task defined by its labels, learning the labels matters more than model\nscale.</strong></p>\n<h4>7.3 What this benchmark does and does not test</h4>\n<p>The benchmark is unusually favourable to bag-of-words models: 97% of documents follow a\ntemplate in which a single adjective carries the label. The capability that most\ndistinguishes pre-trained language models — inferring emotion from context or described\nsituations — is exercised by only about 2–3% of rows. It showed up where expected (the\nprompted model's 14 compositional wins; the fine-tuned model's direction on the\nsituation-description genre), but at a scale too small to decide the comparison.</p>\n<p><strong>These results should not be generalised to open-domain, untemplated text.</strong> There the\nlanguage model's advantage would likely be larger, and the classical model's\nout-of-vocabulary weakness more costly.</p>\n\n<h3>8. Recommendations</h3>\n<p>For the triage application framed in §1.2:</p>\n<ol>\n<li><strong>Deploy the fine-tuned DistilBERT, served on CPU</strong>, as the primary classifier. It clears\n   the pre-registered bar, stays inside the latency budget without a GPU (p95 18 ms), costs\n   about $0.40 a month at a million messages, and improves the two escalation classes — anger\n   F1 0.896 → 0.932 and fear 0.864 → 0.888. Its recall on the rare classes is about 97%.</li>\n<li><strong>Keep the TF-IDF linear SVM</strong> as the fallback and as a reference model. Prefer it outright\n   wherever a PyTorch runtime, a GPU retraining step or a 256 MB artefact is unacceptable. It\n   gives 90% accuracy at 0.25 ms from a 411 KB file. The accuracy it gives up is real but\n   modest.</li>\n<li><strong>Do not deploy a prompted small generative LLM for this task.</strong> It is dominated on every\n   axis measured.</li>\n<li><strong>Invest in label consistency before model scale.</strong> More than half of the best model's\n   remaining errors lie on annotator-ambiguous pairs, and several cue words are split almost\n   evenly between labels in the training data. Re-annotating those boundaries, or merging\n   classes the application does not need to separate (for example joy and love), is likely to\n   buy more than a larger model.</li>\n<li><strong>If fine-tuning is adopted, validate the margin before relying on it.</strong> Use a larger or\n   fresh test sample, and more than three seeds. The present evidence establishes superiority,\n   but only a probable margin over the 3-point threshold.</li>\n</ol>\n\n<h3>9. Threats to validity and limitations</h3>\n<ul>\n<li><strong>One benchmark, strongly templated.</strong> Conclusions are about this dataset (§7.3).</li>\n<li><strong>One prompted LLM and one prompt.</strong> A larger instruct model, a better prompt, constrained\n  decoding or a val-designed label-synonym map might score substantially higher. None was\n  tried, to avoid tuning on test.</li>\n<li><strong>Few-shot design flaw.</strong> The val grid for the number of examples omitted zero. Val would have\n  chosen zero-shot, so the few-shot configuration should not have reached test. Its test\n  result is reported as pre-registered.</li>\n<li><strong>Fine-tuned margin.</strong> The margin rests on one test set of 2,000 rows and three seeds, and the\n  reported seed is the most favourable. Two of the three seeds selected the final permitted\n  epoch, so the 4-epoch cap may have been binding.</li>\n<li><strong>Label noise.</strong> Gold labels are demonstrably inconsistent (§2.2, §5), which caps every model\n  and blurs comparisons at the top.</li>\n<li><strong>Test-set composition.</strong> 2.8% of test rows are near-copies or contradicted copies of other\n  rows. Their measured net effect on accuracy is about −0.3 points, equal across models.</li>\n<li><strong>Cost model.</strong> Hourly rates are assumptions; compute cost excludes engineering, storage and\n  serving overhead.</li>\n<li><strong>Serving stack.</strong> The LLMs were served with <code>transformers</code> <code>generate()</code>, which has no\n  continuous batching or prefix caching. A dedicated serving engine would narrow their latency\n  and cost gap, likely by about one order of magnitude, not the three separating them from the\n  classical model, and it would not change their accuracy.</li>\n<li><strong>Single laptop.</strong> Timings come from a laptop, not an isolated benchmark host. p95, not the\n  maximum, is reported to limit the effect of scheduler noise.</li>\n<li><strong>Genre and provenance inferences.</strong> The situation-description genre and the de-duplication\n  mechanism are inferred from the data, not from documented provenance.</li>\n</ul>\n\n<h3>10. Corrections and deviations</h3>\n<p>Defects found and fixed during the study are recorded here, because each would otherwise have\nput a wrong number into the results.</p>"
+ },
+ {
+  "type": "image",
+  "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/Part_I/reports/figures/medium/table10.png",
+  "caption": "Measurement defects found during the study, and how each was resolved."
+ },
+ {
+  "type": "html",
+  "html": "<p>Two predictions registered in intermediate phases were <strong>refuted</strong> and are reported as such.\nThat short documents would be uninformative was wrong: 97.5% contain an emotion cue. That LSH\nwould reach high recall was wrong, for measured geometric reasons.</p>\n\n<h3>11. Reproducibility</h3>\n<p>All scripts are in <code>src/</code>. Figures are in <code>reports/figures/</code>, and every metric, each carrying\nits hardware block, is in <code>reports/metrics/</code>. Per-phase write-ups are in <code>reports/docs/</code>.</p>\n<p><strong>Run order</strong></p>\n<pre><code>phase02_data_understanding.py   freeze the split\nphase03_text_eda.py             phase04_visualization.py\nphase05_cleaning.py             -&gt; data/processed/train_clean.parquet\nphase06_outliers.py             phase07_features.py\nphase08_clustering.py           phase09_lsh.py            phase10_apriori.py\nphase11_baseline.py             phase12_classical.py\nphase13_zeroshot.py             phase14_fewshot.py        phase14_robustness.py\nphase15_finetune.py train       phase15_finetune.py eval-cpu\nphase15_finetune.py seed-check 7 123                      phase15_significance.py\nphase16_comparison.py           (hardware and protocol audits; tables and Figure 1)\nphase17_dump_predictions.py     phase17_errors.py         (Figure 2)\n</code></pre>\n<p><strong>Environment:</strong> Python 3.12.3; exact versions in <code>requirements.lock.txt</code> (PyTorch\n2.11.0+cu128, transformers 4.57.6, scikit-learn 1.5.2, LightGBM 4.5.0, sentence-transformers\n3.3.1). Seed 42 throughout.</p>\n<p><strong>Data:</strong> Kaggle <code>praveengovi/emotions-dataset-for-nlp</code>, placed at\n<code>data/raw/{train,val,test}.txt</code>.</p>\n\n<h3>References</h3>\n<ul>\n<li>Agrawal, R., &amp; Srikant, R. (1994). Fast algorithms for mining association rules. <em>Proc. VLDB</em>.</li>\n<li>Charikar, M. S. (2002). Similarity estimation techniques from rounding algorithms. <em>Proc. STOC</em>.</li>\n<li>Chapman, P., et al. (2000). <em>CRISP-DM 1.0: Step-by-step data mining guide</em>.</li>\n<li>McNemar, Q. (1947). Note on the sampling error of the difference between correlated proportions or percentages. <em>Psychometrika</em>, 12(2).</li>\n<li>Monroe, B. L., Colaresi, M. P., &amp; Quinn, K. M. (2008). Fightin' words: Lexical feature selection and evaluation for identifying the content of political conflict. <em>Political Analysis</em>, 16(4).</li>\n<li>Qwen Team (2024). Qwen2.5 technical report. arXiv:2412.15115.</li>\n<li>Reimers, N., &amp; Gurevych, I. (2019). Sentence-BERT: Sentence embeddings using Siamese BERT-networks. <em>Proc. EMNLP</em>.</li>\n<li>Russell, J. A. (1980). A circumplex model of affect. <em>Journal of Personality and Social Psychology</em>, 39(6).</li>\n<li>Sanh, V., Debut, L., Chaumond, J., &amp; Wolf, T. (2019). DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter. arXiv:1910.01108.</li>\n<li>Dataset: <em>Emotions dataset for NLP</em>, Kaggle, <code>praveengovi/emotions-dataset-for-nlp</code>.</li>\n</ul>"
+ }
+]

@@ -1,0 +1,647 @@
+{
+  "phase": "12_classical",
+  "splits_used": [
+    "train_clean + val (5-fold CV tuning)",
+    "test (scored once per model)"
+  ],
+  "split_policy": "all tuning on train_clean + val; test read once per model to produce its final row. No test row influenced any hyper-parameter.",
+  "selection_metric": "macro F1",
+  "cv": {
+    "folds": 5,
+    "stratified": true,
+    "shuffle": true,
+    "seed": 42,
+    "development_rows": 17923
+  },
+  "models": {
+    "logreg": {
+      "model": "logreg",
+      "family": "classical",
+      "device_used": "cpu",
+      "quality": {
+        "n": 2000,
+        "accuracy": 0.8905,
+        "macro_f1": 0.8486,
+        "weighted_f1": 0.893,
+        "balanced_accuracy": 0.8777,
+        "accuracy_minus_macro_f1": 0.0419,
+        "per_class": {
+          "joy": {
+            "precision": 0.9408,
+            "recall": 0.8921,
+            "f1": 0.9158,
+            "support": 695
+          },
+          "sadness": {
+            "precision": 0.958,
+            "recall": 0.9019,
+            "f1": 0.9291,
+            "support": 581
+          },
+          "anger": {
+            "precision": 0.8685,
+            "recall": 0.9127,
+            "f1": 0.8901,
+            "support": 275
+          },
+          "fear": {
+            "precision": 0.8716,
+            "recall": 0.8482,
+            "f1": 0.8597,
+            "support": 224
+          },
+          "love": {
+            "precision": 0.71,
+            "recall": 0.8931,
+            "f1": 0.7911,
+            "support": 159
+          },
+          "surprise": {
+            "precision": 0.6207,
+            "recall": 0.8182,
+            "f1": 0.7059,
+            "support": 66
+          }
+        },
+        "labels_never_predicted": [],
+        "confusion_matrix": {
+          "labels": [
+            "joy",
+            "sadness",
+            "anger",
+            "fear",
+            "love",
+            "surprise"
+          ],
+          "rows_true_cols_pred": [
+            [
+              620,
+              1,
+              6,
+              6,
+              50,
+              12
+            ],
+            [
+              15,
+              524,
+              22,
+              10,
+              4,
+              6
+            ],
+            [
+              6,
+              10,
+              251,
+              6,
+              2,
+              0
+            ],
+            [
+              0,
+              10,
+              8,
+              190,
+              2,
+              14
+            ],
+            [
+              15,
+              0,
+              1,
+              0,
+              142,
+              1
+            ],
+            [
+              3,
+              2,
+              1,
+              6,
+              0,
+              54
+            ]
+          ]
+        },
+        "meets_target_macro_f1": false,
+        "target_macro_f1": 0.85
+      },
+      "latency_single_row": {
+        "n_runs": 200,
+        "p50_ms": 0.3133,
+        "p95_ms": 0.3411,
+        "p99_ms": 0.3488,
+        "mean_ms": 0.316,
+        "min_ms": 0.2957,
+        "max_ms": 0.36,
+        "stdev_ms": 0.012,
+        "warmup_runs_discarded": 20,
+        "within_p95_budget": true,
+        "p95_budget_ms": 50.0
+      },
+      "throughput_batched": {
+        "by_batch_size": {
+          "1": {
+            "batch_size": 1,
+            "median_seconds": 0.000323,
+            "rows_per_second": 3096.5,
+            "ms_per_row": 0.3229,
+            "repeats": 5
+          },
+          "8": {
+            "batch_size": 8,
+            "median_seconds": 0.000388,
+            "rows_per_second": 20640.05,
+            "ms_per_row": 0.0484,
+            "repeats": 5
+          },
+          "32": {
+            "batch_size": 32,
+            "median_seconds": 0.000584,
+            "rows_per_second": 54821.46,
+            "ms_per_row": 0.0182,
+            "repeats": 5
+          },
+          "128": {
+            "batch_size": 128,
+            "median_seconds": 0.0013,
+            "rows_per_second": 98489.19,
+            "ms_per_row": 0.0102,
+            "repeats": 5
+          }
+        },
+        "best_rows_per_second": 98489.19,
+        "best_batch_size": 128
+      },
+      "cost": {
+        "usd_per_1000_predictions": 5.415e-07,
+        "usd_per_1m_predictions": 0.0005415,
+        "seconds_per_1000": 0.0102,
+        "pricing_tier": "cpu",
+        "hourly_rate_usd": 0.192,
+        "formula": "(1000 / rows_per_second) / 3600 * hourly_rate_usd",
+        "caveat": "compute only; excludes engineering, storage and serving overhead. A lower bound for large models."
+      },
+      "model_size_on_disk_mb": 0.807,
+      "peak_memory_mb": 419.7,
+      "notes": {
+        "tuned_on": "train_clean + val (17,923 rows), 5-fold stratified CV",
+        "selection_metric": "macro F1",
+        "scored_on": "test (2,000 rows), once",
+        "best_params": {
+          "clf__C": "5.0",
+          "clf__class_weight": "balanced",
+          "tfidf__min_df": "1",
+          "tfidf__ngram_range": "(1, 1)"
+        },
+        "best_cv_macro_f1": 0.8596,
+        "cv_search_seconds": 219.2,
+        "n_param_combinations": 24,
+        "vocabulary_size": 16172,
+        "representation_effects_on_cv_macro_f1": {
+          "ngram_range": {
+            "(1, 1)": 0.8436,
+            "(1, 2)": 0.8075
+          },
+          "min_df": {
+            "1": 0.8222,
+            "2": 0.8289
+          },
+          "class_weight": {
+            "None": 0.8013,
+            "balanced": 0.8498
+          }
+        }
+      }
+    },
+    "linear_svm": {
+      "model": "linear_svm",
+      "family": "classical",
+      "device_used": "cpu",
+      "quality": {
+        "n": 2000,
+        "accuracy": 0.8995,
+        "macro_f1": 0.8579,
+        "weighted_f1": 0.9017,
+        "balanced_accuracy": 0.8863,
+        "accuracy_minus_macro_f1": 0.0416,
+        "per_class": {
+          "joy": {
+            "precision": 0.9529,
+            "recall": 0.9022,
+            "f1": 0.9268,
+            "support": 695
+          },
+          "sadness": {
+            "precision": 0.9551,
+            "recall": 0.9157,
+            "f1": 0.935,
+            "support": 581
+          },
+          "anger": {
+            "precision": 0.8807,
+            "recall": 0.9127,
+            "f1": 0.8964,
+            "support": 275
+          },
+          "fear": {
+            "precision": 0.8796,
+            "recall": 0.8482,
+            "f1": 0.8636,
+            "support": 224
+          },
+          "love": {
+            "precision": 0.7347,
+            "recall": 0.9057,
+            "f1": 0.8113,
+            "support": 159
+          },
+          "surprise": {
+            "precision": 0.625,
+            "recall": 0.8333,
+            "f1": 0.7143,
+            "support": 66
+          }
+        },
+        "labels_never_predicted": [],
+        "confusion_matrix": {
+          "labels": [
+            "joy",
+            "sadness",
+            "anger",
+            "fear",
+            "love",
+            "surprise"
+          ],
+          "rows_true_cols_pred": [
+            [
+              627,
+              4,
+              2,
+              4,
+              46,
+              12
+            ],
+            [
+              12,
+              532,
+              22,
+              7,
+              4,
+              4
+            ],
+            [
+              4,
+              9,
+              251,
+              8,
+              2,
+              1
+            ],
+            [
+              0,
+              10,
+              9,
+              190,
+              0,
+              15
+            ],
+            [
+              13,
+              0,
+              1,
+              0,
+              144,
+              1
+            ],
+            [
+              2,
+              2,
+              0,
+              7,
+              0,
+              55
+            ]
+          ]
+        },
+        "meets_target_macro_f1": true,
+        "target_macro_f1": 0.85
+      },
+      "latency_single_row": {
+        "n_runs": 200,
+        "p50_ms": 0.2201,
+        "p95_ms": 0.2464,
+        "p99_ms": 0.2602,
+        "mean_ms": 0.2227,
+        "min_ms": 0.2044,
+        "max_ms": 0.2828,
+        "stdev_ms": 0.0127,
+        "warmup_runs_discarded": 20,
+        "within_p95_budget": true,
+        "p95_budget_ms": 50.0
+      },
+      "throughput_batched": {
+        "by_batch_size": {
+          "1": {
+            "batch_size": 1,
+            "median_seconds": 0.000225,
+            "rows_per_second": 4434.75,
+            "ms_per_row": 0.2255,
+            "repeats": 5
+          },
+          "8": {
+            "batch_size": 8,
+            "median_seconds": 0.000332,
+            "rows_per_second": 24088.99,
+            "ms_per_row": 0.0415,
+            "repeats": 5
+          },
+          "32": {
+            "batch_size": 32,
+            "median_seconds": 0.00051,
+            "rows_per_second": 62705.02,
+            "ms_per_row": 0.0159,
+            "repeats": 5
+          },
+          "128": {
+            "batch_size": 128,
+            "median_seconds": 0.001228,
+            "rows_per_second": 104221.71,
+            "ms_per_row": 0.0096,
+            "repeats": 5
+          }
+        },
+        "best_rows_per_second": 104221.71,
+        "best_batch_size": 128
+      },
+      "cost": {
+        "usd_per_1000_predictions": 5.117e-07,
+        "usd_per_1m_predictions": 0.0005117,
+        "seconds_per_1000": 0.0096,
+        "pricing_tier": "cpu",
+        "hourly_rate_usd": 0.192,
+        "formula": "(1000 / rows_per_second) / 3600 * hourly_rate_usd",
+        "caveat": "compute only; excludes engineering, storage and serving overhead. A lower bound for large models."
+      },
+      "model_size_on_disk_mb": 0.411,
+      "peak_memory_mb": 419.7,
+      "notes": {
+        "tuned_on": "train_clean + val (17,923 rows), 5-fold stratified CV",
+        "selection_metric": "macro F1",
+        "scored_on": "test (2,000 rows), once",
+        "best_params": {
+          "clf__C": "0.5",
+          "clf__class_weight": "balanced",
+          "tfidf__min_df": "2",
+          "tfidf__ngram_range": "(1, 1)"
+        },
+        "best_cv_macro_f1": 0.8677,
+        "cv_search_seconds": 20.2,
+        "n_param_combinations": 24,
+        "vocabulary_size": 7749,
+        "representation_effects_on_cv_macro_f1": {
+          "ngram_range": {
+            "(1, 1)": 0.8571,
+            "(1, 2)": 0.8354
+          },
+          "min_df": {
+            "1": 0.8432,
+            "2": 0.8494
+          },
+          "class_weight": {
+            "None": 0.8321,
+            "balanced": 0.8605
+          }
+        }
+      }
+    },
+    "gradient_boosting": {
+      "model": "gradient_boosting",
+      "family": "classical",
+      "device_used": "cpu",
+      "quality": {
+        "n": 2000,
+        "accuracy": 0.881,
+        "macro_f1": 0.84,
+        "weighted_f1": 0.8819,
+        "balanced_accuracy": 0.8493,
+        "accuracy_minus_macro_f1": 0.041,
+        "per_class": {
+          "joy": {
+            "precision": 0.8938,
+            "recall": 0.9079,
+            "f1": 0.9008,
+            "support": 695
+          },
+          "sadness": {
+            "precision": 0.9397,
+            "recall": 0.9122,
+            "f1": 0.9258,
+            "support": 581
+          },
+          "anger": {
+            "precision": 0.8843,
+            "recall": 0.8618,
+            "f1": 0.8729,
+            "support": 275
+          },
+          "fear": {
+            "precision": 0.8832,
+            "recall": 0.8438,
+            "f1": 0.863,
+            "support": 224
+          },
+          "love": {
+            "precision": 0.7176,
+            "recall": 0.7673,
+            "f1": 0.7416,
+            "support": 159
+          },
+          "surprise": {
+            "precision": 0.6795,
+            "recall": 0.803,
+            "f1": 0.7361,
+            "support": 66
+          }
+        },
+        "labels_never_predicted": [],
+        "confusion_matrix": {
+          "labels": [
+            "joy",
+            "sadness",
+            "anger",
+            "fear",
+            "love",
+            "surprise"
+          ],
+          "rows_true_cols_pred": [
+            [
+              631,
+              6,
+              4,
+              4,
+              41,
+              9
+            ],
+            [
+              19,
+              530,
+              19,
+              7,
+              4,
+              2
+            ],
+            [
+              12,
+              14,
+              237,
+              9,
+              2,
+              1
+            ],
+            [
+              5,
+              13,
+              5,
+              189,
+              1,
+              11
+            ],
+            [
+              32,
+              0,
+              3,
+              0,
+              122,
+              2
+            ],
+            [
+              7,
+              1,
+              0,
+              5,
+              0,
+              53
+            ]
+          ]
+        },
+        "meets_target_macro_f1": false,
+        "target_macro_f1": 0.85
+      },
+      "latency_single_row": {
+        "n_runs": 200,
+        "p50_ms": 0.6651,
+        "p95_ms": 0.8002,
+        "p99_ms": 0.9289,
+        "mean_ms": 0.6829,
+        "min_ms": 0.6269,
+        "max_ms": 1.0944,
+        "stdev_ms": 0.0641,
+        "warmup_runs_discarded": 20,
+        "within_p95_budget": true,
+        "p95_budget_ms": 50.0
+      },
+      "throughput_batched": {
+        "by_batch_size": {
+          "1": {
+            "batch_size": 1,
+            "median_seconds": 0.000645,
+            "rows_per_second": 1549.96,
+            "ms_per_row": 0.6452,
+            "repeats": 5
+          },
+          "8": {
+            "batch_size": 8,
+            "median_seconds": 0.000885,
+            "rows_per_second": 9040.79,
+            "ms_per_row": 0.1106,
+            "repeats": 5
+          },
+          "32": {
+            "batch_size": 32,
+            "median_seconds": 0.001953,
+            "rows_per_second": 16386.58,
+            "ms_per_row": 0.061,
+            "repeats": 5
+          },
+          "128": {
+            "batch_size": 128,
+            "median_seconds": 0.00616,
+            "rows_per_second": 20780.58,
+            "ms_per_row": 0.0481,
+            "repeats": 5
+          }
+        },
+        "best_rows_per_second": 20780.58,
+        "best_batch_size": 128
+      },
+      "cost": {
+        "usd_per_1000_predictions": 2.566e-06,
+        "usd_per_1m_predictions": 0.002566,
+        "seconds_per_1000": 0.0481,
+        "pricing_tier": "cpu",
+        "hourly_rate_usd": 0.192,
+        "formula": "(1000 / rows_per_second) / 3600 * hourly_rate_usd",
+        "caveat": "compute only; excludes engineering, storage and serving overhead. A lower bound for large models."
+      },
+      "model_size_on_disk_mb": 2.69,
+      "peak_memory_mb": 446.7,
+      "notes": {
+        "tuned_on": "train_clean + val (17,923 rows), 5-fold stratified CV",
+        "selection_metric": "macro F1",
+        "scored_on": "test (2,000 rows), once",
+        "best_params": {
+          "clf__class_weight": "balanced",
+          "clf__learning_rate": "0.1",
+          "clf__num_leaves": "31",
+          "tfidf__min_df": "2",
+          "tfidf__ngram_range": "(1, 1)"
+        },
+        "best_cv_macro_f1": 0.841,
+        "cv_search_seconds": 256.2,
+        "n_param_combinations": 8,
+        "vocabulary_size": 7749,
+        "representation_effects_on_cv_macro_f1": {
+          "ngram_range": {
+            "(1, 1)": 0.8379
+          },
+          "min_df": {
+            "2": 0.8379
+          },
+          "class_weight": {
+            "None": 0.8371,
+            "balanced": 0.8388
+          }
+        }
+      }
+    }
+  },
+  "best_model": "linear_svm",
+  "figures": [
+    "fig12_classical.png"
+  ],
+  "vs_baseline": {
+    "baseline_macro_f1_floor": 0.1539,
+    "baseline_accuracy_floor": 0.3475,
+    "best_classical_macro_f1": 0.8579,
+    "macro_f1_improvement_over_floor": 0.704,
+    "baseline_p95_latency_ms": 0.1549,
+    "best_classical_p95_latency_ms": 0.2464
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cpu",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": "2.14.0+cpu",
+    "cuda_version": null,
+    "cuda_available": false
+  }
+}

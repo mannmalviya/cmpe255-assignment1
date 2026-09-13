@@ -1,0 +1,404 @@
+{
+  "phase": "06_outliers",
+  "splits_used": [
+    "train_clean"
+  ],
+  "split_policy": "train_clean only (15,923 rows). Outlier thresholds are a modelling judgement and are set on training data.",
+  "policy": "FLAG, DO NOT REMOVE. These rows are where models will fail, so Phase 17 needs them identified. Removing them would raise every score without any model improving.",
+  "length": {
+    "tukey_fences_words": {
+      "q1": 11.0,
+      "q3": 25.0,
+      "iqr": 14.0,
+      "lower_fence": -10.0,
+      "upper_fence": 46.0
+    },
+    "p1": 4.0,
+    "p99": 52.0,
+    "short_definition": "n_words <= 5 (the p5 of Phase 3)",
+    "short": {
+      "n": 845,
+      "share_of_train": 0.05307,
+      "class_share": {
+        "joy": 0.2911,
+        "sadness": 0.3562,
+        "anger": 0.1562,
+        "fear": 0.1231,
+        "love": 0.0473,
+        "surprise": 0.026
+      },
+      "lift_vs_corpus": {
+        "joy": 0.87,
+        "sadness": 1.22,
+        "anger": 1.16,
+        "fear": 1.02,
+        "love": 0.59,
+        "surprise": 0.74
+      },
+      "examples": [
+        {
+          "row_id": "train_0",
+          "label": "sadness",
+          "text": "i didnt feel humiliated"
+        },
+        {
+          "row_id": "train_4",
+          "label": "anger",
+          "text": "i am feeling grouchy"
+        },
+        {
+          "row_id": "train_9",
+          "label": "love",
+          "text": "i feel romantic too"
+        },
+        {
+          "row_id": "train_52",
+          "label": "anger",
+          "text": "i feel selfish and spoiled"
+        },
+        {
+          "row_id": "train_79",
+          "label": "anger",
+          "text": "i feel angered and firey"
+        }
+      ]
+    },
+    "long_definition": "n_words >= upper Tukey fence (46)",
+    "long": {
+      "n": 440,
+      "share_of_train": 0.02763,
+      "class_share": {
+        "joy": 0.3068,
+        "sadness": 0.3,
+        "anger": 0.1477,
+        "fear": 0.1114,
+        "love": 0.0932,
+        "surprise": 0.0409
+      },
+      "lift_vs_corpus": {
+        "joy": 0.91,
+        "sadness": 1.02,
+        "anger": 1.09,
+        "fear": 0.92,
+        "love": 1.16,
+        "surprise": 1.15
+      },
+      "max_words": 66
+    }
+  },
+  "off_template": {
+    "definition": "text contains no feel/feeling/feels/felt",
+    "n": 433,
+    "share_of_train": 0.02719,
+    "class_share": {
+      "joy": 0.2702,
+      "sadness": 0.2171,
+      "anger": 0.2517,
+      "fear": 0.1455,
+      "love": 0.0924,
+      "surprise": 0.0231
+    },
+    "lift_vs_corpus": {
+      "joy": 0.81,
+      "sadness": 0.74,
+      "anger": 1.86,
+      "fear": 1.2,
+      "love": 1.15,
+      "surprise": 0.65
+    },
+    "examples": [
+      {
+        "row_id": "train_48",
+        "label": "joy",
+        "text": "on a boat trip to denmark"
+      },
+      {
+        "row_id": "train_54",
+        "label": "joy",
+        "text": "i bag qaf look who s cryin now jacynthe lookin good feelin gorgeous rupaul the skins scissor sisters valentine the sun fed up kayle who s your daddy gerling awake the unkind u"
+      },
+      {
+        "row_id": "train_67",
+        "label": "sadness",
+        "text": "i have been on a roller coaster of emotions over these supposed feelings that something unpleasant was coming"
+      },
+      {
+        "row_id": "train_77",
+        "label": "joy",
+        "text": "i think feelings are one of nay the most important things we have"
+      },
+      {
+        "row_id": "train_92",
+        "label": "sadness",
+        "text": "when my mums brother passed away after having been involved in a car accident he was bringing me a present as i had passed my form five exams with flying colours"
+      }
+    ]
+  },
+  "vocabulary_rarity": {
+    "definition": "share of tokens with corpus count <= 2, at or above the p99 of 0.2222",
+    "n": 187,
+    "share_of_train": 0.01174,
+    "class_share": {
+      "joy": 0.4118,
+      "sadness": 0.2567,
+      "anger": 0.0963,
+      "fear": 0.1176,
+      "love": 0.0749,
+      "surprise": 0.0428
+    },
+    "lift_vs_corpus": {
+      "joy": 1.23,
+      "sadness": 0.88,
+      "anger": 0.71,
+      "fear": 0.97,
+      "love": 0.93,
+      "surprise": 1.21
+    },
+    "most_extreme": [
+      {
+        "row_id": "train_11624",
+        "label": "sadness",
+        "n_words": 10,
+        "rare_share": 0.7,
+        "text": "i kali ni feeling aku dah bertukar jadi boring benci"
+      },
+      {
+        "row_id": "train_4150",
+        "label": "fear",
+        "n_words": 2,
+        "rare_share": 0.5,
+        "text": "earth crake"
+      },
+      {
+        "row_id": "train_4997",
+        "label": "joy",
+        "n_words": 2,
+        "rare_share": 0.5,
+        "text": "during lectures"
+      },
+      {
+        "row_id": "train_8824",
+        "label": "fear",
+        "n_words": 2,
+        "rare_share": 0.5,
+        "text": "in sweden"
+      },
+      {
+        "row_id": "train_4741",
+        "label": "joy",
+        "n_words": 13,
+        "rare_share": 0.46153846153846156,
+        "text": "im feeling virtuous i do a spinach feta cranberry salad with balsamic viniagrette"
+      },
+      {
+        "row_id": "train_9753",
+        "label": "fear",
+        "n_words": 49,
+        "rare_share": 0.4489795918367347,
+        "text": "i just feel you so so dont be afraid naega deo apaya hae and pray again dasi neol chajeul su itge sigani heureulsurok gaseumi apawa i need you go back in time dan hanbeon manirado forgive my sins wo doedollil suman itdamyeon i gotong ttawin naegen so so sloth"
+      },
+      {
+        "row_id": "train_8423",
+        "label": "fear",
+        "n_words": 9,
+        "rare_share": 0.4444444444444444,
+        "text": "i got caught shoplifting a package of gummy bears"
+      },
+      {
+        "row_id": "train_3972",
+        "label": "fear",
+        "n_words": 14,
+        "rare_share": 0.42857142857142855,
+        "text": "i feel more excitment than reluctant xdd hohoho looking foward tmr xd cya tmr"
+      }
+    ]
+  },
+  "cue_lexicon": {
+    "size": 336,
+    "threshold_z": 3.0,
+    "cap_per_class": 150,
+    "per_class_size": {
+      "joy": 106,
+      "sadness": 98,
+      "anger": 50,
+      "fear": 46,
+      "love": 30,
+      "surprise": 12
+    }
+  },
+  "cue_free": {
+    "definition": "document contains no word from the cue lexicon",
+    "n": 73,
+    "share_of_train": 0.00458,
+    "class_share": {
+      "joy": 0.2192,
+      "sadness": 0.1507,
+      "anger": 0.3836,
+      "fear": 0.2192,
+      "love": 0.0274,
+      "surprise": 0.0
+    },
+    "lift_vs_corpus": {
+      "joy": 0.65,
+      "sadness": 0.51,
+      "anger": 2.84,
+      "fear": 1.81,
+      "love": 0.34,
+      "surprise": 0.0
+    },
+    "examples": [
+      {
+        "row_id": "train_48",
+        "label": "joy",
+        "text": "on a boat trip to denmark"
+      },
+      {
+        "row_id": "train_303",
+        "label": "fear",
+        "text": "fear of thief"
+      },
+      {
+        "row_id": "train_902",
+        "label": "sadness",
+        "text": "the funeral of a friend who was killed in a car accident she was of my own age"
+      },
+      {
+        "row_id": "train_951",
+        "label": "joy",
+        "text": "id feel better"
+      },
+      {
+        "row_id": "train_992",
+        "label": "anger",
+        "text": "when my mother kept me in leadingstrings"
+      }
+    ]
+  },
+  "cue_coverage_by_length": [
+    {
+      "bucket": "2-5",
+      "n": 845,
+      "share_with_a_cue": 0.9751,
+      "mean_cues": 1.87
+    },
+    {
+      "bucket": "6-10",
+      "n": 3017,
+      "share_with_a_cue": 0.9904,
+      "mean_cues": 2.3
+    },
+    {
+      "bucket": "11-17",
+      "n": 4364,
+      "share_with_a_cue": 0.9963,
+      "mean_cues": 2.8
+    },
+    {
+      "bucket": "18-25",
+      "n": 3759,
+      "share_with_a_cue": 0.9987,
+      "mean_cues": 3.41
+    },
+    {
+      "bucket": "26-40",
+      "n": 3111,
+      "share_with_a_cue": 0.9994,
+      "mean_cues": 4.12
+    },
+    {
+      "bucket": "41-66",
+      "n": 827,
+      "share_with_a_cue": 1.0,
+      "mean_cues": 5.29
+    }
+  ],
+  "corpus_composition": {
+    "genre_a_first_person_feel": {
+      "n": 15474,
+      "share_of_train": 0.9718,
+      "class_share": {
+        "joy": 0.3372,
+        "sadness": 0.2951,
+        "anger": 0.1316,
+        "fear": 0.12,
+        "love": 0.0802,
+        "surprise": 0.0358
+      },
+      "lift_vs_corpus": {
+        "joy": 1.01,
+        "sadness": 1.01,
+        "anger": 0.97,
+        "fear": 0.99,
+        "love": 1.0,
+        "surprise": 1.01
+      },
+      "median_words": 17.0,
+      "example": "i didnt feel humiliated"
+    },
+    "genre_b_other": {
+      "n": 449,
+      "share_of_train": 0.0282,
+      "class_share": {
+        "joy": 0.2717,
+        "sadness": 0.2094,
+        "anger": 0.2561,
+        "fear": 0.147,
+        "love": 0.0935,
+        "surprise": 0.0223
+      },
+      "lift_vs_corpus": {
+        "joy": 0.81,
+        "sadness": 0.72,
+        "anger": 1.9,
+        "fear": 1.22,
+        "love": 1.16,
+        "surprise": 0.63
+      },
+      "median_words": 18.0,
+      "examples": [
+        "on a boat trip to denmark",
+        "when my mums brother passed away after having been involved in a car accident he was bringing me a present as i had passed my form five exams with flying colours",
+        "finding out that i am not ill not seriously",
+        "when i heard a rumour that the st year exam results were out i had fear that i might be one of the failures",
+        "fear of thief",
+        "is that you feel it more than hear it and the vibrations are so gentle that it doesnt bother me"
+      ]
+    },
+    "rows_starting_with_when": 68,
+    "of_those_off_template": 66,
+    "evidence": [
+      "433 rows (2.72%) contain no feel-word at all.",
+      "100 of them open with a scene-setting preposition or 'when'.",
+      "68 rows in the corpus start with 'when'; 66 are off-template.",
+      "Median length of off-template non-first-person rows is 12.5 words against 17.0 corpus-wide.",
+      "Several show non-native English ('suffered of nightmares even since than', 'kept me in leadingstrings') and terse noun-phrase answers ('earth crake', 'in sweden', 'during lectures')."
+    ],
+    "interpretation": "The corpus is a MIXTURE of at least two text genres. The dominant one is first-person present-tense self-report ('i feel <adjective>'). A small second genre describes the SITUATION that caused an emotion, names no feeling, and reads like free-text answers to a 'describe a time you felt X' survey translated by non-native speakers. This is a stylistic inference from the text itself, not documented provenance; we did not verify it against the dataset's sources.",
+    "consequence": "Genre B rows must be labelled from world knowledge, not from a cue word: nothing in 'when my father passed away' names sadness. This is the sub-population where a pre-trained language model has a real, structural advantage over TF-IDF, and it is 2.7% of the corpus. Phase 17 must report accuracy separately for the two genres; an aggregate score will hide the only place the LLM can win."
+  },
+  "flag_overlap": {
+    "rows_with_no_flag": 14072,
+    "rows_with_1_flag": 1748,
+    "rows_with_2plus_flags": 103,
+    "rows_with_3plus_flags": 20
+  },
+  "artefacts": {
+    "flags": "data/processed/train_outlier_flags.parquet",
+    "figure": "reports/figures/fig07_outliers.png"
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cpu",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": null,
+    "cuda_version": null,
+    "cuda_available": false
+  }
+}

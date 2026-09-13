@@ -1,0 +1,8 @@
+.next/
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+artifacts/*.pt
+artifacts/*.tmp
+

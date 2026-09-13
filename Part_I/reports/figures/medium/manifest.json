@@ -1,0 +1,72 @@
+[
+  {
+    "file": "table01.png",
+    "heading": "2.1 Dataset and split",
+    "line": 88,
+    "first_header_cell": "Split",
+    "n_rows": 3
+  },
+  {
+    "file": "table02.png",
+    "heading": "3.3 Hardware and reproducibility",
+    "line": 189,
+    "first_header_cell": "Field",
+    "n_rows": 6
+  },
+  {
+    "file": "table03.png",
+    "heading": "3.4 Models",
+    "line": 202,
+    "first_header_cell": "Family",
+    "n_rows": 5
+  },
+  {
+    "file": "table04.png",
+    "heading": "4.1 Quality",
+    "line": 234,
+    "first_header_cell": "Model",
+    "n_rows": 8
+  },
+  {
+    "file": "table05.png",
+    "heading": "4.2 Latency, throughput and cost",
+    "line": 257,
+    "first_header_cell": "Model",
+    "n_rows": 4
+  },
+  {
+    "file": "table06.png",
+    "heading": "4.2 Latency, throughput and cost",
+    "line": 266,
+    "first_header_cell": "Model",
+    "n_rows": 3
+  },
+  {
+    "file": "table07.png",
+    "heading": "4.3 The decision rule",
+    "line": 274,
+    "first_header_cell": "Configuration",
+    "n_rows": 4
+  },
+  {
+    "file": "table08.png",
+    "heading": "4.4 How certain is the fine-tuned model's win?",
+    "line": 286,
+    "first_header_cell": "Evidence",
+    "n_rows": 6
+  },
+  {
+    "file": "table09.png",
+    "heading": "4.5 The efficient frontier and deployment-scale cost",
+    "line": 314,
+    "first_header_cell": "Moving from linear SVM to fine-tuned DistilBERT",
+    "n_rows": 3
+  },
+  {
+    "file": "table10.png",
+    "heading": "10. Corrections and deviations",
+    "line": 520,
+    "first_header_cell": "Phase",
+    "n_rows": 11
+  }
+]

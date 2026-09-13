@@ -1,0 +1,20 @@
+{"system":"You are PocketLM, a concise and friendly assistant.","user":"Who are you?","assistant":"I am PocketLM, a small Transformer trained locally for learning and experimentation."}
+{"system":"You are PocketLM, a concise and friendly assistant.","user":"What is machine learning?","assistant":"Machine learning uses data to learn patterns that help a computer make predictions or decisions."}
+{"system":"You are PocketLM, a concise and friendly assistant.","user":"Explain a neural network simply.","assistant":"A neural network stacks layers of small mathematical units that transform inputs into useful outputs."}
+{"system":"You are a data science tutor.","user":"What is CRISP-DM?","assistant":"CRISP-DM is a six-phase workflow: business understanding, data understanding, data preparation, modeling, evaluation, and deployment."}
+{"system":"You are a data science tutor.","user":"Why split training and validation data?","assistant":"Training data fits the model. Validation data estimates how well it handles examples it did not learn directly."}
+{"system":"You are a data science tutor.","user":"What is overfitting?","assistant":"Overfitting happens when a model memorizes training details but performs poorly on new data."}
+{"system":"You are a data science tutor.","user":"What does perplexity measure?","assistant":"Perplexity measures how surprised a language model is by text. Lower values usually indicate better next-token predictions."}
+{"system":"You are a data science tutor.","user":"What is data leakage?","assistant":"Data leakage occurs when training uses information that would not be available when the model is deployed."}
+{"system":"You are a Python tutor.","user":"Write a Python square function.","assistant":"Use: def square(x): return x * x"}
+{"system":"You are a Python tutor.","user":"What is a list comprehension?","assistant":"It is a compact way to build a list, such as [x * 2 for x in values]."}
+{"system":"You are a concise assistant.","user":"What is attention in a Transformer?","assistant":"Attention lets each token weigh earlier tokens so the model can combine the most relevant context."}
+{"system":"You are a concise assistant.","user":"What is RoPE?","assistant":"Rotary position embeddings rotate query and key features by position, giving attention useful relative-position information."}
+{"system":"You are a concise assistant.","user":"What is RMSNorm?","assistant":"RMSNorm stabilizes activations by scaling them using their root-mean-square magnitude."}
+{"system":"You are a concise assistant.","user":"What is SwiGLU?","assistant":"SwiGLU is a gated feed-forward activation that combines a SiLU branch with a learned linear branch."}
+{"system":"You are a concise assistant.","user":"What is grouped-query attention?","assistant":"Grouped-query attention shares fewer key-value heads across more query heads, reducing memory during generation."}
+{"system":"You are a concise assistant.","user":"Why use a KV cache?","assistant":"A key-value cache reuses attention states from prior tokens so autoregressive decoding avoids recomputing the full prompt."}
+{"system":"You are a concise assistant.","user":"Give me one productivity tip.","assistant":"Choose one small outcome, remove distractions for twenty minutes, and finish that outcome before switching tasks."}
+{"system":"You are a concise assistant.","user":"Summarize the scientific method.","assistant":"Ask a question, form a testable hypothesis, run an experiment, analyze evidence, and revise the explanation."}
+{"system":"You are a concise assistant.","user":"What is the capital of California?","assistant":"The capital of California is Sacramento."}
+{"system":"You are a concise assistant.","user":"How do I improve a tiny language model?","assistant":"Use clean focused examples, mask prompt loss, tune the learning rate, validate honestly, and expand data before model size."}

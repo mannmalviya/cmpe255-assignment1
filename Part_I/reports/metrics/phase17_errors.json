@@ -1,0 +1,1648 @@
+{
+  "phase": "17_error_analysis",
+  "splits_used": [
+    "test predictions (verified reproductions of Phases 12-15)"
+  ],
+  "policy": "no fitting, tuning or selection; slice rules fixed in earlier phases",
+  "overall_accuracy": {
+    "linear_svm": 0.8995,
+    "logreg": 0.8905,
+    "gradient_boosting": 0.881,
+    "distilbert": 0.931,
+    "qwen_zero_shot": 0.4975,
+    "qwen_few_shot": 0.475
+  },
+  "slices": [
+    {
+      "slice": "genre A (i feel ...)",
+      "n": 1960,
+      "share_of_test": 0.98,
+      "linear_svm": {
+        "accuracy": 0.9051,
+        "ci95": [
+          0.8913,
+          0.9173
+        ]
+      },
+      "logreg": {
+        "accuracy": 0.8964,
+        "ci95": [
+          0.8822,
+          0.9092
+        ]
+      },
+      "gradient_boosting": {
+        "accuracy": 0.8867,
+        "ci95": [
+          0.8719,
+          0.9
+        ]
+      },
+      "distilbert": {
+        "accuracy": 0.9352,
+        "ci95": [
+          0.9234,
+          0.9453
+        ]
+      },
+      "qwen_zero_shot": {
+        "accuracy": 0.499,
+        "ci95": [
+          0.4769,
+          0.5211
+        ]
+      },
+      "qwen_few_shot": {
+        "accuracy": 0.4776,
+        "ci95": [
+          0.4555,
+          0.4997
+        ]
+      }
+    },
+    {
+      "slice": "genre B (situation, no feeling named)",
+      "n": 40,
+      "share_of_test": 0.02,
+      "linear_svm": {
+        "accuracy": 0.625,
+        "ci95": [
+          0.4703,
+          0.7578
+        ]
+      },
+      "logreg": {
+        "accuracy": 0.6,
+        "ci95": [
+          0.446,
+          0.7365
+        ]
+      },
+      "gradient_boosting": {
+        "accuracy": 0.6,
+        "ci95": [
+          0.446,
+          0.7365
+        ]
+      },
+      "distilbert": {
+        "accuracy": 0.725,
+        "ci95": [
+          0.5716,
+          0.8389
+        ]
+      },
+      "qwen_zero_shot": {
+        "accuracy": 0.425,
+        "ci95": [
+          0.2851,
+          0.5781
+        ]
+      },
+      "qwen_few_shot": {
+        "accuracy": 0.35,
+        "ci95": [
+          0.2213,
+          0.5049
+        ]
+      }
+    },
+    {
+      "slice": "short (<= 5 words)",
+      "n": 92,
+      "share_of_test": 0.046,
+      "linear_svm": {
+        "accuracy": 0.9457,
+        "ci95": [
+          0.879,
+          0.9766
+        ]
+      },
+      "logreg": {
+        "accuracy": 0.9348,
+        "ci95": [
+          0.8649,
+          0.9698
+        ]
+      },
+      "gradient_boosting": {
+        "accuracy": 0.9022,
+        "ci95": [
+          0.8244,
+          0.9477
+        ]
+      },
+      "distilbert": {
+        "accuracy": 0.9565,
+        "ci95": [
+          0.8935,
+          0.983
+        ]
+      },
+      "qwen_zero_shot": {
+        "accuracy": 0.6739,
+        "ci95": [
+          0.5728,
+          0.7611
+        ]
+      },
+      "qwen_few_shot": {
+        "accuracy": 0.7065,
+        "ci95": [
+          0.6067,
+          0.7898
+        ]
+      }
+    },
+    {
+      "slice": "long (>= 46 words)",
+      "n": 56,
+      "share_of_test": 0.028,
+      "linear_svm": {
+        "accuracy": 0.75,
+        "ci95": [
+          0.6231,
+          0.8448
+        ]
+      },
+      "logreg": {
+        "accuracy": 0.75,
+        "ci95": [
+          0.6231,
+          0.8448
+        ]
+      },
+      "gradient_boosting": {
+        "accuracy": 0.75,
+        "ci95": [
+          0.6231,
+          0.8448
+        ]
+      },
+      "distilbert": {
+        "accuracy": 0.9107,
+        "ci95": [
+          0.8074,
+          0.9613
+        ]
+      },
+      "qwen_zero_shot": {
+        "accuracy": 0.4643,
+        "ci95": [
+          0.3402,
+          0.593
+        ]
+      },
+      "qwen_few_shot": {
+        "accuracy": 0.2143,
+        "ci95": [
+          0.1271,
+          0.3382
+        ]
+      }
+    },
+    {
+      "slice": "cue-free",
+      "n": 8,
+      "share_of_test": 0.004,
+      "linear_svm": {
+        "accuracy": 0.5,
+        "ci95": [
+          0.2152,
+          0.7848
+        ]
+      },
+      "logreg": {
+        "accuracy": 0.5,
+        "ci95": [
+          0.2152,
+          0.7848
+        ]
+      },
+      "gradient_boosting": {
+        "accuracy": 0.625,
+        "ci95": [
+          0.3057,
+          0.8632
+        ]
+      },
+      "distilbert": {
+        "accuracy": 0.75,
+        "ci95": [
+          0.4093,
+          0.9285
+        ]
+      },
+      "qwen_zero_shot": {
+        "accuracy": 0.625,
+        "ci95": [
+          0.3057,
+          0.8632
+        ]
+      },
+      "qwen_few_shot": {
+        "accuracy": 0.75,
+        "ci95": [
+          0.4093,
+          0.9285
+        ]
+      }
+    },
+    {
+      "slice": "contains negation",
+      "n": 557,
+      "share_of_test": 0.2785,
+      "linear_svm": {
+        "accuracy": 0.8779,
+        "ci95": [
+          0.8481,
+          0.9025
+        ]
+      },
+      "logreg": {
+        "accuracy": 0.86,
+        "ci95": [
+          0.8287,
+          0.8863
+        ]
+      },
+      "gradient_boosting": {
+        "accuracy": 0.8636,
+        "ci95": [
+          0.8325,
+          0.8896
+        ]
+      },
+      "distilbert": {
+        "accuracy": 0.912,
+        "ci95": [
+          0.8856,
+          0.9328
+        ]
+      },
+      "qwen_zero_shot": {
+        "accuracy": 0.4183,
+        "ci95": [
+          0.378,
+          0.4597
+        ]
+      },
+      "qwen_few_shot": {
+        "accuracy": 0.3519,
+        "ci95": [
+          0.3134,
+          0.3924
+        ]
+      }
+    },
+    {
+      "slice": "HTML residue",
+      "n": 37,
+      "share_of_test": 0.0185,
+      "linear_svm": {
+        "accuracy": 0.9189,
+        "ci95": [
+          0.787,
+          0.972
+        ]
+      },
+      "logreg": {
+        "accuracy": 0.8919,
+        "ci95": [
+          0.7529,
+          0.9571
+        ]
+      },
+      "gradient_boosting": {
+        "accuracy": 0.8919,
+        "ci95": [
+          0.7529,
+          0.9571
+        ]
+      },
+      "distilbert": {
+        "accuracy": 0.9189,
+        "ci95": [
+          0.787,
+          0.972
+        ]
+      },
+      "qwen_zero_shot": {
+        "accuracy": 0.5135,
+        "ci95": [
+          0.3589,
+          0.6655
+        ]
+      },
+      "qwen_few_shot": {
+        "accuracy": 0.4595,
+        "ci95": [
+          0.3104,
+          0.6162
+        ]
+      }
+    },
+    {
+      "slice": "near-duplicate of same-label train row",
+      "n": 42,
+      "share_of_test": 0.021,
+      "linear_svm": {
+        "accuracy": 1.0,
+        "ci95": [
+          0.9162,
+          1.0
+        ]
+      },
+      "logreg": {
+        "accuracy": 1.0,
+        "ci95": [
+          0.9162,
+          1.0
+        ]
+      },
+      "gradient_boosting": {
+        "accuracy": 0.9762,
+        "ci95": [
+          0.8768,
+          0.9958
+        ]
+      },
+      "distilbert": {
+        "accuracy": 0.9762,
+        "ci95": [
+          0.8768,
+          0.9958
+        ]
+      },
+      "qwen_zero_shot": {
+        "accuracy": 0.619,
+        "ci95": [
+          0.4681,
+          0.75
+        ]
+      },
+      "qwen_few_shot": {
+        "accuracy": 0.619,
+        "ci95": [
+          0.4681,
+          0.75
+        ]
+      }
+    },
+    {
+      "slice": "conflicting copy in raw train (removed from train_clean)",
+      "n": 11,
+      "share_of_test": 0.0055,
+      "linear_svm": {
+        "accuracy": 0.2727,
+        "ci95": [
+          0.0975,
+          0.5657
+        ]
+      },
+      "logreg": {
+        "accuracy": 0.2727,
+        "ci95": [
+          0.0975,
+          0.5657
+        ]
+      },
+      "gradient_boosting": {
+        "accuracy": 0.5455,
+        "ci95": [
+          0.2801,
+          0.7873
+        ]
+      },
+      "distilbert": {
+        "accuracy": 0.4545,
+        "ci95": [
+          0.2127,
+          0.7199
+        ]
+      },
+      "qwen_zero_shot": {
+        "accuracy": 0.2727,
+        "ci95": [
+          0.0975,
+          0.5657
+        ]
+      },
+      "qwen_few_shot": {
+        "accuracy": 0.5455,
+        "ci95": [
+          0.2801,
+          0.7873
+        ]
+      }
+    },
+    {
+      "slice": "conflicting copy in val",
+      "n": 3,
+      "share_of_test": 0.0015,
+      "linear_svm": {
+        "accuracy": 0.0,
+        "ci95": [
+          0.0,
+          0.5615
+        ]
+      },
+      "logreg": {
+        "accuracy": 0.0,
+        "ci95": [
+          0.0,
+          0.5615
+        ]
+      },
+      "gradient_boosting": {
+        "accuracy": 0.0,
+        "ci95": [
+          0.0,
+          0.5615
+        ]
+      },
+      "distilbert": {
+        "accuracy": 0.3333,
+        "ci95": [
+          0.0615,
+          0.7923
+        ]
+      },
+      "qwen_zero_shot": {
+        "accuracy": 0.3333,
+        "ci95": [
+          0.0615,
+          0.7923
+        ]
+      },
+      "qwen_few_shot": {
+        "accuracy": 0.0,
+        "ci95": [
+          0.0,
+          0.5615
+        ]
+      }
+    }
+  ],
+  "P1_error_pairs": {
+    "linear_svm": {
+      "total_errors": 201,
+      "unparseable": 0,
+      "joy<->love": 59,
+      "fear<->surprise": 22,
+      "sadness<->anger": 31,
+      "share_joy_love_plus_fear_surprise_of_all_errors": 0.403
+    },
+    "logreg": {
+      "total_errors": 219,
+      "unparseable": 0,
+      "joy<->love": 65,
+      "fear<->surprise": 20,
+      "sadness<->anger": 32,
+      "share_joy_love_plus_fear_surprise_of_all_errors": 0.3881
+    },
+    "gradient_boosting": {
+      "total_errors": 238,
+      "unparseable": 0,
+      "joy<->love": 73,
+      "fear<->surprise": 16,
+      "sadness<->anger": 33,
+      "share_joy_love_plus_fear_surprise_of_all_errors": 0.3739
+    },
+    "distilbert": {
+      "total_errors": 138,
+      "unparseable": 0,
+      "joy<->love": 52,
+      "fear<->surprise": 25,
+      "sadness<->anger": 19,
+      "share_joy_love_plus_fear_surprise_of_all_errors": 0.558
+    },
+    "qwen_zero_shot": {
+      "total_errors": 1005,
+      "unparseable": 143,
+      "joy<->love": 211,
+      "fear<->surprise": 2,
+      "sadness<->anger": 124,
+      "share_joy_love_plus_fear_surprise_of_all_errors": 0.2119
+    },
+    "qwen_few_shot": {
+      "total_errors": 1050,
+      "unparseable": 19,
+      "joy<->love": 185,
+      "fear<->surprise": 1,
+      "sadness<->anger": 226,
+      "share_joy_love_plus_fear_surprise_of_all_errors": 0.1771
+    }
+  },
+  "P2_genre_B": {
+    "distilbert": {
+      "acc_gain_over_svm_genre_A": 0.0301,
+      "acc_gain_over_svm_genre_B": 0.1
+    },
+    "qwen_zero_shot": {
+      "acc_gain_over_svm_genre_A": -0.4061,
+      "acc_gain_over_svm_genre_B": -0.2
+    },
+    "qwen_few_shot": {
+      "acc_gain_over_svm_genre_A": -0.4276,
+      "acc_gain_over_svm_genre_B": -0.275
+    },
+    "genre_B_n": 40
+  },
+  "P4_fixed_vs_broken": {
+    "n_fixed": 110,
+    "n_broken": 47,
+    "slice_enrichment": {
+      "genre A (i feel ...)": {
+        "base_rate": 0.98,
+        "rate_in_fixed": 0.9364,
+        "rate_in_broken": 0.9362,
+        "enrichment_in_fixed": 0.96,
+        "enrichment_in_broken": 0.96
+      },
+      "genre B (situation, no feeling named)": {
+        "base_rate": 0.02,
+        "rate_in_fixed": 0.0636,
+        "rate_in_broken": 0.0638,
+        "enrichment_in_fixed": 3.18,
+        "enrichment_in_broken": 3.19
+      },
+      "short (<= 5 words)": {
+        "base_rate": 0.046,
+        "rate_in_fixed": 0.0182,
+        "rate_in_broken": 0.0213,
+        "enrichment_in_fixed": 0.4,
+        "enrichment_in_broken": 0.46
+      },
+      "long (>= 46 words)": {
+        "base_rate": 0.028,
+        "rate_in_fixed": 0.1,
+        "rate_in_broken": 0.0426,
+        "enrichment_in_fixed": 3.57,
+        "enrichment_in_broken": 1.52
+      },
+      "cue-free": {
+        "base_rate": 0.004,
+        "rate_in_fixed": 0.0273,
+        "rate_in_broken": 0.0213,
+        "enrichment_in_fixed": 6.82,
+        "enrichment_in_broken": 5.32
+      },
+      "contains negation": {
+        "base_rate": 0.2785,
+        "rate_in_fixed": 0.3,
+        "rate_in_broken": 0.2979,
+        "enrichment_in_fixed": 1.08,
+        "enrichment_in_broken": 1.07
+      },
+      "HTML residue": {
+        "base_rate": 0.0185,
+        "rate_in_fixed": 0.0,
+        "rate_in_broken": 0.0,
+        "enrichment_in_fixed": 0.0,
+        "enrichment_in_broken": 0.0
+      },
+      "near-duplicate of same-label train row": {
+        "base_rate": 0.021,
+        "rate_in_fixed": 0.0,
+        "rate_in_broken": 0.0213,
+        "enrichment_in_fixed": 0.0,
+        "enrichment_in_broken": 1.01
+      },
+      "conflicting copy in raw train (removed from train_clean)": {
+        "base_rate": 0.0055,
+        "rate_in_fixed": 0.0182,
+        "rate_in_broken": 0.0,
+        "enrichment_in_fixed": 3.31,
+        "enrichment_in_broken": 0.0
+      },
+      "conflicting copy in val": {
+        "base_rate": 0.0015,
+        "rate_in_fixed": 0.0091,
+        "rate_in_broken": 0.0,
+        "enrichment_in_fixed": 6.06,
+        "enrichment_in_broken": 0.0
+      }
+    }
+  },
+  "hard_core": {
+    "n_all_four_trained_models_wrong": 56,
+    "true_vs_distilbert_pairs": {
+      "joy<->love": 26,
+      "anger<->sadness": 7,
+      "fear<->surprise": 6,
+      "fear<->sadness": 5,
+      "anger<->fear": 4,
+      "anger<->joy": 4,
+      "joy<->surprise": 2,
+      "anger<->surprise": 1,
+      "joy<->sadness": 1
+    },
+    "share_in_joy_love_or_fear_surprise": 0.5714,
+    "true_label_counts": {
+      "fear": 12,
+      "joy": 29,
+      "love": 1,
+      "anger": 3,
+      "sadness": 10,
+      "surprise": 1
+    }
+  },
+  "slice_mcnemar_svm_vs_distilbert": {
+    "genre A (i feel ...)": {
+      "n": 1960,
+      "distilbert_fixed": 103,
+      "distilbert_broke": 44,
+      "exact_p": 1.26e-06
+    },
+    "genre B (situation, no feeling named)": {
+      "n": 40,
+      "distilbert_fixed": 7,
+      "distilbert_broke": 3,
+      "exact_p": 0.344
+    },
+    "short (<= 5 words)": {
+      "n": 92,
+      "distilbert_fixed": 2,
+      "distilbert_broke": 1,
+      "exact_p": 1.0
+    },
+    "long (>= 46 words)": {
+      "n": 56,
+      "distilbert_fixed": 11,
+      "distilbert_broke": 2,
+      "exact_p": 0.0225
+    },
+    "cue-free": {
+      "n": 8,
+      "distilbert_fixed": 3,
+      "distilbert_broke": 1,
+      "exact_p": 0.625
+    },
+    "contains negation": {
+      "n": 557,
+      "distilbert_fixed": 33,
+      "distilbert_broke": 14,
+      "exact_p": 0.00794
+    },
+    "HTML residue": {
+      "n": 37,
+      "distilbert_fixed": 0,
+      "distilbert_broke": 0,
+      "exact_p": null
+    },
+    "near-duplicate of same-label train row": {
+      "n": 42,
+      "distilbert_fixed": 0,
+      "distilbert_broke": 1,
+      "exact_p": 1.0
+    },
+    "conflicting copy in raw train (removed from train_clean)": {
+      "n": 11,
+      "distilbert_fixed": 2,
+      "distilbert_broke": 0,
+      "exact_p": 0.5
+    },
+    "conflicting copy in val": {
+      "n": 3,
+      "distilbert_fixed": 1,
+      "distilbert_broke": 0,
+      "exact_p": 1.0
+    }
+  },
+  "exploratory_split_label_words": {
+    "status": "EXPLORATORY - words chosen after reading errors",
+    "words": {
+      "stressed": {
+        "train_n": 134,
+        "train_label_share": {
+          "sadness": 0.515,
+          "anger": 0.366,
+          "joy": 0.06,
+          "fear": 0.045,
+          "surprise": 0.015
+        },
+        "top_label_share": 0.515,
+        "second_label_share": 0.366,
+        "test_n": 20,
+        "test_accuracy": {
+          "linear_svm": 0.3,
+          "logreg": 0.35,
+          "gradient_boosting": 0.2,
+          "distilbert": 0.5,
+          "qwen_zero_shot": 0.05,
+          "qwen_few_shot": 0.25
+        }
+      },
+      "agitated": {
+        "train_n": 103,
+        "train_label_share": {
+          "anger": 0.505,
+          "fear": 0.466,
+          "sadness": 0.029
+        },
+        "top_label_share": 0.505,
+        "second_label_share": 0.466,
+        "test_n": 13,
+        "test_accuracy": {
+          "linear_svm": 0.462,
+          "logreg": 0.462,
+          "gradient_boosting": 0.462,
+          "distilbert": 0.538,
+          "qwen_zero_shot": 0.538,
+          "qwen_few_shot": 0.538
+        }
+      },
+      "passionate": {
+        "train_n": 108,
+        "train_label_share": {
+          "love": 0.519,
+          "joy": 0.444,
+          "sadness": 0.019,
+          "surprise": 0.009,
+          "fear": 0.009
+        },
+        "top_label_share": 0.519,
+        "second_label_share": 0.444,
+        "test_n": 14,
+        "test_accuracy": {
+          "linear_svm": 0.429,
+          "logreg": 0.429,
+          "gradient_boosting": 0.5,
+          "distilbert": 0.429,
+          "qwen_zero_shot": 0.143,
+          "qwen_few_shot": 0.429
+        }
+      },
+      "amazing": {
+        "train_n": 116,
+        "train_label_share": {
+          "joy": 0.56,
+          "surprise": 0.319,
+          "sadness": 0.052,
+          "anger": 0.026,
+          "fear": 0.026,
+          "love": 0.017
+        },
+        "top_label_share": 0.56,
+        "second_label_share": 0.319,
+        "test_n": 21,
+        "test_accuracy": {
+          "linear_svm": 0.714,
+          "logreg": 0.619,
+          "gradient_boosting": 0.571,
+          "distilbert": 0.667,
+          "qwen_zero_shot": 0.429,
+          "qwen_few_shot": 0.476
+        }
+      },
+      "hate/hated": {
+        "train_n": 228,
+        "train_label_share": {
+          "sadness": 0.43,
+          "anger": 0.329,
+          "joy": 0.11,
+          "fear": 0.092,
+          "love": 0.035,
+          "surprise": 0.004
+        },
+        "top_label_share": 0.43,
+        "second_label_share": 0.329,
+        "test_n": 29,
+        "test_accuracy": {
+          "linear_svm": 0.655,
+          "logreg": 0.621,
+          "gradient_boosting": 0.759,
+          "distilbert": 0.724,
+          "qwen_zero_shot": 0.517,
+          "qwen_few_shot": 0.31
+        }
+      },
+      "feel/be/get hated": {
+        "train_n": 31,
+        "train_label_share": {
+          "anger": 0.548,
+          "sadness": 0.452
+        },
+        "top_label_share": 0.548,
+        "second_label_share": 0.452,
+        "test_n": 3,
+        "test_accuracy": {
+          "linear_svm": 0.0,
+          "logreg": 0.0,
+          "gradient_boosting": 0.667,
+          "distilbert": 0.0,
+          "qwen_zero_shot": 0.667,
+          "qwen_few_shot": 0.0
+        }
+      },
+      "amazed (control: consistent label)": {
+        "train_n": 70,
+        "train_label_share": {
+          "surprise": 0.943,
+          "joy": 0.029,
+          "love": 0.014,
+          "sadness": 0.014
+        },
+        "top_label_share": 0.943,
+        "second_label_share": 0.029,
+        "test_n": 9,
+        "test_accuracy": {
+          "linear_svm": 0.778,
+          "logreg": 0.778,
+          "gradient_boosting": 0.778,
+          "distilbert": 1.0,
+          "qwen_zero_shot": 0.0,
+          "qwen_few_shot": 0.111
+        }
+      }
+    }
+  },
+  "complementarity": {
+    "qwen_zero_shot_right_while_svm_and_distilbert_wrong": 14
+  },
+  "examples": {
+    "hard_core_all_trained_wrong": [
+      {
+        "row_id": "test_308",
+        "text": "i know what you mean about feeling agitated",
+        "label": "fear",
+        "linear_svm": "anger",
+        "distilbert": "anger",
+        "qwen_zero_shot": "anger"
+      },
+      {
+        "row_id": "test_353",
+        "text": "i could feel his breath on me and smell the sweet scent of him",
+        "label": "joy",
+        "linear_svm": "love",
+        "distilbert": "love",
+        "qwen_zero_shot": "UNPARSEABLE"
+      },
+      {
+        "row_id": "test_489",
+        "text": "i believe that people should choose the causes they feel passionate about and do what they can and i have no right or desire to push my own charities as more worthy than another",
+        "label": "joy",
+        "linear_svm": "love",
+        "distilbert": "love",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_759",
+        "text": "i feel very strongly about supporting charities that help children",
+        "label": "joy",
+        "linear_svm": "love",
+        "distilbert": "love",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_816",
+        "text": "whenever i put myself in others shoes and try to make the person happy",
+        "label": "anger",
+        "linear_svm": "joy",
+        "distilbert": "joy",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_1206",
+        "text": "ive come to feel about a supporting character in one of my all time favorite films giant",
+        "label": "joy",
+        "linear_svm": "love",
+        "distilbert": "love",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_1417",
+        "text": "i don t know about you but i m feeling amp blessed",
+        "label": "joy",
+        "linear_svm": "love",
+        "distilbert": "love",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_1627",
+        "text": "i feel i can only hope im not alone in these thoughts and im sure to all you fellow exchange students you probably have the same thoughts in mind with at least some of this listed some might say being an exchange student is unlike any other experience",
+        "label": "sadness",
+        "linear_svm": "joy",
+        "distilbert": "joy",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1887",
+        "text": "i feel like some of you have pains and you cannot imagine becoming passionate about the group or the idea that is causing pain",
+        "label": "joy",
+        "linear_svm": "love",
+        "distilbert": "love",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1924",
+        "text": "i never dreamed i would be so busy so soon in the new year but i am loving it and feeling so very gracious and fortunate",
+        "label": "joy",
+        "linear_svm": "love",
+        "distilbert": "love",
+        "qwen_zero_shot": "joy"
+      }
+    ],
+    "fixed_by_distilbert": [
+      {
+        "row_id": "test_298",
+        "text": "i am not surprised cause its like ok when you feel crappy and it just continues for like days or so you really try to avoid getting that sickness again",
+        "label": "sadness",
+        "linear_svm": "surprise",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_630",
+        "text": "i have made about sex i feel that women enjoy sex when their body and emotions are admired and respected",
+        "label": "love",
+        "linear_svm": "joy",
+        "distilbert": "love",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_724",
+        "text": "i can put on it without words since i just cant type on that it was so lovely this morning yes im feeling sarcastic today",
+        "label": "anger",
+        "linear_svm": "love",
+        "distilbert": "anger",
+        "qwen_zero_shot": "UNPARSEABLE"
+      },
+      {
+        "row_id": "test_731",
+        "text": "i sit in the same hostel i did nearly two months ago this time wearing a jacket and feeling as if my toes might be a little numb from the cold",
+        "label": "sadness",
+        "linear_svm": "anger",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_861",
+        "text": "i feel assaulted by this shit storm of confusion anger and hurt feelings that tsunami d us both away from each other",
+        "label": "fear",
+        "linear_svm": "sadness",
+        "distilbert": "fear",
+        "qwen_zero_shot": "anger"
+      },
+      {
+        "row_id": "test_992",
+        "text": "i do feel terribly remourseful that i didnt stay faithful to my plans and get him sooner",
+        "label": "love",
+        "linear_svm": "joy",
+        "distilbert": "love",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1182",
+        "text": "i am on so many social networks right now and sometimes i feel like that i am pretty talked out",
+        "label": "joy",
+        "linear_svm": "sadness",
+        "distilbert": "joy",
+        "qwen_zero_shot": "fear"
+      },
+      {
+        "row_id": "test_1387",
+        "text": "im not sure but theres nothing that will get a person feeling amorous faster than a stay in a hotel",
+        "label": "love",
+        "linear_svm": "joy",
+        "distilbert": "love",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_1616",
+        "text": "i wont lie this week has been abit of a difficult week for me ive been feeling very stressed and anxious this week plus i think im coming down with the flu but it has definately helped me to appreciate the little things",
+        "label": "anger",
+        "linear_svm": "fear",
+        "distilbert": "anger",
+        "qwen_zero_shot": "joy"
+      },
+      {
+        "row_id": "test_1749",
+        "text": "i have noticed my fingers and toes get very cold and almost feel numb",
+        "label": "sadness",
+        "linear_svm": "anger",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "sadness"
+      }
+    ],
+    "broken_by_distilbert": [
+      {
+        "row_id": "test_125",
+        "text": "i feel very mislead by someone that i really really thought i knew and liked very much so",
+        "label": "love",
+        "linear_svm": "love",
+        "distilbert": "anger",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_295",
+        "text": "i feel strange talking about less serious things right now like cooking",
+        "label": "fear",
+        "linear_svm": "fear",
+        "distilbert": "surprise",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_336",
+        "text": "i do feel stressed",
+        "label": "sadness",
+        "linear_svm": "sadness",
+        "distilbert": "anger",
+        "qwen_zero_shot": "anger"
+      },
+      {
+        "row_id": "test_436",
+        "text": "i hope shes feeling generous today and treat me to japanese food or something haha have a great day",
+        "label": "joy",
+        "linear_svm": "joy",
+        "distilbert": "love",
+        "qwen_zero_shot": "joy"
+      },
+      {
+        "row_id": "test_845",
+        "text": "i did feel rather like a celebrity and widget stood and let herself be admired while she drank orange squash from my cup",
+        "label": "joy",
+        "linear_svm": "joy",
+        "distilbert": "love",
+        "qwen_zero_shot": "joy"
+      },
+      {
+        "row_id": "test_940",
+        "text": "i feel like a may have mislead the very gracious readers of this blog",
+        "label": "joy",
+        "linear_svm": "joy",
+        "distilbert": "anger",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1093",
+        "text": "i reread for comfort the familiarity of a book whose plot i already know is easier to deal with when im feeling stressed than a new to me book with all its unknowns",
+        "label": "sadness",
+        "linear_svm": "sadness",
+        "distilbert": "anger",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1956",
+        "text": "i was gaining weight getting a lot stronger and feeling amazing",
+        "label": "joy",
+        "linear_svm": "joy",
+        "distilbert": "surprise",
+        "qwen_zero_shot": "joy"
+      }
+    ],
+    "fixed_and_contains_negation": [
+      {
+        "row_id": "test_62",
+        "text": "i spent wandering around still kinda dazed and not feeling particularly sociable but because id been in hiding for a couple for days and it was getting to be a little unhealthy i made myself go down to the cross and hang out with folks",
+        "label": "joy",
+        "linear_svm": "surprise",
+        "distilbert": "joy",
+        "qwen_zero_shot": "joy"
+      },
+      {
+        "row_id": "test_298",
+        "text": "i am not surprised cause its like ok when you feel crappy and it just continues for like days or so you really try to avoid getting that sickness again",
+        "label": "sadness",
+        "linear_svm": "surprise",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_776",
+        "text": "i cant help but think if id just shut up if id just not made a big deal of what was essentially two adults meeting at the same table for a hot beverage then perhaps i wouldnt have spent the bulk of the weekend feeling like a stupid shit",
+        "label": "sadness",
+        "linear_svm": "love",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_796",
+        "text": "im much more peaceful and happy when the house is clean the food is good and my kids arent feeling needy",
+        "label": "sadness",
+        "linear_svm": "joy",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "joy"
+      },
+      {
+        "row_id": "test_915",
+        "text": "i felt really bad because claudia and i have always had an amazing time in la and i could feel that she was disappointed that this trip was not turning out to be as fun and amazing as it could have been",
+        "label": "sadness",
+        "linear_svm": "surprise",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1213",
+        "text": "i have to keep fighting for my life until i truly run out of fight and i ve been close enough to that twice to know a bit about what it feels like and we re not there yet no matter how despairing all this feels",
+        "label": "sadness",
+        "linear_svm": "joy",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1372",
+        "text": "i can begin to see a first step and suddenly life does not feel so despairing",
+        "label": "sadness",
+        "linear_svm": "joy",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "UNPARSEABLE"
+      },
+      {
+        "row_id": "test_1676",
+        "text": "i am again not inspired and after looking at ideas and images i feel that i dont appreciate them anymore they become useless and purely skill driven having nothing to do with thought",
+        "label": "sadness",
+        "linear_svm": "joy",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "sadness"
+      }
+    ],
+    "genre_B_distilbert_right_svm_wrong": [
+      {
+        "row_id": "test_121",
+        "text": "made a wonderfull new friend",
+        "label": "joy",
+        "linear_svm": "sadness",
+        "distilbert": "joy",
+        "qwen_zero_shot": "joy"
+      },
+      {
+        "row_id": "test_343",
+        "text": "is hand started fondling his aching cock through the fabric of his boxers and he instinctively arched his back to feel more of the delicious sensation",
+        "label": "joy",
+        "linear_svm": "sadness",
+        "distilbert": "joy",
+        "qwen_zero_shot": "UNPARSEABLE"
+      },
+      {
+        "row_id": "test_518",
+        "text": "i watched the news at the tv",
+        "label": "anger",
+        "linear_svm": "joy",
+        "distilbert": "anger",
+        "qwen_zero_shot": "UNPARSEABLE"
+      },
+      {
+        "row_id": "test_711",
+        "text": "told by some people the class leader only choose his friends not true",
+        "label": "anger",
+        "linear_svm": "fear",
+        "distilbert": "anger",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_790",
+        "text": "i have nostalgic feelings i have met wonderful people online and the online internet is for me like my second life",
+        "label": "joy",
+        "linear_svm": "love",
+        "distilbert": "joy",
+        "qwen_zero_shot": "joy"
+      },
+      {
+        "row_id": "test_1289",
+        "text": "at a party i met a girl who drew me to her",
+        "label": "anger",
+        "linear_svm": "fear",
+        "distilbert": "anger",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_1979",
+        "text": "i have no strong feelings for this book neither hated nor loved it",
+        "label": "anger",
+        "linear_svm": "love",
+        "distilbert": "anger",
+        "qwen_zero_shot": "UNPARSEABLE"
+      }
+    ],
+    "genre_B_all_trained_wrong": [
+      {
+        "row_id": "test_419",
+        "text": "i guess feelings aren t meant to be inhibited or prohibited",
+        "label": "fear",
+        "linear_svm": "sadness",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_654",
+        "text": "i met my present boyfriend on a boat trip to england we had said that we would call each other when we got back to sweden we were not going to the same town in england as soon as i walked in he called from england as he could not wait till he came home",
+        "label": "joy",
+        "linear_svm": "sadness",
+        "distilbert": "anger",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_660",
+        "text": "i was playing a sport in an advanced pe class and many of the people were not advanced",
+        "label": "anger",
+        "linear_svm": "joy",
+        "distilbert": "joy",
+        "qwen_zero_shot": "joy"
+      },
+      {
+        "row_id": "test_816",
+        "text": "whenever i put myself in others shoes and try to make the person happy",
+        "label": "anger",
+        "linear_svm": "joy",
+        "distilbert": "joy",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_1150",
+        "text": "when i heard the last regulation of the socialist govrenment concerning pensions",
+        "label": "sadness",
+        "linear_svm": "anger",
+        "distilbert": "anger",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1943",
+        "text": "i didn t mean to get angry with you bommie i just can t control my feelings hellip i just hated myself why i am like this the dara who can t get over with that b",
+        "label": "sadness",
+        "linear_svm": "anger",
+        "distilbert": "anger",
+        "qwen_zero_shot": "anger"
+      }
+    ],
+    "svm_sadness_anger_confusions": [
+      {
+        "row_id": "test_251",
+        "text": "i hope everyone can help with charity work without feeling stressed about such things",
+        "label": "sadness",
+        "linear_svm": "anger",
+        "distilbert": "anger",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_314",
+        "text": "i will nolonger tell anybody how i feel or what im thinking cause all it seems to do is get me more hated than i already am",
+        "label": "sadness",
+        "linear_svm": "anger",
+        "distilbert": "anger",
+        "qwen_zero_shot": "anger"
+      },
+      {
+        "row_id": "test_688",
+        "text": "i feel hated in cempaka",
+        "label": "sadness",
+        "linear_svm": "anger",
+        "distilbert": "anger",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1149",
+        "text": "i feel so greedy so needy so helpless",
+        "label": "anger",
+        "linear_svm": "sadness",
+        "distilbert": "anger",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1664",
+        "text": "im afraid to call the guy from yesterday because i think hell be angry because i think my boss is angry because i dont communicate with him and i feel like im doing a shitty job and i project my fears onto him",
+        "label": "sadness",
+        "linear_svm": "anger",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "fear"
+      },
+      {
+        "row_id": "test_1720",
+        "text": "i started questioning god feeling worthless and even jealous of others that come by parenthood so easily",
+        "label": "sadness",
+        "linear_svm": "anger",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1748",
+        "text": "i didnt want to be spending my days working in a job that i didnt enjoy or to come home feeling stressed and tired and not be able to give my daughter the attention she deserved",
+        "label": "anger",
+        "linear_svm": "sadness",
+        "distilbert": "anger",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1816",
+        "text": "i also know that if today i refuse to hate jews or anybody else it is because i know how it feels to be hated",
+        "label": "sadness",
+        "linear_svm": "anger",
+        "distilbert": "anger",
+        "qwen_zero_shot": "love"
+      }
+    ],
+    "qwen_zero_shot_joy_called_love": [
+      {
+        "row_id": "test_337",
+        "text": "i feel benevolent enough to buy them some peanuts and other treats",
+        "label": "joy",
+        "linear_svm": "joy",
+        "distilbert": "joy",
+        "qwen_zero_shot": "love",
+        "qwen_zero_shot_raw": "love"
+      },
+      {
+        "row_id": "test_530",
+        "text": "im making some more mood icons right now to let you see how i feel and think and of course its all charming",
+        "label": "joy",
+        "linear_svm": "joy",
+        "distilbert": "joy",
+        "qwen_zero_shot": "love",
+        "qwen_zero_shot_raw": "love"
+      },
+      {
+        "row_id": "test_570",
+        "text": "i could adopt and what messages i could think about to help make me feel more peaceful more grateful and just happier right now",
+        "label": "joy",
+        "linear_svm": "joy",
+        "distilbert": "joy",
+        "qwen_zero_shot": "love",
+        "qwen_zero_shot_raw": "love"
+      },
+      {
+        "row_id": "test_1183",
+        "text": "i feel like i should have some sort of rockstar razzle dazzle lifestyle but i would at least like to spend a third of my life doing something i feel is worthwhile",
+        "label": "joy",
+        "linear_svm": "joy",
+        "distilbert": "joy",
+        "qwen_zero_shot": "love",
+        "qwen_zero_shot_raw": "love"
+      },
+      {
+        "row_id": "test_1272",
+        "text": "i feel very honored in how much he has shared and expressed with me and that he trusts me",
+        "label": "joy",
+        "linear_svm": "joy",
+        "distilbert": "joy",
+        "qwen_zero_shot": "love",
+        "qwen_zero_shot_raw": "love"
+      },
+      {
+        "row_id": "test_1689",
+        "text": "i feel that books are always a wonderful gift for a baby",
+        "label": "joy",
+        "linear_svm": "joy",
+        "distilbert": "joy",
+        "qwen_zero_shot": "love",
+        "qwen_zero_shot_raw": "love"
+      }
+    ],
+    "qwen_zero_shot_unparseable": [
+      {
+        "row_id": "test_551",
+        "text": "i feel kind of awkward about doing this here goes",
+        "label": "sadness",
+        "qwen_zero_shot_raw": "awkward",
+        "distilbert": "sadness"
+      },
+      {
+        "row_id": "test_971",
+        "text": "i honestly thought impossible at this point i feel pretty",
+        "label": "joy",
+        "qwen_zero_shot_raw": "hope",
+        "distilbert": "joy"
+      },
+      {
+        "row_id": "test_1119",
+        "text": "i would feel so i don t know maybe a little resentful",
+        "label": "anger",
+        "qwen_zero_shot_raw": "resentment",
+        "distilbert": "anger"
+      },
+      {
+        "row_id": "test_1356",
+        "text": "i dare myself to do the following when i m feeling brave enough",
+        "label": "joy",
+        "qwen_zero_shot_raw": "brave",
+        "distilbert": "joy"
+      },
+      {
+        "row_id": "test_1385",
+        "text": "i wanna feel that gorgeous body a yers underneath me next time i m fuckin ya alex took a deep breath and her eyes seemed to glow while she imagined the scenario in her mind a scene she had pictured many times before",
+        "label": "joy",
+        "qwen_zero_shot_raw": "pleasure",
+        "distilbert": "joy"
+      },
+      {
+        "row_id": "test_1463",
+        "text": "i am definitely feeling the effects of the progesterone in two ways my breasts are tender and i m tired",
+        "label": "love",
+        "qwen_zero_shot_raw": "pain",
+        "distilbert": "love"
+      },
+      {
+        "row_id": "test_1470",
+        "text": "i did not care much about the number of viewers and the viewer ratings before but as the drama iris gained huge success i began to feel greedy",
+        "label": "anger",
+        "qwen_zero_shot_raw": "jealous",
+        "distilbert": "anger"
+      },
+      {
+        "row_id": "test_1514",
+        "text": "i also tried after all that frustration when i was feeling none too energetic for more problems to work on the respirometry stuff which is going to be a huge nightmare",
+        "label": "joy",
+        "qwen_zero_shot_raw": "frustration",
+        "distilbert": "joy"
+      }
+    ],
+    "qwen_right_both_trained_wrong": [
+      {
+        "row_id": "test_688",
+        "text": "i feel hated in cempaka",
+        "label": "sadness",
+        "linear_svm": "anger",
+        "distilbert": "anger",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_756",
+        "text": "getting sent on a company expense trip to another state to work for a week at that plan",
+        "label": "joy",
+        "linear_svm": "surprise",
+        "distilbert": "anger",
+        "qwen_zero_shot": "joy"
+      },
+      {
+        "row_id": "test_1003",
+        "text": "i started walking again yesterday and it feels amazing",
+        "label": "joy",
+        "linear_svm": "surprise",
+        "distilbert": "surprise",
+        "qwen_zero_shot": "joy"
+      },
+      {
+        "row_id": "test_1026",
+        "text": "i have not conducted a survey but it is quite likely that many of them feel as assaulted by onel s demons and other creators as i would have felt had the walls been covered only with eminent figures patriotic heroes and epic deeds",
+        "label": "sadness",
+        "linear_svm": "fear",
+        "distilbert": "fear",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1150",
+        "text": "when i heard the last regulation of the socialist govrenment concerning pensions",
+        "label": "sadness",
+        "linear_svm": "anger",
+        "distilbert": "anger",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1560",
+        "text": "i feel helpless to regain a safe feeling",
+        "label": "sadness",
+        "linear_svm": "joy",
+        "distilbert": "fear",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1627",
+        "text": "i feel i can only hope im not alone in these thoughts and im sure to all you fellow exchange students you probably have the same thoughts in mind with at least some of this listed some might say being an exchange student is unlike any other experience",
+        "label": "sadness",
+        "linear_svm": "joy",
+        "distilbert": "joy",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1796",
+        "text": "i don t care if any of you read this but this is just what i feel when i m around you guys i feel hated",
+        "label": "sadness",
+        "linear_svm": "anger",
+        "distilbert": "anger",
+        "qwen_zero_shot": "sadness"
+      }
+    ],
+    "conflicting_copy_rows": [
+      {
+        "row_id": "test_86",
+        "text": "i feel like i am in paradise kissing those sweet lips make me feel like i dive into a magical world of love",
+        "label": "joy",
+        "linear_svm": "love",
+        "distilbert": "love",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_262",
+        "text": "i realized what i am passionate about helping women feel accepted and appreciated",
+        "label": "joy",
+        "linear_svm": "love",
+        "distilbert": "love",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_265",
+        "text": "i feel so blessed and honored that we get to be its parents",
+        "label": "love",
+        "linear_svm": "joy",
+        "distilbert": "love",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_353",
+        "text": "i could feel his breath on me and smell the sweet scent of him",
+        "label": "joy",
+        "linear_svm": "love",
+        "distilbert": "love",
+        "qwen_zero_shot": "UNPARSEABLE"
+      },
+      {
+        "row_id": "test_415",
+        "text": "i loved the feeling i got during an amazing slalom run whether it was in training or in a race",
+        "label": "joy",
+        "linear_svm": "surprise",
+        "distilbert": "surprise",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_502",
+        "text": "i am feeling stressed and more than a bit anxious",
+        "label": "anger",
+        "linear_svm": "fear",
+        "distilbert": "anger",
+        "qwen_zero_shot": "UNPARSEABLE"
+      },
+      {
+        "row_id": "test_575",
+        "text": "i feel not having a generous spirit or a forgiving nature closes me off from accepting gifts from the universe",
+        "label": "love",
+        "linear_svm": "joy",
+        "distilbert": "love",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_586",
+        "text": "i found myself feeling inhibited and shushing her quite a lot",
+        "label": "sadness",
+        "linear_svm": "sadness",
+        "distilbert": "sadness",
+        "qwen_zero_shot": "anger"
+      },
+      {
+        "row_id": "test_917",
+        "text": "i feel the need to pimp this since raini my beloved rocky casting director loves it so much",
+        "label": "joy",
+        "linear_svm": "love",
+        "distilbert": "love",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_959",
+        "text": "i feel cared for and accepted",
+        "label": "love",
+        "linear_svm": "love",
+        "distilbert": "love",
+        "qwen_zero_shot": "love"
+      },
+      {
+        "row_id": "test_1026",
+        "text": "i have not conducted a survey but it is quite likely that many of them feel as assaulted by onel s demons and other creators as i would have felt had the walls been covered only with eminent figures patriotic heroes and epic deeds",
+        "label": "sadness",
+        "linear_svm": "fear",
+        "distilbert": "fear",
+        "qwen_zero_shot": "sadness"
+      },
+      {
+        "row_id": "test_1275",
+        "text": "i feel so weird and scattered with all wonders about a million different things",
+        "label": "surprise",
+        "linear_svm": "surprise",
+        "distilbert": "surprise",
+        "qwen_zero_shot": "UNPARSEABLE"
+      },
+      {
+        "row_id": "test_1826",
+        "text": "i don t always feel like i have amazing style and most days i choose comfort over anything else but there is one thing that i feel makes all the difference in how i feel about myself and that is makeup",
+        "label": "joy",
+        "linear_svm": "surprise",
+        "distilbert": "surprise",
+        "qwen_zero_shot": "joy"
+      },
+      {
+        "row_id": "test_1887",
+        "text": "i feel like some of you have pains and you cannot imagine becoming passionate about the group or the idea that is causing pain",
+        "label": "joy",
+        "linear_svm": "love",
+        "distilbert": "love",
+        "qwen_zero_shot": "sadness"
+      }
+    ]
+  },
+  "figures": [
+    "fig14_error_slices.png"
+  ],
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cpu",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": "2.11.0+cu128",
+    "cuda_version": "12.8",
+    "cuda_available": false
+  }
+}

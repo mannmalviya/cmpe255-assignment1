@@ -1,0 +1,1472 @@
+{
+  "phase": "10_apriori",
+  "splits_used": [
+    "train_clean"
+  ],
+  "split_policy": "train_clean only. Rules mined from held-out data would be leakage; these rules inform the Phase 12 feature decision.",
+  "encoding": "one transaction per document; items are the distinct words. Word order and repetition are discarded by construction.",
+  "parameters": {
+    "per_class_min_support": 0.01,
+    "corpus_min_support": 0.003,
+    "max_len": 3,
+    "min_rule_support_docs": 30,
+    "excluded_tokens": [
+      "a",
+      "amp",
+      "blog",
+      "bookmark",
+      "com",
+      "href",
+      "http",
+      "img",
+      "rel",
+      "s",
+      "src",
+      "target",
+      "www"
+    ],
+    "exclusion_reason": "Phase 8 HTML/URL residue; these tokens co-occur near-perfectly and dominate any lift ranking"
+  },
+  "implementation": "Apriori written for this study; support counted by intersecting an inverted index, with downward-closure pruning of candidates.",
+  "per_emotion": {
+    "joy": {
+      "apriori": {
+        "n_transactions": 5340,
+        "min_support": 0.01,
+        "min_count": 54,
+        "seconds": 0.35,
+        "itemsets_counted": 58133,
+        "candidates_pruned_by_closure": 71266,
+        "frequent_by_size": {
+          "1": 247,
+          "2": 1463,
+          "3": 3115
+        }
+      },
+      "top_rules_including_html_residue": [
+        {
+          "antecedent": [
+            "href"
+          ],
+          "consequent": [
+            "a",
+            "http"
+          ],
+          "support_docs": 56,
+          "support": 0.01049,
+          "confidence": 0.875,
+          "lift": 79.19
+        },
+        {
+          "antecedent": [
+            "a",
+            "http"
+          ],
+          "consequent": [
+            "href"
+          ],
+          "support_docs": 56,
+          "support": 0.01049,
+          "confidence": 0.9492,
+          "lift": 79.19
+        },
+        {
+          "antecedent": [
+            "http"
+          ],
+          "consequent": [
+            "href"
+          ],
+          "support_docs": 59,
+          "support": 0.01105,
+          "confidence": 0.7973,
+          "lift": 66.52
+        }
+      ],
+      "top_rules_by_lift": [
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "feel",
+            "t"
+          ],
+          "support_docs": 91,
+          "support": 0.01704,
+          "confidence": 0.8922,
+          "lift": 26.03
+        },
+        {
+          "antecedent": [
+            "feel",
+            "t"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 91,
+          "support": 0.01704,
+          "confidence": 0.4973,
+          "lift": 26.03
+        },
+        {
+          "antecedent": [
+            "t"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 102,
+          "support": 0.0191,
+          "confidence": 0.4435,
+          "lift": 23.22
+        },
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "t"
+          ],
+          "support_docs": 102,
+          "support": 0.0191,
+          "confidence": 1.0,
+          "lift": 23.22
+        },
+        {
+          "antecedent": [
+            "t"
+          ],
+          "consequent": [
+            "don",
+            "feel"
+          ],
+          "support_docs": 91,
+          "support": 0.01704,
+          "confidence": 0.3957,
+          "lift": 23.22
+        },
+        {
+          "antecedent": [
+            "don",
+            "feel"
+          ],
+          "consequent": [
+            "t"
+          ],
+          "support_docs": 91,
+          "support": 0.01704,
+          "confidence": 1.0,
+          "lift": 23.22
+        }
+      ]
+    },
+    "sadness": {
+      "apriori": {
+        "n_transactions": 4661,
+        "min_support": 0.01,
+        "min_count": 47,
+        "seconds": 0.32,
+        "itemsets_counted": 61188,
+        "candidates_pruned_by_closure": 68738,
+        "frequent_by_size": {
+          "1": 272,
+          "2": 1381,
+          "3": 2737
+        }
+      },
+      "top_rules_including_html_residue": [
+        {
+          "antecedent": [
+            "href"
+          ],
+          "consequent": [
+            "a",
+            "http"
+          ],
+          "support_docs": 49,
+          "support": 0.01051,
+          "confidence": 0.9608,
+          "lift": 87.81
+        },
+        {
+          "antecedent": [
+            "a",
+            "http"
+          ],
+          "consequent": [
+            "href"
+          ],
+          "support_docs": 49,
+          "support": 0.01051,
+          "confidence": 0.9608,
+          "lift": 87.81
+        },
+        {
+          "antecedent": [
+            "http"
+          ],
+          "consequent": [
+            "href"
+          ],
+          "support_docs": 50,
+          "support": 0.01073,
+          "confidence": 0.7463,
+          "lift": 68.2
+        }
+      ],
+      "top_rules_by_lift": [
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "t",
+            "to"
+          ],
+          "support_docs": 59,
+          "support": 0.01266,
+          "confidence": 0.5221,
+          "lift": 20.28
+        },
+        {
+          "antecedent": [
+            "t",
+            "to"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 59,
+          "support": 0.01266,
+          "confidence": 0.4917,
+          "lift": 20.28
+        },
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "feel",
+            "t"
+          ],
+          "support_docs": 90,
+          "support": 0.01931,
+          "confidence": 0.7965,
+          "lift": 19.75
+        },
+        {
+          "antecedent": [
+            "feel",
+            "t"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 90,
+          "support": 0.01931,
+          "confidence": 0.4787,
+          "lift": 19.75
+        },
+        {
+          "antecedent": [
+            "t"
+          ],
+          "consequent": [
+            "don",
+            "feel"
+          ],
+          "support_docs": 90,
+          "support": 0.01931,
+          "confidence": 0.3659,
+          "lift": 18.95
+        },
+        {
+          "antecedent": [
+            "don",
+            "feel"
+          ],
+          "consequent": [
+            "t"
+          ],
+          "support_docs": 90,
+          "support": 0.01931,
+          "confidence": 1.0,
+          "lift": 18.95
+        }
+      ]
+    },
+    "anger": {
+      "apriori": {
+        "n_transactions": 2152,
+        "min_support": 0.01,
+        "min_count": 22,
+        "seconds": 0.32,
+        "itemsets_counted": 59010,
+        "candidates_pruned_by_closure": 79005,
+        "frequent_by_size": {
+          "1": 249,
+          "2": 1620,
+          "3": 3352
+        }
+      },
+      "top_rules_including_html_residue": [
+        {
+          "antecedent": [
+            "pissed"
+          ],
+          "consequent": [
+            "off"
+          ],
+          "support_docs": 26,
+          "support": 0.01208,
+          "confidence": 0.4906,
+          "lift": 18.2
+        },
+        {
+          "antecedent": [
+            "off"
+          ],
+          "consequent": [
+            "pissed"
+          ],
+          "support_docs": 26,
+          "support": 0.01208,
+          "confidence": 0.4483,
+          "lift": 18.2
+        },
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "feel",
+            "t"
+          ],
+          "support_docs": 45,
+          "support": 0.02091,
+          "confidence": 0.7258,
+          "lift": 16.8
+        }
+      ],
+      "top_rules_by_lift": [
+        {
+          "antecedent": [
+            "pissed"
+          ],
+          "consequent": [
+            "off"
+          ],
+          "support_docs": 26,
+          "support": 0.01208,
+          "confidence": 0.4906,
+          "lift": 18.2
+        },
+        {
+          "antecedent": [
+            "off"
+          ],
+          "consequent": [
+            "pissed"
+          ],
+          "support_docs": 26,
+          "support": 0.01208,
+          "confidence": 0.4483,
+          "lift": 18.2
+        },
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "feel",
+            "t"
+          ],
+          "support_docs": 45,
+          "support": 0.02091,
+          "confidence": 0.7258,
+          "lift": 16.8
+        },
+        {
+          "antecedent": [
+            "feel",
+            "t"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 45,
+          "support": 0.02091,
+          "confidence": 0.4839,
+          "lift": 16.8
+        },
+        {
+          "antecedent": [
+            "t"
+          ],
+          "consequent": [
+            "don",
+            "to"
+          ],
+          "support_docs": 26,
+          "support": 0.01208,
+          "confidence": 0.2016,
+          "lift": 16.68
+        },
+        {
+          "antecedent": [
+            "don",
+            "to"
+          ],
+          "consequent": [
+            "t"
+          ],
+          "support_docs": 26,
+          "support": 0.01208,
+          "confidence": 1.0,
+          "lift": 16.68
+        }
+      ]
+    },
+    "fear": {
+      "apriori": {
+        "n_transactions": 1923,
+        "min_support": 0.01,
+        "min_count": 20,
+        "seconds": 0.28,
+        "itemsets_counted": 52984,
+        "candidates_pruned_by_closure": 75274,
+        "frequent_by_size": {
+          "1": 239,
+          "2": 1532,
+          "3": 3052
+        }
+      },
+      "top_rules_including_html_residue": [
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "t",
+            "to"
+          ],
+          "support_docs": 25,
+          "support": 0.013,
+          "confidence": 0.625,
+          "lift": 22.26
+        },
+        {
+          "antecedent": [
+            "t",
+            "to"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 25,
+          "support": 0.013,
+          "confidence": 0.463,
+          "lift": 22.26
+        },
+        {
+          "antecedent": [
+            "than"
+          ],
+          "consequent": [
+            "a",
+            "more"
+          ],
+          "support_docs": 20,
+          "support": 0.0104,
+          "confidence": 0.4,
+          "lift": 18.76
+        }
+      ],
+      "top_rules_by_lift": [
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "t",
+            "to"
+          ],
+          "support_docs": 25,
+          "support": 0.013,
+          "confidence": 0.625,
+          "lift": 22.26
+        },
+        {
+          "antecedent": [
+            "t",
+            "to"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 25,
+          "support": 0.013,
+          "confidence": 0.463,
+          "lift": 22.26
+        },
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "feel",
+            "t"
+          ],
+          "support_docs": 31,
+          "support": 0.01612,
+          "confidence": 0.775,
+          "lift": 18.63
+        },
+        {
+          "antecedent": [
+            "feel",
+            "t"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 31,
+          "support": 0.01612,
+          "confidence": 0.3875,
+          "lift": 18.63
+        },
+        {
+          "antecedent": [
+            "t"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 40,
+          "support": 0.0208,
+          "confidence": 0.3846,
+          "lift": 18.49
+        },
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "t"
+          ],
+          "support_docs": 40,
+          "support": 0.0208,
+          "confidence": 1.0,
+          "lift": 18.49
+        }
+      ]
+    },
+    "love": {
+      "apriori": {
+        "n_transactions": 1283,
+        "min_support": 0.01,
+        "min_count": 13,
+        "seconds": 0.38,
+        "itemsets_counted": 61845,
+        "candidates_pruned_by_closure": 104968,
+        "frequent_by_size": {
+          "1": 247,
+          "2": 1934,
+          "3": 4567
+        }
+      },
+      "top_rules_including_html_residue": [
+        {
+          "antecedent": [
+            "href"
+          ],
+          "consequent": [
+            "a",
+            "http"
+          ],
+          "support_docs": 17,
+          "support": 0.01325,
+          "confidence": 0.8947,
+          "lift": 63.77
+        },
+        {
+          "antecedent": [
+            "a",
+            "http"
+          ],
+          "consequent": [
+            "href"
+          ],
+          "support_docs": 17,
+          "support": 0.01325,
+          "confidence": 0.9444,
+          "lift": 63.77
+        },
+        {
+          "antecedent": [
+            "http"
+          ],
+          "consequent": [
+            "href",
+            "i"
+          ],
+          "support_docs": 14,
+          "support": 0.01091,
+          "confidence": 0.7,
+          "lift": 59.87
+        }
+      ],
+      "top_rules_by_lift": [
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "feel",
+            "t"
+          ],
+          "support_docs": 27,
+          "support": 0.02104,
+          "confidence": 0.8438,
+          "lift": 22.09
+        },
+        {
+          "antecedent": [
+            "feel",
+            "t"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 27,
+          "support": 0.02104,
+          "confidence": 0.551,
+          "lift": 22.09
+        },
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "t",
+            "that"
+          ],
+          "support_docs": 13,
+          "support": 0.01013,
+          "confidence": 0.4062,
+          "lift": 20.85
+        },
+        {
+          "antecedent": [
+            "t",
+            "that"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 13,
+          "support": 0.01013,
+          "confidence": 0.52,
+          "lift": 20.85
+        },
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "t",
+            "to"
+          ],
+          "support_docs": 17,
+          "support": 0.01325,
+          "confidence": 0.5312,
+          "lift": 18.93
+        },
+        {
+          "antecedent": [
+            "t",
+            "to"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 17,
+          "support": 0.01325,
+          "confidence": 0.4722,
+          "lift": 18.93
+        }
+      ]
+    },
+    "surprise": {
+      "apriori": {
+        "n_transactions": 564,
+        "min_support": 0.01,
+        "min_count": 6,
+        "seconds": 0.38,
+        "itemsets_counted": 61211,
+        "candidates_pruned_by_closure": 91559,
+        "frequent_by_size": {
+          "1": 225,
+          "2": 2018,
+          "3": 5107
+        }
+      },
+      "top_rules_including_html_residue": [
+        {
+          "antecedent": [
+            "http"
+          ],
+          "consequent": [
+            "href"
+          ],
+          "support_docs": 7,
+          "support": 0.01241,
+          "confidence": 0.875,
+          "lift": 70.5
+        },
+        {
+          "antecedent": [
+            "href"
+          ],
+          "consequent": [
+            "http"
+          ],
+          "support_docs": 7,
+          "support": 0.01241,
+          "confidence": 1.0,
+          "lift": 70.5
+        },
+        {
+          "antecedent": [
+            "http"
+          ],
+          "consequent": [
+            "a",
+            "href"
+          ],
+          "support_docs": 7,
+          "support": 0.01241,
+          "confidence": 0.875,
+          "lift": 70.5
+        }
+      ],
+      "top_rules_by_lift": [
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "feeling",
+            "t"
+          ],
+          "support_docs": 6,
+          "support": 0.01064,
+          "confidence": 0.5,
+          "lift": 40.29
+        },
+        {
+          "antecedent": [
+            "feeling",
+            "t"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 6,
+          "support": 0.01064,
+          "confidence": 0.8571,
+          "lift": 40.29
+        },
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "t",
+            "the"
+          ],
+          "support_docs": 6,
+          "support": 0.01064,
+          "confidence": 0.5,
+          "lift": 35.25
+        },
+        {
+          "antecedent": [
+            "t",
+            "the"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 6,
+          "support": 0.01064,
+          "confidence": 0.75,
+          "lift": 35.25
+        },
+        {
+          "antecedent": [
+            "don"
+          ],
+          "consequent": [
+            "t",
+            "to"
+          ],
+          "support_docs": 7,
+          "support": 0.01241,
+          "confidence": 0.5833,
+          "lift": 29.91
+        },
+        {
+          "antecedent": [
+            "t",
+            "to"
+          ],
+          "consequent": [
+            "don"
+          ],
+          "support_docs": 7,
+          "support": 0.01241,
+          "confidence": 0.6364,
+          "lift": 29.91
+        }
+      ]
+    }
+  },
+  "corpus_wide_apriori": {
+    "n_transactions": 15923,
+    "min_support": 0.003,
+    "min_count": 48,
+    "seconds": 3.66,
+    "itemsets_counted": 417200,
+    "candidates_pruned_by_closure": 646176,
+    "frequent_by_size": {
+      "1": 708,
+      "2": 5742,
+      "3": 18117
+    }
+  },
+  "class_association_rules": {
+    "n_rules": 130320,
+    "by_itemset_size": {
+      "1": 3730,
+      "2": 31795,
+      "3": 94795
+    },
+    "top_by_lift_overall": [
+      {
+        "size": 1,
+        "itemset": "impressed",
+        "support_docs": 63,
+        "emotion": "surprise",
+        "matching_docs": 61,
+        "confidence": 0.9683,
+        "lift": 27.336
+      },
+      {
+        "size": 2,
+        "itemset": "i + impressed",
+        "support_docs": 60,
+        "emotion": "surprise",
+        "matching_docs": 58,
+        "confidence": 0.9667,
+        "lift": 27.291
+      },
+      {
+        "size": 1,
+        "itemset": "amazed",
+        "support_docs": 70,
+        "emotion": "surprise",
+        "matching_docs": 66,
+        "confidence": 0.9429,
+        "lift": 26.619
+      },
+      {
+        "size": 2,
+        "itemset": "amazed + feel",
+        "support_docs": 52,
+        "emotion": "surprise",
+        "matching_docs": 49,
+        "confidence": 0.9423,
+        "lift": 26.603
+      },
+      {
+        "size": 3,
+        "itemset": "amazed + feel + i",
+        "support_docs": 52,
+        "emotion": "surprise",
+        "matching_docs": 49,
+        "confidence": 0.9423,
+        "lift": 26.603
+      },
+      {
+        "size": 2,
+        "itemset": "amazed + i",
+        "support_docs": 67,
+        "emotion": "surprise",
+        "matching_docs": 63,
+        "confidence": 0.9403,
+        "lift": 26.547
+      },
+      {
+        "size": 1,
+        "itemset": "curious",
+        "support_docs": 57,
+        "emotion": "surprise",
+        "matching_docs": 53,
+        "confidence": 0.9298,
+        "lift": 26.251
+      },
+      {
+        "size": 2,
+        "itemset": "curious + i",
+        "support_docs": 56,
+        "emotion": "surprise",
+        "matching_docs": 52,
+        "confidence": 0.9286,
+        "lift": 26.216
+      },
+      {
+        "size": 2,
+        "itemset": "i + shocked",
+        "support_docs": 49,
+        "emotion": "surprise",
+        "matching_docs": 44,
+        "confidence": 0.898,
+        "lift": 25.351
+      },
+      {
+        "size": 1,
+        "itemset": "shocked",
+        "support_docs": 51,
+        "emotion": "surprise",
+        "matching_docs": 45,
+        "confidence": 0.8824,
+        "lift": 24.911
+      },
+      {
+        "size": 1,
+        "itemset": "surprised",
+        "support_docs": 65,
+        "emotion": "surprise",
+        "matching_docs": 55,
+        "confidence": 0.8462,
+        "lift": 23.889
+      },
+      {
+        "size": 2,
+        "itemset": "i + surprised",
+        "support_docs": 61,
+        "emotion": "surprise",
+        "matching_docs": 51,
+        "confidence": 0.8361,
+        "lift": 23.604
+      },
+      {
+        "size": 1,
+        "itemset": "funny",
+        "support_docs": 67,
+        "emotion": "surprise",
+        "matching_docs": 48,
+        "confidence": 0.7164,
+        "lift": 20.226
+      },
+      {
+        "size": 2,
+        "itemset": "funny + i",
+        "support_docs": 62,
+        "emotion": "surprise",
+        "matching_docs": 44,
+        "confidence": 0.7097,
+        "lift": 20.036
+      },
+      {
+        "size": 3,
+        "itemset": "feeling + i + overwhelmed",
+        "support_docs": 71,
+        "emotion": "surprise",
+        "matching_docs": 34,
+        "confidence": 0.4789,
+        "lift": 13.52
+      }
+    ],
+    "lift_caveat": "lift = confidence / prior, so the rarest class wins any global lift ranking mechanically. The unfiltered top 15 is entirely `surprise` (prior 3.5%). Compare rules within an emotion, not across.",
+    "top_per_emotion": {
+      "joy": [
+        {
+          "size": 1,
+          "itemset": "superior",
+          "support_docs": 52,
+          "emotion": "joy",
+          "matching_docs": 52,
+          "confidence": 1.0,
+          "lift": 2.982
+        },
+        {
+          "size": 1,
+          "itemset": "festive",
+          "support_docs": 52,
+          "emotion": "joy",
+          "matching_docs": 52,
+          "confidence": 1.0,
+          "lift": 2.982
+        },
+        {
+          "size": 1,
+          "itemset": "energetic",
+          "support_docs": 49,
+          "emotion": "joy",
+          "matching_docs": 49,
+          "confidence": 1.0,
+          "lift": 2.982
+        },
+        {
+          "size": 1,
+          "itemset": "resolved",
+          "support_docs": 49,
+          "emotion": "joy",
+          "matching_docs": 49,
+          "confidence": 1.0,
+          "lift": 2.982
+        },
+        {
+          "size": 1,
+          "itemset": "clever",
+          "support_docs": 51,
+          "emotion": "joy",
+          "matching_docs": 51,
+          "confidence": 1.0,
+          "lift": 2.982
+        },
+        {
+          "size": 2,
+          "itemset": "i + superior",
+          "support_docs": 48,
+          "emotion": "joy",
+          "matching_docs": 48,
+          "confidence": 1.0,
+          "lift": 2.982
+        }
+      ],
+      "sadness": [
+        {
+          "size": 1,
+          "itemset": "listless",
+          "support_docs": 48,
+          "emotion": "sadness",
+          "matching_docs": 48,
+          "confidence": 1.0,
+          "lift": 3.416
+        },
+        {
+          "size": 1,
+          "itemset": "unimportant",
+          "support_docs": 48,
+          "emotion": "sadness",
+          "matching_docs": 48,
+          "confidence": 1.0,
+          "lift": 3.416
+        },
+        {
+          "size": 1,
+          "itemset": "disheartened",
+          "support_docs": 54,
+          "emotion": "sadness",
+          "matching_docs": 54,
+          "confidence": 1.0,
+          "lift": 3.416
+        },
+        {
+          "size": 1,
+          "itemset": "gloomy",
+          "support_docs": 57,
+          "emotion": "sadness",
+          "matching_docs": 57,
+          "confidence": 1.0,
+          "lift": 3.416
+        },
+        {
+          "size": 1,
+          "itemset": "inadequate",
+          "support_docs": 50,
+          "emotion": "sadness",
+          "matching_docs": 50,
+          "confidence": 1.0,
+          "lift": 3.416
+        },
+        {
+          "size": 2,
+          "itemset": "gloomy + i",
+          "support_docs": 48,
+          "emotion": "sadness",
+          "matching_docs": 48,
+          "confidence": 1.0,
+          "lift": 3.416
+        }
+      ],
+      "anger": [
+        {
+          "size": 2,
+          "itemset": "feel + offended",
+          "support_docs": 49,
+          "emotion": "anger",
+          "matching_docs": 49,
+          "confidence": 1.0,
+          "lift": 7.399
+        },
+        {
+          "size": 2,
+          "itemset": "dissatisfied + i",
+          "support_docs": 51,
+          "emotion": "anger",
+          "matching_docs": 51,
+          "confidence": 1.0,
+          "lift": 7.399
+        },
+        {
+          "size": 3,
+          "itemset": "feel + i + offended",
+          "support_docs": 49,
+          "emotion": "anger",
+          "matching_docs": 49,
+          "confidence": 1.0,
+          "lift": 7.399
+        },
+        {
+          "size": 1,
+          "itemset": "offended",
+          "support_docs": 62,
+          "emotion": "anger",
+          "matching_docs": 61,
+          "confidence": 0.9839,
+          "lift": 7.28
+        },
+        {
+          "size": 2,
+          "itemset": "i + offended",
+          "support_docs": 61,
+          "emotion": "anger",
+          "matching_docs": 60,
+          "confidence": 0.9836,
+          "lift": 7.278
+        },
+        {
+          "size": 1,
+          "itemset": "dissatisfied",
+          "support_docs": 54,
+          "emotion": "anger",
+          "matching_docs": 53,
+          "confidence": 0.9815,
+          "lift": 7.262
+        }
+      ],
+      "fear": [
+        {
+          "size": 1,
+          "itemset": "apprehensive",
+          "support_docs": 58,
+          "emotion": "fear",
+          "matching_docs": 58,
+          "confidence": 1.0,
+          "lift": 8.28
+        },
+        {
+          "size": 2,
+          "itemset": "apprehensive + i",
+          "support_docs": 51,
+          "emotion": "fear",
+          "matching_docs": 51,
+          "confidence": 1.0,
+          "lift": 8.28
+        },
+        {
+          "size": 1,
+          "itemset": "shaken",
+          "support_docs": 65,
+          "emotion": "fear",
+          "matching_docs": 64,
+          "confidence": 0.9846,
+          "lift": 8.153
+        },
+        {
+          "size": 2,
+          "itemset": "i + shaken",
+          "support_docs": 59,
+          "emotion": "fear",
+          "matching_docs": 58,
+          "confidence": 0.9831,
+          "lift": 8.14
+        },
+        {
+          "size": 1,
+          "itemset": "pressured",
+          "support_docs": 57,
+          "emotion": "fear",
+          "matching_docs": 56,
+          "confidence": 0.9825,
+          "lift": 8.135
+        },
+        {
+          "size": 2,
+          "itemset": "i + pressured",
+          "support_docs": 54,
+          "emotion": "fear",
+          "matching_docs": 53,
+          "confidence": 0.9815,
+          "lift": 8.127
+        }
+      ],
+      "love": [
+        {
+          "size": 1,
+          "itemset": "sympathetic",
+          "support_docs": 54,
+          "emotion": "love",
+          "matching_docs": 54,
+          "confidence": 1.0,
+          "lift": 12.411
+        },
+        {
+          "size": 2,
+          "itemset": "i + sympathetic",
+          "support_docs": 50,
+          "emotion": "love",
+          "matching_docs": 50,
+          "confidence": 1.0,
+          "lift": 12.411
+        },
+        {
+          "size": 1,
+          "itemset": "longing",
+          "support_docs": 54,
+          "emotion": "love",
+          "matching_docs": 51,
+          "confidence": 0.9444,
+          "lift": 11.721
+        },
+        {
+          "size": 1,
+          "itemset": "nostalgic",
+          "support_docs": 51,
+          "emotion": "love",
+          "matching_docs": 48,
+          "confidence": 0.9412,
+          "lift": 11.681
+        },
+        {
+          "size": 2,
+          "itemset": "i + longing",
+          "support_docs": 51,
+          "emotion": "love",
+          "matching_docs": 48,
+          "confidence": 0.9412,
+          "lift": 11.681
+        },
+        {
+          "size": 1,
+          "itemset": "gentle",
+          "support_docs": 48,
+          "emotion": "love",
+          "matching_docs": 44,
+          "confidence": 0.9167,
+          "lift": 11.377
+        }
+      ],
+      "surprise": [
+        {
+          "size": 1,
+          "itemset": "impressed",
+          "support_docs": 63,
+          "emotion": "surprise",
+          "matching_docs": 61,
+          "confidence": 0.9683,
+          "lift": 27.336
+        },
+        {
+          "size": 2,
+          "itemset": "i + impressed",
+          "support_docs": 60,
+          "emotion": "surprise",
+          "matching_docs": 58,
+          "confidence": 0.9667,
+          "lift": 27.291
+        },
+        {
+          "size": 1,
+          "itemset": "amazed",
+          "support_docs": 70,
+          "emotion": "surprise",
+          "matching_docs": 66,
+          "confidence": 0.9429,
+          "lift": 26.619
+        },
+        {
+          "size": 2,
+          "itemset": "amazed + feel",
+          "support_docs": 52,
+          "emotion": "surprise",
+          "matching_docs": 49,
+          "confidence": 0.9423,
+          "lift": 26.603
+        },
+        {
+          "size": 3,
+          "itemset": "amazed + feel + i",
+          "support_docs": 52,
+          "emotion": "surprise",
+          "matching_docs": 49,
+          "confidence": 0.9423,
+          "lift": 26.603
+        },
+        {
+          "size": 2,
+          "itemset": "amazed + i",
+          "support_docs": 67,
+          "emotion": "surprise",
+          "matching_docs": 63,
+          "confidence": 0.9403,
+          "lift": 26.547
+        }
+      ]
+    }
+  },
+  "pairs_vs_singletons": {
+    "n_pairs_compared": 5446,
+    "mean_gain": -0.0086,
+    "median_gain": -0.007,
+    "share_pairs_better_than_best_parent": 0.3979,
+    "share_pairs_gaining_over_10_points": 0.0112,
+    "share_changing_the_prediction": 0.2143,
+    "top_gains": [
+      {
+        "pair": "more + now",
+        "pair_emotion": "joy",
+        "pair_confidence": 0.6833,
+        "pair_support": 60,
+        "best_parent": "more",
+        "parent_emotion": "joy",
+        "parent_confidence": 0.4866,
+        "gain": 0.1967,
+        "changed_prediction": false
+      },
+      {
+        "pair": "for + things",
+        "pair_emotion": "sadness",
+        "pair_confidence": 0.5,
+        "pair_support": 78,
+        "best_parent": "for",
+        "parent_emotion": "joy",
+        "parent_confidence": 0.3332,
+        "gain": 0.1668,
+        "changed_prediction": true
+      },
+      {
+        "pair": "or + way",
+        "pair_emotion": "sadness",
+        "pair_confidence": 0.46,
+        "pair_support": 50,
+        "best_parent": "or",
+        "parent_emotion": "sadness",
+        "parent_confidence": 0.2981,
+        "gain": 0.1619,
+        "changed_prediction": false
+      },
+      {
+        "pair": "how + on",
+        "pair_emotion": "joy",
+        "pair_confidence": 0.52,
+        "pair_support": 100,
+        "best_parent": "on",
+        "parent_emotion": "joy",
+        "parent_confidence": 0.3634,
+        "gain": 0.1566,
+        "changed_prediction": false
+      },
+      {
+        "pair": "more + would",
+        "pair_emotion": "joy",
+        "pair_confidence": 0.6379,
+        "pair_support": 58,
+        "best_parent": "more",
+        "parent_emotion": "joy",
+        "parent_confidence": 0.4866,
+        "gain": 0.1513,
+        "changed_prediction": false
+      },
+      {
+        "pair": "had + up",
+        "pair_emotion": "sadness",
+        "pair_confidence": 0.4643,
+        "pair_support": 56,
+        "best_parent": "had",
+        "parent_emotion": "sadness",
+        "parent_confidence": 0.3154,
+        "gain": 0.1489,
+        "changed_prediction": false
+      },
+      {
+        "pair": "everything + my",
+        "pair_emotion": "joy",
+        "pair_confidence": 0.5156,
+        "pair_support": 64,
+        "best_parent": "everything",
+        "parent_emotion": "joy",
+        "parent_confidence": 0.3676,
+        "gain": 0.148,
+        "changed_prediction": false
+      },
+      {
+        "pair": "like + made",
+        "pair_emotion": "joy",
+        "pair_confidence": 0.5,
+        "pair_support": 54,
+        "best_parent": "made",
+        "parent_emotion": "joy",
+        "parent_confidence": 0.3523,
+        "gain": 0.1477,
+        "changed_prediction": false
+      },
+      {
+        "pair": "more + much",
+        "pair_emotion": "joy",
+        "pair_confidence": 0.6329,
+        "pair_support": 79,
+        "best_parent": "more",
+        "parent_emotion": "joy",
+        "parent_confidence": 0.4866,
+        "gain": 0.1463,
+        "changed_prediction": false
+      },
+      {
+        "pair": "for + here",
+        "pair_emotion": "joy",
+        "pair_confidence": 0.5094,
+        "pair_support": 53,
+        "best_parent": "here",
+        "parent_emotion": "joy",
+        "parent_confidence": 0.3633,
+        "gain": 0.1461,
+        "changed_prediction": false
+      }
+    ]
+  },
+  "figures": [
+    "fig11_apriori.png"
+  ],
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cpu",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": "2.14.0+cpu",
+    "cuda_version": null,
+    "cuda_available": false
+  }
+}

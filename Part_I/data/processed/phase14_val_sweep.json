@@ -1,0 +1,248 @@
+[
+  {
+    "k_per_class": 1,
+    "n_shots": 6,
+    "prompt_tokens_example": 243,
+    "val_macro_f1": 0.3378,
+    "val_accuracy": 0.448,
+    "val_strict_parse_rate": 0.9815,
+    "val_n_unparseable": 37,
+    "val_rows_per_second": 21.95,
+    "shots": [
+      {
+        "row_id": "train_10283",
+        "text": "i feel was where i fucked up a bit and something i wish i could change",
+        "label": "anger"
+      },
+      {
+        "row_id": "train_7010",
+        "text": "i feel for them supporting a team that has traded a musical chairs management rotation for no proper manager at all",
+        "label": "love"
+      },
+      {
+        "row_id": "train_1453",
+        "text": "im also feeling more energetic and able to keep going for a better part of the day",
+        "label": "joy"
+      },
+      {
+        "row_id": "train_12454",
+        "text": "ive been feeling depressed anxious and unhappy",
+        "label": "sadness"
+      },
+      {
+        "row_id": "train_7117",
+        "text": "im left feeling paranoid and like it keeps getting harder to feel happy",
+        "label": "fear"
+      },
+      {
+        "row_id": "train_13778",
+        "text": "i want to feel amazed a little more often",
+        "label": "surprise"
+      }
+    ]
+  },
+  {
+    "k_per_class": 2,
+    "n_shots": 12,
+    "prompt_tokens_example": 411,
+    "val_macro_f1": 0.3592,
+    "val_accuracy": 0.4815,
+    "val_strict_parse_rate": 0.993,
+    "val_n_unparseable": 14,
+    "val_rows_per_second": 13.68,
+    "shots": [
+      {
+        "row_id": "train_11661",
+        "text": "im supposed to feel compassionate towards that little girl but i feel like she never existed",
+        "label": "love"
+      },
+      {
+        "row_id": "train_1453",
+        "text": "im also feeling more energetic and able to keep going for a better part of the day",
+        "label": "joy"
+      },
+      {
+        "row_id": "train_10952",
+        "text": "ive test tried dropping it and nothing happened which is supposed to be if something happened to my phone i would feel so fucked up",
+        "label": "anger"
+      },
+      {
+        "row_id": "train_1595",
+        "text": "i was told to do it continues and the fact i feel fear frightened correction terrified of what is next",
+        "label": "fear"
+      },
+      {
+        "row_id": "train_7255",
+        "text": "i feel less weird about my premature graying that started",
+        "label": "surprise"
+      },
+      {
+        "row_id": "train_7146",
+        "text": "i am not giving up but i am feeling discouraged",
+        "label": "sadness"
+      },
+      {
+        "row_id": "train_12041",
+        "text": "i feel so blessed to have met each and every one of them",
+        "label": "love"
+      },
+      {
+        "row_id": "train_12340",
+        "text": "i feel fucking fantastic and wanted to share the news with you",
+        "label": "joy"
+      },
+      {
+        "row_id": "train_1346",
+        "text": "i just feel cold and drained all the time im either hungry or tired or cold at the moment and it sort of sucks",
+        "label": "anger"
+      },
+      {
+        "row_id": "train_8866",
+        "text": "i dont know that i am feeling fearful",
+        "label": "fear"
+      },
+      {
+        "row_id": "train_12254",
+        "text": "i returned to the ground floor feeling dazed",
+        "label": "surprise"
+      },
+      {
+        "row_id": "train_7053",
+        "text": "i feel very isolated from my family so it is really important to me to meet people",
+        "label": "sadness"
+      }
+    ]
+  },
+  {
+    "k_per_class": 4,
+    "n_shots": 24,
+    "prompt_tokens_example": 701,
+    "val_macro_f1": 0.3072,
+    "val_accuracy": 0.379,
+    "val_strict_parse_rate": 1.0,
+    "val_n_unparseable": 0,
+    "val_rows_per_second": 8.09,
+    "shots": [
+      {
+        "row_id": "train_11203",
+        "text": "i started to feel resentful of the whole situation and that s when something clicked",
+        "label": "anger"
+      },
+      {
+        "row_id": "train_4075",
+        "text": "i even feel weird living with lay people again",
+        "label": "surprise"
+      },
+      {
+        "row_id": "train_7124",
+        "text": "i just feel very satisfied and content",
+        "label": "joy"
+      },
+      {
+        "row_id": "train_5978",
+        "text": "i go snowboarding feeling very apprehensive",
+        "label": "fear"
+      },
+      {
+        "row_id": "train_3672",
+        "text": "ive been feeling really caring towards jt",
+        "label": "love"
+      },
+      {
+        "row_id": "train_11262",
+        "text": "i feel useless because i dont bring in any income",
+        "label": "sadness"
+      },
+      {
+        "row_id": "train_8027",
+        "text": "i feel so disgusted and ashamed of myself",
+        "label": "anger"
+      },
+      {
+        "row_id": "train_13687",
+        "text": "i feel its a weird turn of events which is marred a bit by a slightly weird prose",
+        "label": "surprise"
+      },
+      {
+        "row_id": "train_1453",
+        "text": "im also feeling more energetic and able to keep going for a better part of the day",
+        "label": "joy"
+      },
+      {
+        "row_id": "train_12595",
+        "text": "im feeling less fearful today ptl",
+        "label": "fear"
+      },
+      {
+        "row_id": "train_7148",
+        "text": "im talking about stored up hurts and pent up rage at the feelings of feeling not accepted insecure marginalized and not belonging anywhere",
+        "label": "love"
+      },
+      {
+        "row_id": "train_3425",
+        "text": "i don t feel that i am being punished for hidden sin in my life",
+        "label": "sadness"
+      },
+      {
+        "row_id": "train_12379",
+        "text": "id been struggling with feeling highly irritable toward my husband",
+        "label": "anger"
+      },
+      {
+        "row_id": "train_701",
+        "text": "i feel strange with it because it started to be sale",
+        "label": "surprise"
+      },
+      {
+        "row_id": "train_10436",
+        "text": "i feel very satisfied and dont expect to be hungry later",
+        "label": "joy"
+      },
+      {
+        "row_id": "train_3002",
+        "text": "ive been feeling restless inside and i dont understand why",
+        "label": "fear"
+      },
+      {
+        "row_id": "train_7077",
+        "text": "i feel like i probably would have liked this book a little bit more if it wasn t such a simple story line",
+        "label": "love"
+      },
+      {
+        "row_id": "train_1736",
+        "text": "i feel really discouraged and hope is the only thing i have to hold onto",
+        "label": "sadness"
+      },
+      {
+        "row_id": "train_2009",
+        "text": "i feel tortured a href http lawrencewashington",
+        "label": "anger"
+      },
+      {
+        "row_id": "train_13088",
+        "text": "i always feel like i need drugs after which is funny cuz its a health food store",
+        "label": "surprise"
+      },
+      {
+        "row_id": "train_12338",
+        "text": "im left feeling convinced this is another relationship that is damaged and it was one of only a handful remaining that i had trust in",
+        "label": "joy"
+      },
+      {
+        "row_id": "train_14826",
+        "text": "i feel compassion for them and understand why they feel insecure",
+        "label": "fear"
+      },
+      {
+        "row_id": "train_8679",
+        "text": "i feel the longing for the way things used to be makes the ride a bit of an emotional roller coaster",
+        "label": "love"
+      },
+      {
+        "row_id": "train_8556",
+        "text": "i have noticed more symptoms coming back over sleeping and eating feeling lethargic my temper and doing less around the house",
+        "label": "sadness"
+      }
+    ]
+  }
+]

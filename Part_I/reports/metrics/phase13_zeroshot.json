@@ -1,0 +1,1270 @@
+{
+  "phase": "13_zero_shot_llm",
+  "splits_used": [
+    "test (scored once)"
+  ],
+  "split_policy": "test only. Nothing fitted, nothing tuned, training split never read - not even for a class prior.",
+  "model": {
+    "model": "zero_shot_qwen2.5_1.5b",
+    "family": "llm_zero_shot",
+    "device_used": "cuda:0",
+    "quality": {
+      "n": 2000,
+      "accuracy": 0.4975,
+      "macro_f1": 0.4107,
+      "weighted_f1": 0.5122,
+      "balanced_accuracy": 0.4026,
+      "accuracy_minus_macro_f1": 0.0868,
+      "per_class": {
+        "joy": {
+          "precision": 0.739,
+          "recall": 0.4604,
+          "f1": 0.5674,
+          "support": 695
+        },
+        "sadness": {
+          "precision": 0.5496,
+          "recall": 0.7246,
+          "f1": 0.6251,
+          "support": 581
+        },
+        "anger": {
+          "precision": 0.5526,
+          "recall": 0.4582,
+          "f1": 0.501,
+          "support": 275
+        },
+        "fear": {
+          "precision": 0.6912,
+          "recall": 0.2098,
+          "f1": 0.3219,
+          "support": 224
+        },
+        "love": {
+          "precision": 0.2143,
+          "recall": 0.4717,
+          "f1": 0.2947,
+          "support": 159
+        },
+        "surprise": {
+          "precision": 0.5,
+          "recall": 0.0909,
+          "f1": 0.1538,
+          "support": 66
+        }
+      },
+      "labels_never_predicted": [],
+      "confusion_matrix": {
+        "labels": [
+          "joy",
+          "sadness",
+          "anger",
+          "fear",
+          "love",
+          "surprise"
+        ],
+        "rows_true_cols_pred": [
+          [
+            320,
+            115,
+            31,
+            6,
+            185,
+            4
+          ],
+          [
+            39,
+            421,
+            41,
+            6,
+            45,
+            0
+          ],
+          [
+            16,
+            83,
+            126,
+            8,
+            21,
+            1
+          ],
+          [
+            16,
+            94,
+            21,
+            47,
+            14,
+            1
+          ],
+          [
+            26,
+            38,
+            7,
+            0,
+            75,
+            0
+          ],
+          [
+            16,
+            15,
+            2,
+            1,
+            10,
+            6
+          ]
+        ]
+      },
+      "meets_target_macro_f1": false,
+      "target_macro_f1": 0.85
+    },
+    "latency_single_row": {
+      "n_runs": 200,
+      "p50_ms": 43.8467,
+      "p95_ms": 61.1868,
+      "p99_ms": 70.1809,
+      "mean_ms": 50.1444,
+      "min_ms": 39.0442,
+      "max_ms": 77.4091,
+      "stdev_ms": 9.2684,
+      "warmup_runs_discarded": 20,
+      "within_p95_budget": false,
+      "p95_budget_ms": 50.0
+    },
+    "throughput_batched": {
+      "by_batch_size": {
+        "1": {
+          "batch_size": 1,
+          "median_seconds": 0.040812,
+          "rows_per_second": 24.5,
+          "ms_per_row": 40.812,
+          "repeats": 5
+        },
+        "8": {
+          "batch_size": 8,
+          "median_seconds": 0.187547,
+          "rows_per_second": 42.66,
+          "ms_per_row": 23.4434,
+          "repeats": 5
+        },
+        "32": {
+          "batch_size": 32,
+          "median_seconds": 0.644094,
+          "rows_per_second": 49.68,
+          "ms_per_row": 20.1279,
+          "repeats": 5
+        },
+        "128": {
+          "batch_size": 128,
+          "median_seconds": 2.761899,
+          "rows_per_second": 46.34,
+          "ms_per_row": 21.5773,
+          "repeats": 5
+        }
+      },
+      "best_rows_per_second": 49.68,
+      "best_batch_size": 32
+    },
+    "cost": {
+      "usd_per_1000_predictions": 0.003355,
+      "usd_per_1m_predictions": 3.355,
+      "seconds_per_1000": 20.1288,
+      "pricing_tier": "gpu",
+      "hourly_rate_usd": 0.6,
+      "formula": "(1000 / rows_per_second) / 3600 * hourly_rate_usd",
+      "caveat": "compute only; excludes engineering, storage and serving overhead. A lower bound for large models."
+    },
+    "model_size_on_disk_mb": 2955.4,
+    "peak_memory_mb": 4539.7,
+    "notes": {
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "parameters_billions": 1.544,
+      "dtype": "bfloat16",
+      "decoding": "greedy, deterministic (do_sample=False)",
+      "max_new_tokens": 6,
+      "shots": 0,
+      "split": "test only (2,000 rows), scored once",
+      "trained_or_tuned": false,
+      "system_prompt": "You are an emotion classifier. You are given one short first-person message. Reply with exactly one word: the single emotion the writer is expressing.\nThe only allowed answers are: joy, sadness, anger, fear, love, surprise.\nReply with the word alone. No punctuation, no explanation, no other text.",
+      "prompt_fixed_before_seeing_results": true,
+      "model_load_seconds": 6.8,
+      "full_split_generation_seconds": 40.4,
+      "full_split_rows_per_second": 49.55,
+      "batch_size_used_for_split": 32,
+      "gpu_memory": {
+        "peak_allocated_mb": 4539.7,
+        "peak_reserved_mb": 4942.0
+      }
+    },
+    "peak_memory_kind": "GPU peak allocated (torch.cuda.max_memory_allocated)",
+    "parsing": {
+      "n_outputs": 2000,
+      "strict_parse_rate": 0.9285,
+      "lenient_parse_rate": 0.9285,
+      "n_unparseable_strict": 143,
+      "n_unparseable_but_lenient_finds_a_label": 0,
+      "n_unparseable_with_no_label_at_all": 143,
+      "policy": "strict parse is primary; an unparseable output counts as an ERROR. No retries, no repair, no constrained decoding.",
+      "most_common_unparseable_outputs": [
+        [
+          "stress",
+          12
+        ],
+        [
+          "pain",
+          12
+        ],
+        [
+          "uncertainty",
+          7
+        ],
+        [
+          "peace",
+          7
+        ],
+        [
+          "anxiety",
+          7
+        ],
+        [
+          "excitement",
+          6
+        ],
+        [
+          "confusion",
+          5
+        ],
+        [
+          "embarrassment",
+          5
+        ],
+        [
+          "pleasure",
+          4
+        ],
+        [
+          "hope",
+          4
+        ],
+        [
+          "curiosity",
+          4
+        ],
+        [
+          "guilt",
+          4
+        ],
+        [
+          "nostalgia",
+          3
+        ],
+        [
+          "shy",
+          3
+        ],
+        [
+          "hopefulness",
+          3
+        ]
+      ]
+    },
+    "quality_if_lenient_parsing": {
+      "n": 2000,
+      "accuracy": 0.4975,
+      "macro_f1": 0.4107,
+      "weighted_f1": 0.5122,
+      "balanced_accuracy": 0.4026,
+      "accuracy_minus_macro_f1": 0.0868,
+      "per_class": {
+        "joy": {
+          "precision": 0.739,
+          "recall": 0.4604,
+          "f1": 0.5674,
+          "support": 695
+        },
+        "sadness": {
+          "precision": 0.5496,
+          "recall": 0.7246,
+          "f1": 0.6251,
+          "support": 581
+        },
+        "anger": {
+          "precision": 0.5526,
+          "recall": 0.4582,
+          "f1": 0.501,
+          "support": 275
+        },
+        "fear": {
+          "precision": 0.6912,
+          "recall": 0.2098,
+          "f1": 0.3219,
+          "support": 224
+        },
+        "love": {
+          "precision": 0.2143,
+          "recall": 0.4717,
+          "f1": 0.2947,
+          "support": 159
+        },
+        "surprise": {
+          "precision": 0.5,
+          "recall": 0.0909,
+          "f1": 0.1538,
+          "support": 66
+        }
+      },
+      "labels_never_predicted": [],
+      "confusion_matrix": {
+        "labels": [
+          "joy",
+          "sadness",
+          "anger",
+          "fear",
+          "love",
+          "surprise"
+        ],
+        "rows_true_cols_pred": [
+          [
+            320,
+            115,
+            31,
+            6,
+            185,
+            4
+          ],
+          [
+            39,
+            421,
+            41,
+            6,
+            45,
+            0
+          ],
+          [
+            16,
+            83,
+            126,
+            8,
+            21,
+            1
+          ],
+          [
+            16,
+            94,
+            21,
+            47,
+            14,
+            1
+          ],
+          [
+            26,
+            38,
+            7,
+            0,
+            75,
+            0
+          ],
+          [
+            16,
+            15,
+            2,
+            1,
+            10,
+            6
+          ]
+        ]
+      },
+      "meets_target_macro_f1": false,
+      "target_macro_f1": 0.85
+    }
+  },
+  "unparseable_outputs_full_log": [
+    {
+      "text": "im trying to feel out my house style now that im living on my own and have creative carte blanche",
+      "raw": "creativity",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel a bit stressed even though all the things i have going on are fun",
+      "raw": "stress",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i am right handed however i play billiards left handed naturally so me trying to play right handed feels weird",
+      "raw": "confusion",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i suppose i feel too trusting sometimes",
+      "raw": "trustee",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i am feeling uncertain of the merits of posting to this blog with the frequency or earnestness i had been over the previous year",
+      "raw": "uncertainty",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "when a friend dropped a frog down my neck",
+      "raw": "laughter",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel needy but comfortable with it i feel vulnerable but secure i feel the urge to cum hard but i get no relief",
+      "raw": "pleasure",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i will feel awkward about just calling up one of these people out of the blue to hang out or rather to be familiar with them on a deeper level they are not my kith and kin",
+      "raw": "awkward",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel refrigerator magnets that were so popular a few years ago",
+      "raw": "nostalgia",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i was so uncomfortable and feeling weird feelings but wasn t sure if they were contractions since i never really felt contractions with jared until they jacked me up with pitocin",
+      "raw": "pain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel slightly relaxed being a",
+      "raw": "relaxed",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i wrote two years ago so many things i feel unsure of maybe",
+      "raw": "uncertainty",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i do take on a half marathon challenge then i will wait and see how the body feels as to whether there will be a pb attempt or a casual kilometre shuffle",
+      "raw": "challenge",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i left my garmin on my bike so i was going to have to do this by feel coming out of transition its amazing hearing cheers and your adrenaline is just going crazy",
+      "raw": "excitement",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i used to be able to hang around talk with the cashier when i was putting away my money now i feel rushed and stressed if i take a second to fumble with the coins and put them in my purse",
+      "raw": "stress",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel like i should be supporting them somehow but im not sure how",
+      "raw": "uncertainty",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i indicated then i was feeling quite overwhelmed with work responsibilities teaching traveling and writing",
+      "raw": "stress",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i no longer feel doomed to falling into the abyss with no way out",
+      "raw": "hope",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "is hand started fondling his aching cock through the fabric of his boxers and he instinctively arched his back to feel more of the delicious sensation",
+      "raw": "pleasure",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i could feel his breath on me and smell the sweet scent of him",
+      "raw": "excitement",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i know nothing is going to change even i feel very envious to these people but i cant stop feeling jealous to these people because its a human beings instinct to act so",
+      "raw": "jealous",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel that the suffering is more than i can bear i take refuge in the lord in the blessed sacrament and i speak to him with profound silence",
+      "raw": "prayer",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "im feeling dazed and alot of things in my mind",
+      "raw": "confusion",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i always feel so pressured",
+      "raw": "stress",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i was feeling especially shy and awkward because i didn t know many people there",
+      "raw": "shy",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "im still feeling a little groggy from the lack of sleep so i shall try to replenish it",
+      "raw": "sleep",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i have been sitting at home revising today and all in all feeling quite stressed",
+      "raw": "stress",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i began to feel very strange",
+      "raw": "sudden",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i always feel a bit awkward when i comment on someone s blog because i invariably go on rabbit trails and feel as though i ve been overstepping myself so i d like to tell you if you find yourself feeling the same way that i do not mind in the slightest",
+      "raw": "embarrassment",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel a restless weekend heading our way",
+      "raw": "excitement",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel like i would order carryout from if i lived in the area i am still curious to try some of their other tacos",
+      "raw": "curiosity",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel relatively safe normal or whatever you might call it",
+      "raw": "peace",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i hostage negotiator on her case has her feeling hopeful about her future",
+      "raw": "hopefulness",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i am feeling stressed and more than a bit anxious",
+      "raw": " anxiety",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i watched the news at the tv",
+      "raw": "news",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel i should as a gracious gesture apologizing for my latest post about the osp and the rand license terms",
+      "raw": "sorry",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "im not sure if im more at peace with our situation or if im just not feeling as bitter about it but in the past five months something has changed within me",
+      "raw": "peace",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i am feeling profoundly peaceful",
+      "raw": "peaceful",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i have spoken about before but the feeling is getting stronger and i am curious if others have similar thoughts",
+      "raw": "thoughts",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel kind of awkward about doing this here goes",
+      "raw": "awkward",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i am not feeling too bad except that my ribs are aching and i have a pulled muscle in my shoulder blade region from all my excruciating hours of hacking my lungs out last night",
+      "raw": "pain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i write this i feel oddly calm like wanting to just relax in a big chair or lay out in the sun",
+      "raw": "calm",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i often feel confused as to whether i have bipolar or just a really hard core sinful nature",
+      "raw": "confusion",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel curious because i would like to explore what is at the top of the helterskelter like plant",
+      "raw": "curiosity",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel somewhat safe to give hosting a try",
+      "raw": "risk",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "im feeling doubtful about all of the patterns and colors working together but we cant be sure until everything comes together",
+      "raw": "doubt",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i take a walk in the park feeling joyful",
+      "raw": "joyful",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i woke up today feeling kind of strange",
+      "raw": "unease",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel shy because of what i am wearing",
+      "raw": "shame",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel assured that the guns are locked away in the gun safe making it impossible for any of the children to access them",
+      "raw": "peace",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel embarrassed enough",
+      "raw": "embarrassment",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i can put on it without words since i just cant type on that it was so lovely this morning yes im feeling sarcastic today",
+      "raw": "sarcasm",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i have been feeling really stressed out due to homework and my studies that have increased rapidly over the last week",
+      "raw": "stress",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "ive got to learn to be mindful of how i feel all the time not just if im suspicious of a feeling",
+      "raw": "anxiety",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i am feeling much more relaxed",
+      "raw": "relaxed",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i am feeling pretty fearless",
+      "raw": "fearless",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i think and it feels a little weird",
+      "raw": "uncertain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i regularly feel embarrassed about",
+      "raw": "embarrassment",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel reassured that the county government in my county takes the murder of an illegal immigrant in a back alley seriously enough to prosecute someone years later",
+      "raw": "justice",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i must confess that im still feeling very uncertain about how god is going to work everything out",
+      "raw": "uncertainty",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i didnt start feeling the excitement until the movie was almost over and then it started coming in violent waves",
+      "raw": "excitement",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i am feeling very strange but this is also present movement and i am trying this as one of way",
+      "raw": "movement",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i still feel confused and guilty about the whole thing",
+      "raw": "guilt",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel like i cant have dirty dishes piled up laundry strewn about or toys scattered everywhere",
+      "raw": "mess",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i am feeling ok lots of bruising to my arms where they decided to remove blood from me",
+      "raw": "pain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i honestly thought impossible at this point i feel pretty",
+      "raw": "hope",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i forgive myself for accepting and allowing myself to have the feeling that i am going to get punished for doing something wrong",
+      "raw": "guilt",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "im feeling somewhat nostalgic about the game just from the fact that its star wars",
+      "raw": "nostalgia",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel less shy about exploring roles in more physical ways",
+      "raw": "excitement",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i don t know if this helps at all but writing all of this has made me feel somewhat regretful of ashamed of who i was and while i have more to share i just don t think i can right now",
+      "raw": "ashamed",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i think were on a level of understanding though i still feel hes hesitant",
+      "raw": "uncertainty",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i never told my boyfriend or his parents and i do remember feeling embarrassed and maybe even a little ashamed",
+      "raw": "embarrassment",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i honestly feel extremely shy to ask my friends to take pictures of me how vain must they think i am",
+      "raw": "shy",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "ill find that elusive second wind and feel more hopeful but today i am a href http www",
+      "raw": "hopefulness",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i think or feel but like this person i am still amazed by them",
+      "raw": "amazed",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i am feeling the tender spot on my foot when i flex it a certain way so it is back to wearing shoes all day for this cowboy",
+      "raw": "pain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel shame in a strange way",
+      "raw": "shame",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel like that because for the most part i have accepted that this is a part of my life and that people will never changed",
+      "raw": "acceptance",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i found myself feeling nostalgic as i thought about the temporarily abandoned little bishop chronicles",
+      "raw": "nostalgia",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i would feel so i don t know maybe a little resentful",
+      "raw": "resentment",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i felt this emotion when my name was announced on the radio that i had been selected to come to lilongwe school for health sciences to take a training course as a medical assistat",
+      "raw": "excitement",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i start to feel a little overwhelmed knowing i have to make still",
+      "raw": " anxiety",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i noticed that i was feeling very stressed and anxious and i just couldnt quite put my finger on why",
+      "raw": "stress",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i have a feeling itll be a little more messy going home though",
+      "raw": "uncertain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel more shy in swedish",
+      "raw": "shy",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "im feeling very uncertain about my future",
+      "raw": "uncertainty",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel so weird and scattered with all wonders about a million different things",
+      "raw": "confused",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "ive blogged and i feel strange about it",
+      "raw": "embarrassment",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i can imagine most young people might feel resentful about the attention their sibling was getting while also feeling guilt at the same time",
+      "raw": "guilt",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i considered jogging since it is not too cold today but decided against it as my right ankle is already feeling tender for some reason",
+      "raw": "pain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel guilt that i should be more caring and im not",
+      "raw": "guilt",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i dare myself to do the following when i m feeling brave enough",
+      "raw": "brave",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "im looking at the stress levels im feeling and not loving how concentrated they are because of my mindset of planning a wedding in four months",
+      "raw": "stress",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel pressured to do well and i fe",
+      "raw": "stress",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i can begin to see a first step and suddenly life does not feel so despairing",
+      "raw": "hope",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i walked to school he felt the bounce in his step the overjoyed feelings of youth and the thrill of excitement of coming to school and meeting his beloved friends",
+      "raw": "overjoyed",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i was like should i feel sweet or feel offended",
+      "raw": "confusion",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i still feel a little weird and uncertain",
+      "raw": "uncertainty",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i wanna feel that gorgeous body a yers underneath me next time i m fuckin ya alex took a deep breath and her eyes seemed to glow while she imagined the scenario in her mind a scene she had pictured many times before",
+      "raw": "pleasure",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i can tell my arms and hands feel weaker and they feel more numb and tingly at night when i wake up",
+      "raw": "pain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "im feeling very doubtful about the necessity of that big coat",
+      "raw": "doubt",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i hurt your feelings and for that i am sorry",
+      "raw": "sorry",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i wonder if i feel under nurtured or needy",
+      "raw": "wondering",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i stopped feeling a little awkward",
+      "raw": "comfort",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel less frightened and more grounded and centered",
+      "raw": "peace",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i did not want to feel rushed through the program",
+      "raw": " anxiety",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i am definitely feeling the effects of the progesterone in two ways my breasts are tender and i m tired",
+      "raw": "pain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i did not care much about the number of viewers and the viewer ratings before but as the drama iris gained huge success i began to feel greedy",
+      "raw": "jealous",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i already feel him kicking my ribs making it harder to breath sometimes and taking over precious space where my stomach once was",
+      "raw": "pain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "ive been feeling a bit messy but im hoping this fresh look will help me figure out a better way to deal",
+      "raw": "hopefulness",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i also tried after all that frustration when i was feeling none too energetic for more problems to work on the respirometry stuff which is going to be a huge nightmare",
+      "raw": "frustration",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel like it might just be ok",
+      "raw": "hope",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i didnt want to feel any pain an hour later they decided to start that up and shortly after that they broke my water",
+      "raw": "pain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel like even though things arent quite resolved with my major i have peace about it still",
+      "raw": "peace",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel should be determined by me and my actions and nobody or nothing else",
+      "raw": "control",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i do that i feel ashamed of",
+      "raw": "shame",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel just an on going dull pain for a fews hours or a day in my chest",
+      "raw": "pain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel so damn curious with what this blond doctor plan to do this night",
+      "raw": "curiosity",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel its sad but im okay with it im happy i had done it even though it hurts a little",
+      "raw": "sad",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i am in the need of some extra guidance and i am feeling doubtful god seems to put the right message in my ear that i need at just the right time",
+      "raw": "confusion",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i have learned how to present in front of a class without feeling nervous",
+      "raw": "confidence",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel a bit calm now",
+      "raw": "calm",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i find it helps to let go of self will by saying let your will be done not mine or when i m feeling particularly impatient in god s time not my time",
+      "raw": "peace",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i stopped myself and began telling myself what i wanted to feel i am peaceful",
+      "raw": "peaceful",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i can t help feeling curious about it",
+      "raw": "curious",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i have not had any serious injuries or setbacks other than that infection in my foot a couple of months ago but i have noticed that my knees and inner foot have started to ache and feel tender during the longer runs",
+      "raw": "pain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i got a shot of terbutaline which makes you feel shaky and makes your heart race like you just drank cups of coffee",
+      "raw": " anxiety",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i was stressed about my job search and apartment hunting and i was just feeling overwhelmed with everything that was going on",
+      "raw": "stress",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i said before do feel free to contact me this is something i am interested in finding out more about",
+      "raw": "interest",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i suggest you take a look at them when you feel curious enough to know more things about specific english words related to familiar diseases",
+      "raw": "curiosity",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i plan to do so by obtaining an mba and from that mba program i feel that the most valuable outcomes i would like",
+      "raw": "career advancement",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i feel the pressure to be funny all the time",
+      "raw": "pressure",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "im feeling a little anxious about the whole thing",
+      "raw": " anxiety",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i roll my tongue over your labia sucking and nibbling drawing your flesh into my mouth and letting you feel the delicate pinch of my teeth",
+      "raw": "pleasure",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i have to admit that i feel the teensiest bit envious of my friends who live there",
+      "raw": " envy",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i was feeling pretty distracted with a few things that have been going on so it felt good to go with a clear mind",
+      "raw": "peace",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i need a break or im feeling stressed out",
+      "raw": "stress",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "ive taken yoga classes for years but for the past few days i was feeling very anxious abou",
+      "raw": " anxiety",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i will feel a dull pain for no reason at all",
+      "raw": "pain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "im ok with that it feels a little weird",
+      "raw": "uncertain",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "ive been doing hour weeks and ill get paid for the extra time but i am starting to feel a bit abused they are putting a lot of pressure on me to look after both kids and do all of the cooking and cleaning",
+      "raw": "stress",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "ive been feeling groggy the whole day",
+      "raw": "sleepiness",
+      "strict": null,
+      "lenient": null
+    },
+    {
+      "text": "i have no strong feelings for this book neither hated nor loved it",
+      "raw": "neutral",
+      "strict": null,
+      "lenient": null
+    }
+  ],
+  "verdict_vs_classical": {
+    "best_classical_model": "linear_svm",
+    "best_classical_macro_f1": 0.8579,
+    "zero_shot_macro_f1": 0.4107,
+    "macro_f1_delta": -0.4472,
+    "decision_rule": "LLM judged worth it only if it beats the best classical model by >= 3 macro F1 points AND stays inside the 50 ms p95 budget (Phase 1 \u00a71.3)",
+    "required_macro_f1_to_pass": 0.8879,
+    "passes_accuracy_bar": false,
+    "passes_latency_budget": false,
+    "worth_it": false,
+    "latency_ratio_vs_classical": 248.3,
+    "cost_ratio_vs_classical": 6556.6,
+    "disk_ratio_vs_classical": 7190.8,
+    "note": "device tiers differ (GPU vs CPU); the cost ratio already uses each tier's own hourly rate. Latency figures are NOT from the same device and are compared as a deployment fact, with both devices named."
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cuda:0",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": "2.11.0+cu128",
+    "cuda_version": "12.8",
+    "cuda_available": true
+  }
+}

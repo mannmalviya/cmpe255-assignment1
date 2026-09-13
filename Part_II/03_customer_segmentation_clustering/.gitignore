@@ -1,0 +1,9 @@
+node_modules/
+.next/
+*.tsbuildinfo
+.env*
+backend/.venv/
+backend/__pycache__/
+backend/artifacts/*.joblib
+backend/data/*.csv
+!backend/data/README.md

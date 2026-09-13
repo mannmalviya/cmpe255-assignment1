@@ -1,0 +1,399 @@
+{
+  "phase": "14b_fewshot_robustness",
+  "splits_used": [
+    "val only"
+  ],
+  "split_policy": "val only. Test not scored again; no choice re-made. The Phase 14 test result stands as reported.",
+  "questions": [
+    "was k=0 better on val than any k in the grid?",
+    "how much does a different draw of 12 examples move the score?"
+  ],
+  "runs": [
+    {
+      "config": "zero-shot (k=0)",
+      "k_per_class": 0,
+      "seed": null,
+      "val_macro_f1": 0.4397,
+      "val_accuracy": 0.4985,
+      "val_n_unparseable": 118,
+      "per_class_f1": {
+        "joy": 0.5634,
+        "sadness": 0.6216,
+        "anger": 0.4882,
+        "fear": 0.3611,
+        "love": 0.2706,
+        "surprise": 0.3333
+      },
+      "predicted_counts": {
+        "joy": 432,
+        "sadness": 782,
+        "anger": 233,
+        "fear": 76,
+        "love": 332,
+        "surprise": 27
+      },
+      "shots": []
+    },
+    {
+      "config": "k=2 seed 42 (Phase 14)",
+      "k_per_class": 2,
+      "seed": 42,
+      "val_macro_f1": 0.3592,
+      "val_accuracy": 0.4815,
+      "val_n_unparseable": 14,
+      "shots": [
+        {
+          "row_id": "train_11661",
+          "text": "im supposed to feel compassionate towards that little girl but i feel like she never existed",
+          "label": "love"
+        },
+        {
+          "row_id": "train_1453",
+          "text": "im also feeling more energetic and able to keep going for a better part of the day",
+          "label": "joy"
+        },
+        {
+          "row_id": "train_10952",
+          "text": "ive test tried dropping it and nothing happened which is supposed to be if something happened to my phone i would feel so fucked up",
+          "label": "anger"
+        },
+        {
+          "row_id": "train_1595",
+          "text": "i was told to do it continues and the fact i feel fear frightened correction terrified of what is next",
+          "label": "fear"
+        },
+        {
+          "row_id": "train_7255",
+          "text": "i feel less weird about my premature graying that started",
+          "label": "surprise"
+        },
+        {
+          "row_id": "train_7146",
+          "text": "i am not giving up but i am feeling discouraged",
+          "label": "sadness"
+        },
+        {
+          "row_id": "train_12041",
+          "text": "i feel so blessed to have met each and every one of them",
+          "label": "love"
+        },
+        {
+          "row_id": "train_12340",
+          "text": "i feel fucking fantastic and wanted to share the news with you",
+          "label": "joy"
+        },
+        {
+          "row_id": "train_1346",
+          "text": "i just feel cold and drained all the time im either hungry or tired or cold at the moment and it sort of sucks",
+          "label": "anger"
+        },
+        {
+          "row_id": "train_8866",
+          "text": "i dont know that i am feeling fearful",
+          "label": "fear"
+        },
+        {
+          "row_id": "train_12254",
+          "text": "i returned to the ground floor feeling dazed",
+          "label": "surprise"
+        },
+        {
+          "row_id": "train_7053",
+          "text": "i feel very isolated from my family so it is really important to me to meet people",
+          "label": "sadness"
+        }
+      ],
+      "from_checkpoint": true
+    },
+    {
+      "config": "k=2 seed 7",
+      "k_per_class": 2,
+      "seed": 7,
+      "val_macro_f1": 0.4274,
+      "val_accuracy": 0.479,
+      "val_n_unparseable": 15,
+      "per_class_f1": {
+        "joy": 0.5522,
+        "sadness": 0.6,
+        "anger": 0.484,
+        "fear": 0.3042,
+        "love": 0.2987,
+        "surprise": 0.3252
+      },
+      "predicted_counts": {
+        "joy": 408,
+        "sadness": 600,
+        "anger": 225,
+        "fear": 51,
+        "love": 659,
+        "surprise": 42
+      },
+      "shots": [
+        {
+          "row_id": "train_4953",
+          "text": "i try not to make anyone feel uncomfortable",
+          "label": "fear"
+        },
+        {
+          "row_id": "train_127",
+          "text": "i am feeling horny so i ask her that lets go home",
+          "label": "love"
+        },
+        {
+          "row_id": "train_13007",
+          "text": "i remember feeling overwhelmed and noted the particular smell off the city mostly cigarettes and people with wafts of charred something",
+          "label": "surprise"
+        },
+        {
+          "row_id": "train_3410",
+          "text": "i feel that way makes me even more angry",
+          "label": "anger"
+        },
+        {
+          "row_id": "train_15043",
+          "text": "i can sit here and say its a warm feeling that overcomes you and you feel reassured but that isnt good enough",
+          "label": "joy"
+        },
+        {
+          "row_id": "train_14466",
+          "text": "i should stop feeling so lousy about myself",
+          "label": "sadness"
+        },
+        {
+          "row_id": "train_4647",
+          "text": "i just repeat it again and again until i feel myself become less afraid",
+          "label": "fear"
+        },
+        {
+          "row_id": "train_14450",
+          "text": "im really not feeling that passionate about this one",
+          "label": "love"
+        },
+        {
+          "row_id": "train_1861",
+          "text": "i feel very stunned that people got it in a big way",
+          "label": "surprise"
+        },
+        {
+          "row_id": "train_13059",
+          "text": "i hate it i am feeling bothered by my boob size",
+          "label": "anger"
+        },
+        {
+          "row_id": "train_10033",
+          "text": "i had this feeling that i would be welcomed by the art scene here",
+          "label": "joy"
+        },
+        {
+          "row_id": "train_9312",
+          "text": "i feel like i deserve to be punished in some way amp search out ways to do that self harm non lethal overdose etc",
+          "label": "sadness"
+        }
+      ]
+    },
+    {
+      "config": "k=2 seed 123",
+      "k_per_class": 2,
+      "seed": 123,
+      "val_macro_f1": 0.4272,
+      "val_accuracy": 0.476,
+      "val_n_unparseable": 48,
+      "per_class_f1": {
+        "joy": 0.4843,
+        "sadness": 0.6165,
+        "anger": 0.5036,
+        "fear": 0.2891,
+        "love": 0.2955,
+        "surprise": 0.374
+      },
+      "predicted_counts": {
+        "joy": 312,
+        "sadness": 673,
+        "anger": 416,
+        "fear": 44,
+        "love": 465,
+        "surprise": 42
+      },
+      "shots": [
+        {
+          "row_id": "train_2869",
+          "text": "i feel so hesitant posting them",
+          "label": "fear"
+        },
+        {
+          "row_id": "train_2798",
+          "text": "i felt doubtful and the image that popped into my mind was of dealing with a big knot in my shoelace and then feeling frustrated",
+          "label": "anger"
+        },
+        {
+          "row_id": "train_4043",
+          "text": "i think and feel its funny its sad its weird but more than any of that its the truth",
+          "label": "surprise"
+        },
+        {
+          "row_id": "train_14594",
+          "text": "i dont really know why im bothering to do my homework but i get the feeling that it will be in vain",
+          "label": "sadness"
+        },
+        {
+          "row_id": "train_14780",
+          "text": "im also feeling gracious and i want to bless you with a few more old tried and true family recipes",
+          "label": "love"
+        },
+        {
+          "row_id": "train_227",
+          "text": "im feeling inspired by all the summery elements of my favorite past time beach bummin",
+          "label": "joy"
+        },
+        {
+          "row_id": "train_5649",
+          "text": "i will adress those issues and attempt to reason with them so they may feel less threatened and more supported and loved",
+          "label": "fear"
+        },
+        {
+          "row_id": "train_3934",
+          "text": "im not enjoying winter hate feeling cold and having to dress in so many layers",
+          "label": "anger"
+        },
+        {
+          "row_id": "train_12260",
+          "text": "i feel that im as curious as when i was a child",
+          "label": "surprise"
+        },
+        {
+          "row_id": "train_1038",
+          "text": "i posted on here and i m feeling very neglectful",
+          "label": "sadness"
+        },
+        {
+          "row_id": "train_7183",
+          "text": "i hope you can feel that and will take the time to feel tender about your life for a moment",
+          "label": "love"
+        },
+        {
+          "row_id": "train_10881",
+          "text": "i feel satisfied when i am able to translate a funny idea in my brain",
+          "label": "joy"
+        }
+      ]
+    },
+    {
+      "config": "k=2 seed 2024",
+      "k_per_class": 2,
+      "seed": 2024,
+      "val_macro_f1": 0.3035,
+      "val_accuracy": 0.309,
+      "val_n_unparseable": 5,
+      "per_class_f1": {
+        "joy": 0.0471,
+        "sadness": 0.5624,
+        "anger": 0.3904,
+        "fear": 0.2754,
+        "love": 0.2281,
+        "surprise": 0.3178
+      },
+      "predicted_counts": {
+        "joy": 18,
+        "sadness": 563,
+        "anger": 99,
+        "fear": 64,
+        "love": 1225,
+        "surprise": 26
+      },
+      "shots": [
+        {
+          "row_id": "train_1199",
+          "text": "i feel pity for gatsby because the longing he feels for the past is so evident",
+          "label": "love"
+        },
+        {
+          "row_id": "train_1376",
+          "text": "ill smoke a few cigarettes because im feeling a little nervous",
+          "label": "fear"
+        },
+        {
+          "row_id": "train_5251",
+          "text": "i knew it would feel empty and there would be the potential to feel like i wasnt doing well as i wasnt passing folks",
+          "label": "sadness"
+        },
+        {
+          "row_id": "train_14456",
+          "text": "i feel curious about the subject matter",
+          "label": "surprise"
+        },
+        {
+          "row_id": "train_14378",
+          "text": "i feel like every day is a blur of running being irritated with my son and doing something pertaining to making dinn",
+          "label": "anger"
+        },
+        {
+          "row_id": "train_10755",
+          "text": "i would gladly make it on the morrow since i am not feeling well",
+          "label": "joy"
+        },
+        {
+          "row_id": "train_13772",
+          "text": "i feel i need to change that pattern so that i can stand up for myself and learn to be supportive",
+          "label": "love"
+        },
+        {
+          "row_id": "train_15925",
+          "text": "i feel to write something is making me reluctant",
+          "label": "fear"
+        },
+        {
+          "row_id": "train_3592",
+          "text": "i drove back to the beach staring at the thing on the seat beside me feeling very depressed",
+          "label": "sadness"
+        },
+        {
+          "row_id": "train_2438",
+          "text": "i feel sort of dazed and cross eyed",
+          "label": "surprise"
+        },
+        {
+          "row_id": "train_12620",
+          "text": "i feels dangerous these days but with cam newton at home plus a point i m feeling the panthers in prime time",
+          "label": "anger"
+        },
+        {
+          "row_id": "train_3924",
+          "text": "i feel that im not talented in baking",
+          "label": "joy"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "zero_shot_val_macro_f1": 0.4397,
+    "k2_val_macro_f1_by_seed": {
+      "42": 0.3592,
+      "7": 0.4274,
+      "123": 0.4272,
+      "2024": 0.3035
+    },
+    "k2_mean": 0.3793,
+    "k2_std": 0.0599,
+    "k2_min": 0.3035,
+    "k2_max": 0.4274,
+    "k2_range": 0.1239,
+    "seeds_where_k2_beats_zero_shot": 0,
+    "n_seeds": 4,
+    "would_val_have_chosen_k0": true
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cuda:0",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": "2.11.0+cu128",
+    "cuda_version": "12.8",
+    "cuda_available": true
+  }
+}

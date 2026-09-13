@@ -1,0 +1,306 @@
+{
+  "phase": "16_comparison",
+  "splits_used": [
+    "none new - reads test results from Phases 11-15"
+  ],
+  "source_files": [
+    "phase11_baseline.json",
+    "phase12_classical.json",
+    "phase13_zeroshot.json",
+    "phase14_fewshot.json",
+    "phase14_robustness.json",
+    "phase15_finetune_cpu.json",
+    "phase15_finetune_gpu.json",
+    "phase15_seed_check.json",
+    "phase15_significance.json"
+  ],
+  "hardware_audit": {
+    "reference_fingerprint": "AMD Ryzen 7 7435HS|16|15.3|NVIDIA GeForce RTX 4060 Laptop GPU|8188|580.126.09",
+    "files_checked": 19,
+    "all_match": true,
+    "files": [
+      {
+        "file": "phase02_data_understanding.json",
+        "device_used": "cpu",
+        "torch_version": null,
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase03_text_eda.json",
+        "device_used": "cpu",
+        "torch_version": null,
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase04_visualization.json",
+        "device_used": "cpu",
+        "torch_version": null,
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase05_cleaning.json",
+        "device_used": "cpu",
+        "torch_version": null,
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase06_outliers.json",
+        "device_used": "cpu",
+        "torch_version": null,
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase07_features.json",
+        "device_used": "cpu",
+        "torch_version": "2.14.0+cpu",
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase08_clustering.json",
+        "device_used": "cpu",
+        "torch_version": "2.14.0+cpu",
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase09_lsh.json",
+        "device_used": "cpu",
+        "torch_version": "2.14.0+cpu",
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase10_apriori.json",
+        "device_used": "cpu",
+        "torch_version": "2.14.0+cpu",
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase11_baseline.json",
+        "device_used": "cpu",
+        "torch_version": "2.14.0+cpu",
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase12_classical.json",
+        "device_used": "cpu",
+        "torch_version": "2.14.0+cpu",
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase13_zeroshot.json",
+        "device_used": "cuda:0",
+        "torch_version": "2.11.0+cu128",
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase14_fewshot.json",
+        "device_used": "cuda:0",
+        "torch_version": "2.11.0+cu128",
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase14_robustness.json",
+        "device_used": "cuda:0",
+        "torch_version": "2.11.0+cu128",
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase15_finetune_cpu.json",
+        "device_used": "cpu",
+        "torch_version": "2.11.0+cu128",
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase15_finetune_gpu.json",
+        "device_used": "cuda:0",
+        "torch_version": "2.11.0+cu128",
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase15_seed_check.json",
+        "device_used": "cuda:0",
+        "torch_version": "2.11.0+cu128",
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase15_significance.json",
+        "device_used": "cpu",
+        "torch_version": "2.11.0+cu128",
+        "fingerprint_match": true
+      },
+      {
+        "file": "phase16_comparison.json",
+        "device_used": "n/a (aggregation only)",
+        "torch_version": "2.11.0+cu128",
+        "fingerprint_match": true
+      }
+    ],
+    "torch_versions_seen": {
+      "None": [
+        "phase02_data_understanding.json",
+        "phase03_text_eda.json",
+        "phase04_visualization.json",
+        "phase05_cleaning.json",
+        "phase06_outliers.json"
+      ],
+      "2.14.0+cpu": [
+        "phase07_features.json",
+        "phase08_clustering.json",
+        "phase09_lsh.json",
+        "phase10_apriori.json",
+        "phase11_baseline.json",
+        "phase12_classical.json"
+      ],
+      "2.11.0+cu128": [
+        "phase13_zeroshot.json",
+        "phase14_fewshot.json",
+        "phase14_robustness.json",
+        "phase15_finetune_cpu.json",
+        "phase15_finetune_gpu.json",
+        "phase15_seed_check.json",
+        "phase15_significance.json",
+        "phase16_comparison.json"
+      ]
+    }
+  },
+  "protocol_audit": [
+    {
+      "model": "baseline_majority",
+      "timed_runs": 200,
+      "warmup_discarded": 20,
+      "device": "cpu"
+    },
+    {
+      "model": "baseline_stratified",
+      "timed_runs": 200,
+      "warmup_discarded": 20,
+      "device": "cpu"
+    },
+    {
+      "model": "logreg",
+      "timed_runs": 200,
+      "warmup_discarded": 20,
+      "device": "cpu"
+    },
+    {
+      "model": "linear_svm",
+      "timed_runs": 200,
+      "warmup_discarded": 20,
+      "device": "cpu"
+    },
+    {
+      "model": "gradient_boosting",
+      "timed_runs": 200,
+      "warmup_discarded": 20,
+      "device": "cpu"
+    },
+    {
+      "model": "zero_shot_qwen2.5_1.5b",
+      "timed_runs": 200,
+      "warmup_discarded": 20,
+      "device": "cuda:0"
+    },
+    {
+      "model": "few_shot_qwen2.5_1.5b_k2",
+      "timed_runs": 200,
+      "warmup_discarded": 20,
+      "device": "cuda:0"
+    },
+    {
+      "model": "distilbert_finetuned",
+      "timed_runs": 200,
+      "warmup_discarded": 20,
+      "device": "cuda:0"
+    },
+    {
+      "model": "distilbert_finetuned_cpu",
+      "timed_runs": 200,
+      "warmup_discarded": 20,
+      "device": "cpu"
+    }
+  ],
+  "decision_rule": "LLM worth it only if macro F1 >= best classical + 0.03 AND p95 <= 50 ms (Phase 1, fixed before any result)",
+  "best_classical": {
+    "model": "linear_svm",
+    "macro_f1": 0.8579
+  },
+  "decisions": [
+    {
+      "model": "Qwen2.5-1.5B zero-shot",
+      "device": "cuda:0",
+      "macro_f1": 0.4107,
+      "margin_vs_best_classical": -0.4472,
+      "passes_accuracy_bar": false,
+      "p95_ms": 61.1868,
+      "passes_latency_budget": false,
+      "worth_it_under_phase1_rule": false,
+      "latency_x_best_classical": 248.3,
+      "cost_x_best_classical": 6556.6,
+      "extra_monthly_usd_at_1M": 3.3545
+    },
+    {
+      "model": "Qwen2.5-1.5B few-shot (12)",
+      "device": "cuda:0",
+      "macro_f1": 0.3427,
+      "margin_vs_best_classical": -0.5152,
+      "passes_accuracy_bar": false,
+      "p95_ms": 109.7129,
+      "passes_latency_budget": false,
+      "worth_it_under_phase1_rule": false,
+      "latency_x_best_classical": 445.3,
+      "cost_x_best_classical": 23803.0,
+      "extra_monthly_usd_at_1M": 12.1795
+    },
+    {
+      "model": "DistilBERT fine-tuned (GPU)",
+      "device": "cuda:0",
+      "macro_f1": 0.8978,
+      "margin_vs_best_classical": 0.0399,
+      "passes_accuracy_bar": true,
+      "p95_ms": 3.5081,
+      "passes_latency_budget": true,
+      "worth_it_under_phase1_rule": true,
+      "latency_x_best_classical": 14.2,
+      "cost_x_best_classical": 134.9,
+      "extra_monthly_usd_at_1M": 0.0685
+    },
+    {
+      "model": "DistilBERT fine-tuned (CPU)",
+      "device": "cpu",
+      "macro_f1": 0.8978,
+      "margin_vs_best_classical": 0.0399,
+      "passes_accuracy_bar": true,
+      "p95_ms": 18.2574,
+      "passes_latency_budget": true,
+      "worth_it_under_phase1_rule": true,
+      "latency_x_best_classical": 74.1,
+      "cost_x_best_classical": 784.6,
+      "extra_monthly_usd_at_1M": 0.401
+    }
+  ],
+  "fine_tuned_uncertainty": {
+    "seed_mean_macro_f1": 0.8929,
+    "seed_sd_macro_f1": 0.0044,
+    "n_seeds": 3,
+    "bootstrap_margin_ci95": [
+      0.0214,
+      0.0591
+    ],
+    "p_margin_ge_3pts": 0.8492,
+    "mcnemar_p": 5.34e-07
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "n/a (aggregation only)",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": "2.11.0+cu128",
+    "cuda_version": "12.8",
+    "cuda_available": false
+  }
+}

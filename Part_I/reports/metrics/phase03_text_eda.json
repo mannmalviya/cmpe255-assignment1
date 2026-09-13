@@ -1,0 +1,1514 @@
+{
+  "phase": "03_text_eda",
+  "splits_used": [
+    "train"
+  ],
+  "split_policy": "train only. val and test were not read in this phase.",
+  "tokenization": "whitespace split. The corpus is pre-normalized to 27 characters (lowercase letters + space), so whitespace tokens equal words exactly. Sub-word token counts are deferred to Phase 7, where the model tokenizer is loaded.",
+  "lengths": {
+    "overall": {
+      "words": {
+        "n": 16000,
+        "min": 2,
+        "max": 66,
+        "mean": 19.166,
+        "std": 10.987,
+        "percentiles": {
+          "1": 4.0,
+          "5": 5.0,
+          "25": 11.0,
+          "50": 17.0,
+          "75": 25.0,
+          "90": 35.0,
+          "95": 41.0,
+          "99": 52.0
+        },
+        "skewness_pearson2": 0.5915
+      },
+      "chars": {
+        "n": 16000,
+        "min": 7,
+        "max": 300,
+        "mean": 96.846,
+        "std": 55.905,
+        "percentiles": {
+          "1": 20.0,
+          "5": 28.0,
+          "25": 53.0,
+          "50": 86.0,
+          "75": 129.0,
+          "90": 176.0,
+          "95": 207.04999999999927,
+          "99": 263.0100000000002
+        },
+        "skewness_pearson2": 0.582
+      }
+    },
+    "per_class": {
+      "joy": {
+        "words": {
+          "n": 5362,
+          "min": 2,
+          "max": 64,
+          "mean": 19.498,
+          "std": 10.772,
+          "percentiles": {
+            "1": 4.0,
+            "5": 6.0,
+            "25": 11.0,
+            "50": 18.0,
+            "75": 26.0,
+            "90": 35.0,
+            "95": 40.0,
+            "99": 52.0
+          },
+          "skewness_pearson2": 0.4172
+        },
+        "chars": {
+          "n": 5362,
+          "min": 9,
+          "max": 300,
+          "mean": 98.554,
+          "std": 55.032,
+          "percentiles": {
+            "1": 19.0,
+            "5": 29.0,
+            "25": 56.0,
+            "50": 89.0,
+            "75": 130.0,
+            "90": 176.0,
+            "95": 206.94999999999982,
+            "99": 263.0
+          },
+          "skewness_pearson2": 0.5208
+        }
+      },
+      "sadness": {
+        "words": {
+          "n": 4666,
+          "min": 2,
+          "max": 66,
+          "mean": 18.362,
+          "std": 11.037,
+          "percentiles": {
+            "1": 4.0,
+            "5": 5.0,
+            "25": 10.0,
+            "50": 16.0,
+            "75": 24.0,
+            "90": 34.0,
+            "95": 41.0,
+            "99": 52.0
+          },
+          "skewness_pearson2": 0.642
+        },
+        "chars": {
+          "n": 4666,
+          "min": 7,
+          "max": 299,
+          "mean": 92.551,
+          "std": 56.085,
+          "percentiles": {
+            "1": 19.0,
+            "5": 26.0,
+            "25": 49.0,
+            "50": 80.0,
+            "75": 122.75,
+            "90": 172.0,
+            "95": 206.0,
+            "99": 263.0
+          },
+          "skewness_pearson2": 0.6713
+        }
+      },
+      "anger": {
+        "words": {
+          "n": 2159,
+          "min": 2,
+          "max": 62,
+          "mean": 19.23,
+          "std": 11.427,
+          "percentiles": {
+            "1": 4.0,
+            "5": 5.0,
+            "25": 10.0,
+            "50": 17.0,
+            "75": 26.0,
+            "90": 35.0,
+            "95": 41.0,
+            "99": 54.0
+          },
+          "skewness_pearson2": 0.5854
+        },
+        "chars": {
+          "n": 2159,
+          "min": 9,
+          "max": 298,
+          "mean": 96.912,
+          "std": 57.677,
+          "percentiles": {
+            "1": 19.0,
+            "5": 26.0,
+            "25": 51.0,
+            "50": 85.0,
+            "75": 132.0,
+            "90": 178.0,
+            "95": 210.0,
+            "99": 265.4200000000001
+          },
+          "skewness_pearson2": 0.6196
+        }
+      },
+      "fear": {
+        "words": {
+          "n": 1937,
+          "min": 2,
+          "max": 60,
+          "mean": 18.845,
+          "std": 10.89,
+          "percentiles": {
+            "1": 4.0,
+            "5": 5.0,
+            "25": 10.0,
+            "50": 17.0,
+            "75": 25.0,
+            "90": 34.0,
+            "95": 41.0,
+            "99": 51.63999999999987
+          },
+          "skewness_pearson2": 0.5081
+        },
+        "chars": {
+          "n": 1937,
+          "min": 9,
+          "max": 296,
+          "mean": 96.124,
+          "std": 55.188,
+          "percentiles": {
+            "1": 21.0,
+            "5": 28.0,
+            "25": 54.0,
+            "50": 85.0,
+            "75": 126.0,
+            "90": 177.0,
+            "95": 205.39999999999964,
+            "99": 255.91999999999962
+          },
+          "skewness_pearson2": 0.6047
+        }
+      },
+      "love": {
+        "words": {
+          "n": 1304,
+          "min": 3,
+          "max": 63,
+          "mean": 20.7,
+          "std": 10.828,
+          "percentiles": {
+            "1": 4.030000000000001,
+            "5": 7.0,
+            "25": 12.0,
+            "50": 19.0,
+            "75": 27.0,
+            "90": 35.0,
+            "95": 41.0,
+            "99": 51.0
+          },
+          "skewness_pearson2": 0.471
+        },
+        "chars": {
+          "n": 1304,
+          "min": 13,
+          "max": 299,
+          "mean": 104.034,
+          "std": 55.146,
+          "percentiles": {
+            "1": 21.0,
+            "5": 33.0,
+            "25": 62.0,
+            "50": 94.0,
+            "75": 137.0,
+            "90": 181.0,
+            "95": 207.0,
+            "99": 263.94000000000005
+          },
+          "skewness_pearson2": 0.5458
+        }
+      },
+      "surprise": {
+        "words": {
+          "n": 572,
+          "min": 3,
+          "max": 60,
+          "mean": 19.97,
+          "std": 11.032,
+          "percentiles": {
+            "1": 4.0,
+            "5": 6.0,
+            "25": 12.0,
+            "50": 18.0,
+            "75": 26.0,
+            "90": 35.0,
+            "95": 42.0,
+            "99": 49.57999999999993
+          },
+          "skewness_pearson2": 0.5358
+        },
+        "chars": {
+          "n": 572,
+          "min": 12,
+          "max": 287,
+          "mean": 101.677,
+          "std": 57.246,
+          "percentiles": {
+            "1": 20.71,
+            "5": 29.55,
+            "25": 58.0,
+            "50": 88.5,
+            "75": 132.25,
+            "90": 181.89999999999998,
+            "95": 214.0,
+            "99": 270.0
+          },
+          "skewness_pearson2": 0.6905
+        }
+      }
+    },
+    "length_signal": {
+      "mean_words_per_class": {
+        "joy": 19.498,
+        "sadness": 18.362,
+        "anger": 19.23,
+        "fear": 18.845,
+        "love": 20.7,
+        "surprise": 19.97
+      },
+      "spread_max_minus_min": 2.338,
+      "overall_std_words": 10.987
+    }
+  },
+  "vocabulary": {
+    "n_tokens": 306661,
+    "n_types": 15212,
+    "type_token_ratio": 0.049605,
+    "hapax_legomena": 7813,
+    "hapax_share_of_types": 0.51361,
+    "dis_legomena": 2141,
+    "mean_tokens_per_doc": 19.166,
+    "coverage": {
+      "types_covering_50pct_tokens": 49,
+      "types_covering_80pct_tokens": 620,
+      "types_covering_90pct_tokens": 1782,
+      "types_covering_95pct_tokens": 4179,
+      "types_covering_99pct_tokens": 12146
+    },
+    "zipf_fit": {
+      "slope": -1.2928,
+      "r_squared": 0.9725
+    },
+    "top_30_tokens": [
+      [
+        "i",
+        25859
+      ],
+      [
+        "feel",
+        11183
+      ],
+      [
+        "and",
+        9589
+      ],
+      [
+        "to",
+        8972
+      ],
+      [
+        "the",
+        8370
+      ],
+      [
+        "a",
+        6200
+      ],
+      [
+        "feeling",
+        5112
+      ],
+      [
+        "that",
+        5112
+      ],
+      [
+        "of",
+        4990
+      ],
+      [
+        "my",
+        4283
+      ],
+      [
+        "in",
+        3433
+      ],
+      [
+        "it",
+        3127
+      ],
+      [
+        "like",
+        2908
+      ],
+      [
+        "so",
+        2527
+      ],
+      [
+        "for",
+        2431
+      ],
+      [
+        "im",
+        2430
+      ],
+      [
+        "me",
+        2309
+      ],
+      [
+        "but",
+        2255
+      ],
+      [
+        "was",
+        2227
+      ],
+      [
+        "have",
+        2224
+      ],
+      [
+        "is",
+        2184
+      ],
+      [
+        "this",
+        2088
+      ],
+      [
+        "am",
+        2082
+      ],
+      [
+        "with",
+        2015
+      ],
+      [
+        "not",
+        1827
+      ],
+      [
+        "about",
+        1795
+      ],
+      [
+        "be",
+        1778
+      ],
+      [
+        "as",
+        1565
+      ],
+      [
+        "on",
+        1551
+      ],
+      [
+        "you",
+        1471
+      ]
+    ],
+    "top_30_by_document_frequency": [
+      [
+        "i",
+        14914,
+        0.9321
+      ],
+      [
+        "feel",
+        10628,
+        0.6643
+      ],
+      [
+        "and",
+        7042,
+        0.4401
+      ],
+      [
+        "to",
+        6347,
+        0.3967
+      ],
+      [
+        "the",
+        5799,
+        0.3624
+      ],
+      [
+        "feeling",
+        4961,
+        0.3101
+      ],
+      [
+        "a",
+        4938,
+        0.3086
+      ],
+      [
+        "that",
+        4091,
+        0.2557
+      ],
+      [
+        "of",
+        4054,
+        0.2534
+      ],
+      [
+        "my",
+        3509,
+        0.2193
+      ],
+      [
+        "in",
+        2966,
+        0.1854
+      ],
+      [
+        "like",
+        2669,
+        0.1668
+      ],
+      [
+        "it",
+        2602,
+        0.1626
+      ],
+      [
+        "so",
+        2282,
+        0.1426
+      ],
+      [
+        "but",
+        2189,
+        0.1368
+      ],
+      [
+        "for",
+        2181,
+        0.1363
+      ],
+      [
+        "im",
+        2156,
+        0.1348
+      ],
+      [
+        "me",
+        2019,
+        0.1262
+      ],
+      [
+        "have",
+        2010,
+        0.1256
+      ],
+      [
+        "is",
+        1920,
+        0.12
+      ],
+      [
+        "this",
+        1911,
+        0.1194
+      ],
+      [
+        "am",
+        1854,
+        0.1159
+      ],
+      [
+        "was",
+        1841,
+        0.1151
+      ],
+      [
+        "with",
+        1837,
+        0.1148
+      ],
+      [
+        "not",
+        1670,
+        0.1044
+      ],
+      [
+        "about",
+        1656,
+        0.1035
+      ],
+      [
+        "be",
+        1641,
+        0.1026
+      ],
+      [
+        "on",
+        1433,
+        0.0896
+      ],
+      [
+        "just",
+        1328,
+        0.083
+      ],
+      [
+        "when",
+        1283,
+        0.0802
+      ]
+    ],
+    "types_in_at_least_1pct_of_docs": 204
+  },
+  "per_class_words": {
+    "joy": {
+      "n_tokens": 104549,
+      "n_types": 8645,
+      "top_15_raw_frequency": [
+        [
+          "i",
+          8518
+        ],
+        [
+          "feel",
+          3928
+        ],
+        [
+          "and",
+          3273
+        ],
+        [
+          "to",
+          3232
+        ],
+        [
+          "the",
+          2991
+        ],
+        [
+          "a",
+          2120
+        ],
+        [
+          "that",
+          1905
+        ],
+        [
+          "of",
+          1651
+        ],
+        [
+          "feeling",
+          1539
+        ],
+        [
+          "my",
+          1378
+        ],
+        [
+          "in",
+          1267
+        ],
+        [
+          "it",
+          1028
+        ],
+        [
+          "like",
+          1006
+        ],
+        [
+          "is",
+          858
+        ],
+        [
+          "have",
+          850
+        ]
+      ],
+      "top_15_distinctive_log_odds_z": [
+        [
+          "successful",
+          5.908,
+          69
+        ],
+        [
+          "glad",
+          5.812,
+          81
+        ],
+        [
+          "satisfied",
+          5.8,
+          70
+        ],
+        [
+          "confident",
+          5.791,
+          73
+        ],
+        [
+          "cool",
+          5.764,
+          77
+        ],
+        [
+          "rich",
+          5.624,
+          63
+        ],
+        [
+          "more",
+          5.561,
+          543
+        ],
+        [
+          "brave",
+          5.543,
+          63
+        ],
+        [
+          "divine",
+          5.511,
+          59
+        ],
+        [
+          "honored",
+          5.448,
+          56
+        ],
+        [
+          "superior",
+          5.437,
+          54
+        ],
+        [
+          "useful",
+          5.426,
+          59
+        ],
+        [
+          "talented",
+          5.412,
+          62
+        ],
+        [
+          "festive",
+          5.387,
+          53
+        ],
+        [
+          "popular",
+          5.383,
+          63
+        ]
+      ]
+    },
+    "sadness": {
+      "n_tokens": 85677,
+      "n_types": 7008,
+      "top_15_raw_frequency": [
+        [
+          "i",
+          7635
+        ],
+        [
+          "feel",
+          3299
+        ],
+        [
+          "and",
+          2692
+        ],
+        [
+          "to",
+          2335
+        ],
+        [
+          "the",
+          2155
+        ],
+        [
+          "a",
+          1656
+        ],
+        [
+          "feeling",
+          1523
+        ],
+        [
+          "of",
+          1422
+        ],
+        [
+          "that",
+          1299
+        ],
+        [
+          "my",
+          1245
+        ],
+        [
+          "in",
+          919
+        ],
+        [
+          "it",
+          866
+        ],
+        [
+          "like",
+          864
+        ],
+        [
+          "so",
+          826
+        ],
+        [
+          "for",
+          764
+        ]
+      ],
+      "top_15_distinctive_log_odds_z": [
+        [
+          "exhausted",
+          6.55,
+          73
+        ],
+        [
+          "miserable",
+          6.481,
+          73
+        ],
+        [
+          "punished",
+          6.387,
+          64
+        ],
+        [
+          "melancholy",
+          6.336,
+          63
+        ],
+        [
+          "lethargic",
+          6.317,
+          67
+        ],
+        [
+          "awkward",
+          6.226,
+          68
+        ],
+        [
+          "discouraged",
+          6.154,
+          61
+        ],
+        [
+          "burdened",
+          6.101,
+          60
+        ],
+        [
+          "gloomy",
+          6.1,
+          57
+        ],
+        [
+          "ashamed",
+          6.086,
+          68
+        ],
+        [
+          "homesick",
+          6.047,
+          59
+        ],
+        [
+          "shitty",
+          6.034,
+          63
+        ],
+        [
+          "devastated",
+          6.023,
+          60
+        ],
+        [
+          "aching",
+          6.023,
+          60
+        ],
+        [
+          "groggy",
+          5.964,
+          56
+        ]
+      ]
+    },
+    "anger": {
+      "n_tokens": 41517,
+      "n_types": 4814,
+      "top_15_raw_frequency": [
+        [
+          "i",
+          3576
+        ],
+        [
+          "feel",
+          1459
+        ],
+        [
+          "and",
+          1258
+        ],
+        [
+          "to",
+          1162
+        ],
+        [
+          "the",
+          1109
+        ],
+        [
+          "a",
+          791
+        ],
+        [
+          "feeling",
+          721
+        ],
+        [
+          "that",
+          705
+        ],
+        [
+          "of",
+          630
+        ],
+        [
+          "my",
+          573
+        ],
+        [
+          "it",
+          443
+        ],
+        [
+          "in",
+          418
+        ],
+        [
+          "like",
+          384
+        ],
+        [
+          "me",
+          351
+        ],
+        [
+          "im",
+          342
+        ]
+      ],
+      "top_15_distinctive_log_odds_z": [
+        [
+          "irritable",
+          7.834,
+          70
+        ],
+        [
+          "greedy",
+          7.584,
+          63
+        ],
+        [
+          "offended",
+          7.584,
+          62
+        ],
+        [
+          "resentful",
+          7.396,
+          60
+        ],
+        [
+          "fucked",
+          7.27,
+          60
+        ],
+        [
+          "angry",
+          7.09,
+          85
+        ],
+        [
+          "dissatisfied",
+          7.069,
+          54
+        ],
+        [
+          "bothered",
+          7.035,
+          61
+        ],
+        [
+          "insulted",
+          7.004,
+          55
+        ],
+        [
+          "dangerous",
+          7.003,
+          54
+        ],
+        [
+          "cranky",
+          6.939,
+          55
+        ],
+        [
+          "irritated",
+          6.886,
+          57
+        ],
+        [
+          "wronged",
+          6.868,
+          53
+        ],
+        [
+          "violent",
+          6.811,
+          55
+        ],
+        [
+          "pissed",
+          6.802,
+          53
+        ]
+      ]
+    },
+    "fear": {
+      "n_tokens": 36502,
+      "n_types": 4397,
+      "top_15_raw_frequency": [
+        [
+          "i",
+          3083
+        ],
+        [
+          "feel",
+          1212
+        ],
+        [
+          "to",
+          1116
+        ],
+        [
+          "and",
+          1110
+        ],
+        [
+          "the",
+          1000
+        ],
+        [
+          "a",
+          806
+        ],
+        [
+          "feeling",
+          742
+        ],
+        [
+          "of",
+          614
+        ],
+        [
+          "that",
+          531
+        ],
+        [
+          "my",
+          525
+        ],
+        [
+          "in",
+          399
+        ],
+        [
+          "it",
+          377
+        ],
+        [
+          "about",
+          334
+        ],
+        [
+          "im",
+          322
+        ],
+        [
+          "was",
+          306
+        ]
+      ],
+      "top_15_distinctive_log_odds_z": [
+        [
+          "terrified",
+          8.297,
+          74
+        ],
+        [
+          "shaken",
+          7.861,
+          64
+        ],
+        [
+          "vulnerable",
+          7.684,
+          64
+        ],
+        [
+          "nervous",
+          7.588,
+          75
+        ],
+        [
+          "apprehensive",
+          7.541,
+          58
+        ],
+        [
+          "unsure",
+          7.51,
+          64
+        ],
+        [
+          "uncertain",
+          7.49,
+          61
+        ],
+        [
+          "reluctant",
+          7.481,
+          59
+        ],
+        [
+          "pressured",
+          7.346,
+          56
+        ],
+        [
+          "anxious",
+          7.097,
+          71
+        ],
+        [
+          "paranoid",
+          7.087,
+          55
+        ],
+        [
+          "intimidated",
+          7.077,
+          53
+        ],
+        [
+          "scared",
+          7.004,
+          66
+        ],
+        [
+          "hesitant",
+          6.799,
+          50
+        ],
+        [
+          "shaky",
+          6.791,
+          48
+        ]
+      ]
+    },
+    "love": {
+      "n_tokens": 26993,
+      "n_types": 3839,
+      "top_15_raw_frequency": [
+        [
+          "i",
+          2120
+        ],
+        [
+          "feel",
+          929
+        ],
+        [
+          "and",
+          902
+        ],
+        [
+          "to",
+          860
+        ],
+        [
+          "the",
+          780
+        ],
+        [
+          "a",
+          571
+        ],
+        [
+          "of",
+          482
+        ],
+        [
+          "that",
+          460
+        ],
+        [
+          "my",
+          399
+        ],
+        [
+          "feeling",
+          378
+        ],
+        [
+          "like",
+          306
+        ],
+        [
+          "in",
+          299
+        ],
+        [
+          "for",
+          288
+        ],
+        [
+          "it",
+          278
+        ],
+        [
+          "is",
+          237
+        ]
+      ],
+      "top_15_distinctive_log_odds_z": [
+        [
+          "sympathetic",
+          7.612,
+          55
+        ],
+        [
+          "caring",
+          7.526,
+          62
+        ],
+        [
+          "loving",
+          7.307,
+          68
+        ],
+        [
+          "longing",
+          7.141,
+          51
+        ],
+        [
+          "horny",
+          6.962,
+          46
+        ],
+        [
+          "nostalgic",
+          6.917,
+          48
+        ],
+        [
+          "loyal",
+          6.74,
+          44
+        ],
+        [
+          "naughty",
+          6.712,
+          47
+        ],
+        [
+          "supportive",
+          6.634,
+          46
+        ],
+        [
+          "tender",
+          6.593,
+          43
+        ],
+        [
+          "gentle",
+          6.539,
+          44
+        ],
+        [
+          "fond",
+          6.492,
+          40
+        ],
+        [
+          "lovely",
+          6.406,
+          55
+        ],
+        [
+          "liked",
+          6.376,
+          54
+        ],
+        [
+          "hot",
+          6.359,
+          55
+        ]
+      ]
+    },
+    "surprise": {
+      "n_tokens": 11423,
+      "n_types": 2168,
+      "top_15_raw_frequency": [
+        [
+          "i",
+          927
+        ],
+        [
+          "feel",
+          356
+        ],
+        [
+          "and",
+          354
+        ],
+        [
+          "the",
+          335
+        ],
+        [
+          "to",
+          267
+        ],
+        [
+          "a",
+          256
+        ],
+        [
+          "that",
+          212
+        ],
+        [
+          "feeling",
+          209
+        ],
+        [
+          "of",
+          191
+        ],
+        [
+          "my",
+          163
+        ],
+        [
+          "it",
+          135
+        ],
+        [
+          "in",
+          131
+        ],
+        [
+          "was",
+          112
+        ],
+        [
+          "with",
+          96
+        ],
+        [
+          "so",
+          92
+        ]
+      ],
+      "top_15_distinctive_log_odds_z": [
+        [
+          "amazed",
+          8.698,
+          67
+        ],
+        [
+          "impressed",
+          8.385,
+          61
+        ],
+        [
+          "curious",
+          7.766,
+          54
+        ],
+        [
+          "surprised",
+          7.528,
+          55
+        ],
+        [
+          "shocked",
+          6.933,
+          45
+        ],
+        [
+          "funny",
+          6.553,
+          49
+        ],
+        [
+          "dazed",
+          6.076,
+          32
+        ],
+        [
+          "overwhelmed",
+          5.401,
+          58
+        ],
+        [
+          "weird",
+          5.391,
+          57
+        ],
+        [
+          "stunned",
+          4.644,
+          19
+        ],
+        [
+          "strange",
+          4.039,
+          45
+        ],
+        [
+          "amazing",
+          3.871,
+          40
+        ],
+        [
+          "enthralled",
+          2.43,
+          5
+        ],
+        [
+          "impacted",
+          1.882,
+          3
+        ],
+        [
+          "shinobi",
+          1.882,
+          3
+        ]
+      ]
+    }
+  },
+  "class_overlap": {
+    "vocabulary_jaccard": {
+      "joy|sadness": 0.33569,
+      "joy|anger": 0.28561,
+      "joy|fear": 0.27976,
+      "joy|love": 0.26101,
+      "joy|surprise": 0.17969,
+      "sadness|anger": 0.32356,
+      "sadness|fear": 0.31515,
+      "sadness|love": 0.28003,
+      "sadness|surprise": 0.20309,
+      "anger|fear": 0.31567,
+      "anger|love": 0.28727,
+      "anger|surprise": 0.23882,
+      "fear|love": 0.30028,
+      "fear|surprise": 0.2543,
+      "love|surprise": 0.25696
+    },
+    "jensen_shannon_divergence_bits": {
+      "joy|sadness": 0.11797,
+      "joy|anger": 0.13462,
+      "joy|fear": 0.13534,
+      "joy|love": 0.13154,
+      "joy|surprise": 0.17095,
+      "sadness|anger": 0.11959,
+      "sadness|fear": 0.12619,
+      "sadness|love": 0.14757,
+      "sadness|surprise": 0.169,
+      "anger|fear": 0.13861,
+      "anger|love": 0.15795,
+      "anger|surprise": 0.17844,
+      "fear|love": 0.1606,
+      "fear|surprise": 0.16947,
+      "love|surprise": 0.18879
+    },
+    "most_similar_pair": [
+      "joy|sadness",
+      0.11797
+    ],
+    "most_different_pair": [
+      "love|surprise",
+      0.18879
+    ],
+    "types_by_number_of_classes_they_appear_in": {
+      "1": 8688,
+      "2": 2576,
+      "3": 1354,
+      "4": 926,
+      "5": 743,
+      "6": 925
+    },
+    "share_of_types_unique_to_one_class": 0.57113,
+    "share_of_types_in_all_six_classes": 0.06081
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cpu",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": null,
+    "cuda_version": null,
+    "cuda_available": false
+  }
+}

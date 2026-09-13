@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.next/
+node_modules/
+data/raw/*.csv
+data/raw/*.zip
+data/processed/*.csv
+models/*.json
+!data/processed/demo_train.csv
+!models/taxi_duration.json
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!models/.gitkeep

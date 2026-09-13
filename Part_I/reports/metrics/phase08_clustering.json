@@ -1,0 +1,507 @@
+{
+  "phase": "08_clustering",
+  "splits_used": [
+    "train_clean"
+  ],
+  "split_policy": "train_clean only, via Phase 7 embeddings. Labels are used only to score clusters after the fact; no clustering step sees a label.",
+  "representation": "sentence-transformers/all-MiniLM-L6-v2, 384-dim, L2-normalized (Phase 7)",
+  "prediction_under_test": "Phase 7 predicted KMeans would NOT recover the emotion labels, and that clusters would be topical rather than emotional.",
+  "kmeans_sweep": [
+    {
+      "k": 2,
+      "fit_seconds": 0.4,
+      "inertia": 12740.82,
+      "silhouette_sampled": 0.0439,
+      "adjusted_rand_index": 0.021,
+      "normalized_mutual_info": 0.0214,
+      "homogeneity": 0.0154,
+      "completeness": 0.0352
+    },
+    {
+      "k": 3,
+      "fit_seconds": 0.88,
+      "inertia": 12517.44,
+      "silhouette_sampled": 0.0292,
+      "adjusted_rand_index": 0.0374,
+      "normalized_mutual_info": 0.033,
+      "homogeneity": 0.0279,
+      "completeness": 0.0404
+    },
+    {
+      "k": 4,
+      "fit_seconds": 0.96,
+      "inertia": 12360.76,
+      "silhouette_sampled": 0.0242,
+      "adjusted_rand_index": 0.0405,
+      "normalized_mutual_info": 0.0358,
+      "homogeneity": 0.0336,
+      "completeness": 0.0383
+    },
+    {
+      "k": 5,
+      "fit_seconds": 0.95,
+      "inertia": 12234.23,
+      "silhouette_sampled": 0.0258,
+      "adjusted_rand_index": 0.0459,
+      "normalized_mutual_info": 0.0562,
+      "homogeneity": 0.0568,
+      "completeness": 0.0556
+    },
+    {
+      "k": 6,
+      "fit_seconds": 1.27,
+      "inertia": 12135.4,
+      "silhouette_sampled": 0.0249,
+      "adjusted_rand_index": 0.0486,
+      "normalized_mutual_info": 0.0606,
+      "homogeneity": 0.0646,
+      "completeness": 0.057
+    },
+    {
+      "k": 8,
+      "fit_seconds": 1.3,
+      "inertia": 11966.38,
+      "silhouette_sampled": 0.0316,
+      "adjusted_rand_index": 0.0333,
+      "normalized_mutual_info": 0.048,
+      "homogeneity": 0.0552,
+      "completeness": 0.0424
+    },
+    {
+      "k": 10,
+      "fit_seconds": 1.5,
+      "inertia": 11813.63,
+      "silhouette_sampled": 0.0292,
+      "adjusted_rand_index": 0.0383,
+      "normalized_mutual_info": 0.0572,
+      "homogeneity": 0.0697,
+      "completeness": 0.0485
+    },
+    {
+      "k": 12,
+      "fit_seconds": 1.64,
+      "inertia": 11686.95,
+      "silhouette_sampled": 0.0287,
+      "adjusted_rand_index": 0.0304,
+      "normalized_mutual_info": 0.0498,
+      "homogeneity": 0.0639,
+      "completeness": 0.0409
+    },
+    {
+      "k": 15,
+      "fit_seconds": 1.92,
+      "inertia": 11530.79,
+      "silhouette_sampled": 0.0301,
+      "adjusted_rand_index": 0.0303,
+      "normalized_mutual_info": 0.0609,
+      "homogeneity": 0.0822,
+      "completeness": 0.0484
+    },
+    {
+      "k": 20,
+      "fit_seconds": 2.2,
+      "inertia": 11345.57,
+      "silhouette_sampled": 0.028,
+      "adjusted_rand_index": 0.0229,
+      "normalized_mutual_info": 0.062,
+      "homogeneity": 0.0894,
+      "completeness": 0.0475
+    }
+  ],
+  "kmeans_k6": {
+    "k": 6,
+    "fit_seconds": 1.27,
+    "inertia": 12135.4,
+    "silhouette_sampled": 0.0249,
+    "adjusted_rand_index": 0.0486,
+    "normalized_mutual_info": 0.0606,
+    "homogeneity": 0.0646,
+    "completeness": 0.057,
+    "majority_map": {
+      "majority_map_accuracy": 0.43,
+      "distinct_labels_claimed": 2,
+      "clusters": {
+        "0": {
+          "majority_label": "sadness",
+          "size": 2571,
+          "purity": 0.3283
+        },
+        "1": {
+          "majority_label": "sadness",
+          "size": 2171,
+          "purity": 0.3206
+        },
+        "2": {
+          "majority_label": "sadness",
+          "size": 2448,
+          "purity": 0.3644
+        },
+        "3": {
+          "majority_label": "joy",
+          "size": 2389,
+          "purity": 0.627
+        },
+        "4": {
+          "majority_label": "sadness",
+          "size": 3032,
+          "purity": 0.4449
+        },
+        "5": {
+          "majority_label": "joy",
+          "size": 3312,
+          "purity": 0.4734
+        }
+      }
+    },
+    "contingency_counts": {
+      "cluster_0": {
+        "joy": 491,
+        "sadness": 844,
+        "anger": 626,
+        "fear": 299,
+        "love": 261,
+        "surprise": 50
+      },
+      "cluster_1": {
+        "joy": 466,
+        "sadness": 696,
+        "anger": 291,
+        "fear": 452,
+        "love": 122,
+        "surprise": 144
+      },
+      "cluster_2": {
+        "joy": 647,
+        "sadness": 892,
+        "anger": 405,
+        "fear": 332,
+        "love": 104,
+        "surprise": 68
+      },
+      "cluster_3": {
+        "joy": 1498,
+        "sadness": 275,
+        "anger": 72,
+        "fear": 60,
+        "love": 406,
+        "surprise": 78
+      },
+      "cluster_4": {
+        "joy": 670,
+        "sadness": 1349,
+        "anger": 401,
+        "fear": 423,
+        "love": 142,
+        "surprise": 47
+      },
+      "cluster_5": {
+        "joy": 1568,
+        "sadness": 605,
+        "anger": 357,
+        "fear": 357,
+        "love": 248,
+        "surprise": 177
+      }
+    },
+    "clusters": [
+      {
+        "cluster": 0,
+        "size": 2571,
+        "label_mix": {
+          "joy": 0.191,
+          "sadness": 0.328,
+          "anger": 0.243,
+          "fear": 0.116,
+          "love": 0.102,
+          "surprise": 0.019
+        },
+        "majority_label": "sadness",
+        "purity": 0.328,
+        "top_words": [
+          "him",
+          "he",
+          "her",
+          "his",
+          "she",
+          "you",
+          "hes",
+          "me"
+        ],
+        "examples": [
+          "im grabbing a minute to post i feel greedy wrong",
+          "i still love my so and wish the best for him i can no longer tolerate the effect that bm has on our lives and the fact that is has turned my so into a bitter angry person who is not always particularly kind to the people around him when he is feeling stressed",
+          "i feel kinda appalled that she feels like she needs to explain in wide and lenghth her body measures etc pp"
+        ]
+      },
+      {
+        "cluster": 1,
+        "size": 2171,
+        "label_mix": {
+          "joy": 0.215,
+          "sadness": 0.321,
+          "anger": 0.134,
+          "fear": 0.208,
+          "love": 0.056,
+          "surprise": 0.066
+        },
+        "majority_label": "sadness",
+        "purity": 0.321,
+        "top_words": [
+          "was",
+          "had",
+          "remember",
+          "feeling",
+          "didnt",
+          "didn",
+          "felt",
+          "terrified"
+        ],
+        "examples": [
+          "i didnt feel humiliated",
+          "i didnt really feel that embarrassed",
+          "i have the feeling she was amused and delighted"
+        ]
+      },
+      {
+        "cluster": 2,
+        "size": 2448,
+        "label_mix": {
+          "joy": 0.264,
+          "sadness": 0.364,
+          "anger": 0.165,
+          "fear": 0.136,
+          "love": 0.042,
+          "surprise": 0.028
+        },
+        "majority_label": "sadness",
+        "purity": 0.364,
+        "top_words": [
+          "feeling",
+          "im",
+          "exhausted",
+          "lethargic",
+          "stressed",
+          "today",
+          "agitated",
+          "irritable"
+        ],
+        "examples": [
+          "i am feeling grouchy",
+          "ive been feeling a little burdened lately wasnt sure why that was",
+          "ive been taking or milligrams or times recommended amount and ive fallen asleep a lot faster but i also feel like so funny"
+        ]
+      },
+      {
+        "cluster": 3,
+        "size": 2389,
+        "label_mix": {
+          "joy": 0.627,
+          "sadness": 0.115,
+          "anger": 0.03,
+          "fear": 0.025,
+          "love": 0.17,
+          "surprise": 0.033
+        },
+        "majority_label": "joy",
+        "purity": 0.627,
+        "top_words": [
+          "blessed",
+          "thankful",
+          "love",
+          "divine",
+          "wonderful",
+          "joyful",
+          "grateful",
+          "happy"
+        ],
+        "examples": [
+          "i feel romantic too",
+          "i do feel that running is a divine experience and that i can expect to have some type of spiritual encounter",
+          "i started feeling sentimental about dolls i had as a child and so began a collection of vintage barbie dolls from the sixties"
+        ]
+      },
+      {
+        "cluster": 4,
+        "size": 3032,
+        "label_mix": {
+          "joy": 0.221,
+          "sadness": 0.445,
+          "anger": 0.132,
+          "fear": 0.14,
+          "love": 0.047,
+          "surprise": 0.016
+        },
+        "majority_label": "sadness",
+        "purity": 0.445,
+        "top_words": [
+          "myself",
+          "life",
+          "i",
+          "am",
+          "lonely",
+          "helpless",
+          "alone",
+          "hopeless"
+        ],
+        "examples": [
+          "i can go from feeling so hopeless to so damned hopeful just from being around someone who cares and is awake",
+          "i feel as confused about life as a teenager or as jaded as a year old man",
+          "i feel like i have to make the suffering i m seeing mean something"
+        ]
+      },
+      {
+        "cluster": 5,
+        "size": 3312,
+        "label_mix": {
+          "joy": 0.473,
+          "sadness": 0.183,
+          "anger": 0.108,
+          "fear": 0.108,
+          "love": 0.075,
+          "surprise": 0.053
+        },
+        "majority_label": "joy",
+        "purity": 0.473,
+        "top_words": [
+          "http",
+          "href",
+          "they",
+          "the",
+          "popular",
+          "are",
+          "blog",
+          "book"
+        ],
+        "examples": [
+          "i am ever feeling nostalgic about the fireplace i will know that it is still on the property",
+          "i have been with petronas for years i feel that petronas has performed well and made a huge profit",
+          "i have immense sympathy with the general point but as a possible proto writer trying to find time to write in the corners of life and with no sign of an agent let alone a publishing contract this feels a little precious"
+        ]
+      }
+    ]
+  },
+  "dbscan": {
+    "min_samples": 10,
+    "k_distance_percentiles": {
+      "50": 0.4575,
+      "75": 0.5181,
+      "90": 0.5701,
+      "95": 0.5982,
+      "99": 0.6516
+    },
+    "eps_selection": "swept around the k-distance curve rather than guessed",
+    "runs": [
+      {
+        "eps": 0.25,
+        "min_samples": 10,
+        "fit_seconds": 3.2,
+        "n_clusters": 42,
+        "noise_fraction": 0.9336,
+        "adjusted_rand_index": -0.001,
+        "normalized_mutual_info": 0.0685,
+        "homogeneity": 0.0441,
+        "completeness": 0.1527,
+        "largest_cluster_share": 0.0171
+      },
+      {
+        "eps": 0.3,
+        "min_samples": 10,
+        "fit_seconds": 2.6,
+        "n_clusters": 47,
+        "noise_fraction": 0.8365,
+        "adjusted_rand_index": 0.003,
+        "normalized_mutual_info": 0.0679,
+        "homogeneity": 0.0496,
+        "completeness": 0.1077,
+        "largest_cluster_share": 0.1153
+      },
+      {
+        "eps": 0.35,
+        "min_samples": 10,
+        "fit_seconds": 2.4,
+        "n_clusters": 18,
+        "noise_fraction": 0.7023,
+        "adjusted_rand_index": 0.0089,
+        "normalized_mutual_info": 0.0369,
+        "homogeneity": 0.027,
+        "completeness": 0.0585,
+        "largest_cluster_share": 0.2797
+      },
+      {
+        "eps": 0.4,
+        "min_samples": 10,
+        "fit_seconds": 2.5,
+        "n_clusters": 2,
+        "noise_fraction": 0.501,
+        "adjusted_rand_index": 0.0119,
+        "normalized_mutual_info": 0.0124,
+        "homogeneity": 0.009,
+        "completeness": 0.0202,
+        "largest_cluster_share": 0.498
+      },
+      {
+        "eps": 0.45,
+        "min_samples": 10,
+        "fit_seconds": 2.4,
+        "n_clusters": 1,
+        "noise_fraction": 0.274
+      },
+      {
+        "eps": 0.5,
+        "min_samples": 10,
+        "fit_seconds": 2.5,
+        "n_clusters": 1,
+        "noise_fraction": 0.1195
+      }
+    ]
+  },
+  "discovered_data_issue": {
+    "what": "HTML/URL residue surviving as word tokens",
+    "found_by": "KMeans cluster 5, whose distinctive words were 'http href they the popular are blog book'",
+    "missed_by": "Phase 2 (character inventory) and Phase 5 (normalization no-op check) - both are correct at the character level and blind at the token level",
+    "marker_counts": {
+      "http": 189,
+      "href": 158,
+      "www": 53,
+      "amp": 73,
+      "rel": 21,
+      "target": 19,
+      "blog": 131
+    },
+    "rows_with_any_marker": 268,
+    "share_of_train": 0.01683,
+    "examples": [
+      "i feel they are pretty safe on my blog img src http s",
+      "i am bloging again i am sitting here feeling content with my dogs amp cat etc and i know that how lucky we are the truth is we",
+      "i just wish okay so i was thinking about it earlier today and heres the thing being all cooped up amp restless has made me feel so needy"
+    ],
+    "assessment": "1.2% of rows. Left in place, consistent with the Phase 6 flag-don't-remove policy and the Phase 5 rule that cleaning must not be able to flatter a result. These tokens are near-uniformly distributed across classes, so they add noise rather than spurious signal; min_df and IDF both down-weight them. Recorded as a limitation, and as evidence that unsupervised analysis earns its place in the pipeline.",
+    "class_lift": {
+      "joy": 1.19,
+      "sadness": 1.12,
+      "anger": 0.58,
+      "fear": 0.46,
+      "love": 1.3,
+      "surprise": 0.95
+    }
+  },
+  "figures": [
+    "fig08_clustering_metrics.png",
+    "fig09_cluster_label_contingency.png"
+  ],
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cpu",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": "2.14.0+cpu",
+    "cuda_version": null,
+    "cuda_available": false
+  }
+}

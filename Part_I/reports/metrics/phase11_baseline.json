@@ -1,0 +1,398 @@
+{
+  "phase": "11_baseline",
+  "splits_used": [
+    "train_clean (fit)",
+    "test (scored once)"
+  ],
+  "split_policy": "fitted on train_clean; scored once on test. val unused - these models have no hyper-parameters.",
+  "why_two_baselines": "They fail in opposite ways. Majority maximises plain accuracy among constant predictors and minimises macro F1. Stratified predicts every class so macro F1 is non-zero, but is uninformative. Together they bracket 'no skill'.",
+  "models": {
+    "baseline_majority": {
+      "model": "baseline_majority",
+      "family": "baseline",
+      "device_used": "cpu",
+      "quality": {
+        "n": 2000,
+        "accuracy": 0.3475,
+        "macro_f1": 0.086,
+        "weighted_f1": 0.1792,
+        "balanced_accuracy": 0.1667,
+        "accuracy_minus_macro_f1": 0.2615,
+        "per_class": {
+          "joy": {
+            "precision": 0.3475,
+            "recall": 1.0,
+            "f1": 0.5158,
+            "support": 695
+          },
+          "sadness": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 581
+          },
+          "anger": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 275
+          },
+          "fear": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 224
+          },
+          "love": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 159
+          },
+          "surprise": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 66
+          }
+        },
+        "labels_never_predicted": [
+          "sadness",
+          "anger",
+          "fear",
+          "love",
+          "surprise"
+        ],
+        "confusion_matrix": {
+          "labels": [
+            "joy",
+            "sadness",
+            "anger",
+            "fear",
+            "love",
+            "surprise"
+          ],
+          "rows_true_cols_pred": [
+            [
+              695,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              581,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              275,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              224,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              159,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              66,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "meets_target_macro_f1": false,
+        "target_macro_f1": 0.85
+      },
+      "latency_single_row": {
+        "n_runs": 200,
+        "p50_ms": 0.1214,
+        "p95_ms": 0.1549,
+        "p99_ms": 0.1852,
+        "mean_ms": 0.126,
+        "min_ms": 0.117,
+        "max_ms": 0.2076,
+        "stdev_ms": 0.013,
+        "warmup_runs_discarded": 20,
+        "within_p95_budget": true,
+        "p95_budget_ms": 50.0
+      },
+      "throughput_batched": {
+        "by_batch_size": {
+          "1": {
+            "batch_size": 1,
+            "median_seconds": 0.000119,
+            "rows_per_second": 8395.88,
+            "ms_per_row": 0.1191,
+            "repeats": 5
+          },
+          "8": {
+            "batch_size": 8,
+            "median_seconds": 0.000121,
+            "rows_per_second": 66347.1,
+            "ms_per_row": 0.0151,
+            "repeats": 5
+          },
+          "32": {
+            "batch_size": 32,
+            "median_seconds": 0.000121,
+            "rows_per_second": 263765.25,
+            "ms_per_row": 0.0038,
+            "repeats": 5
+          },
+          "128": {
+            "batch_size": 128,
+            "median_seconds": 0.000123,
+            "rows_per_second": 1039779.79,
+            "ms_per_row": 0.001,
+            "repeats": 5
+          }
+        },
+        "best_rows_per_second": 1039779.79,
+        "best_batch_size": 128
+      },
+      "cost": {
+        "usd_per_1000_predictions": 5.129e-08,
+        "usd_per_1m_predictions": 5.129e-05,
+        "seconds_per_1000": 0.001,
+        "pricing_tier": "cpu",
+        "hourly_rate_usd": 0.192,
+        "formula": "(1000 / rows_per_second) / 3600 * hourly_rate_usd",
+        "caveat": "compute only; excludes engineering, storage and serving overhead. A lower bound for large models."
+      },
+      "model_size_on_disk_mb": 0.001,
+      "peak_memory_mb": 374.2,
+      "notes": {
+        "strategy": "most_frequent",
+        "fitted_on": "train_clean (15,923 rows)",
+        "scored_on": "test (2,000 rows), once",
+        "uses_the_text": false,
+        "description": "always predicts the most frequent training class"
+      }
+    },
+    "baseline_stratified": {
+      "model": "baseline_stratified",
+      "family": "baseline",
+      "device_used": "cpu",
+      "quality": {
+        "n": 2000,
+        "accuracy": 0.231,
+        "macro_f1": 0.1539,
+        "weighted_f1": 0.2341,
+        "balanced_accuracy": 0.1531,
+        "accuracy_minus_macro_f1": 0.0771,
+        "per_class": {
+          "joy": {
+            "precision": 0.3523,
+            "recall": 0.3209,
+            "f1": 0.3358,
+            "support": 695
+          },
+          "sadness": {
+            "precision": 0.2706,
+            "recall": 0.2823,
+            "f1": 0.2763,
+            "support": 581
+          },
+          "anger": {
+            "precision": 0.1434,
+            "recall": 0.1418,
+            "f1": 0.1426,
+            "support": 275
+          },
+          "fear": {
+            "precision": 0.1213,
+            "recall": 0.1295,
+            "f1": 0.1253,
+            "support": 224
+          },
+          "love": {
+            "precision": 0.0429,
+            "recall": 0.044,
+            "f1": 0.0435,
+            "support": 159
+          },
+          "surprise": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 66
+          }
+        },
+        "labels_never_predicted": [],
+        "confusion_matrix": {
+          "labels": [
+            "joy",
+            "sadness",
+            "anger",
+            "fear",
+            "love",
+            "surprise"
+          ],
+          "rows_true_cols_pred": [
+            [
+              223,
+              200,
+              79,
+              86,
+              70,
+              37
+            ],
+            [
+              187,
+              164,
+              93,
+              65,
+              46,
+              26
+            ],
+            [
+              84,
+              89,
+              39,
+              36,
+              16,
+              11
+            ],
+            [
+              59,
+              77,
+              35,
+              29,
+              19,
+              5
+            ],
+            [
+              58,
+              50,
+              18,
+              18,
+              7,
+              8
+            ],
+            [
+              22,
+              26,
+              8,
+              5,
+              5,
+              0
+            ]
+          ]
+        },
+        "meets_target_macro_f1": false,
+        "target_macro_f1": 0.85
+      },
+      "latency_single_row": {
+        "n_runs": 200,
+        "p50_ms": 0.2396,
+        "p95_ms": 0.2528,
+        "p99_ms": 0.3244,
+        "mean_ms": 0.2426,
+        "min_ms": 0.231,
+        "max_ms": 0.361,
+        "stdev_ms": 0.0143,
+        "warmup_runs_discarded": 20,
+        "within_p95_budget": true,
+        "p95_budget_ms": 50.0
+      },
+      "throughput_batched": {
+        "by_batch_size": {
+          "1": {
+            "batch_size": 1,
+            "median_seconds": 0.000243,
+            "rows_per_second": 4115.38,
+            "ms_per_row": 0.243,
+            "repeats": 5
+          },
+          "8": {
+            "batch_size": 8,
+            "median_seconds": 0.000234,
+            "rows_per_second": 34151.11,
+            "ms_per_row": 0.0293,
+            "repeats": 5
+          },
+          "32": {
+            "batch_size": 32,
+            "median_seconds": 0.000237,
+            "rows_per_second": 134850.97,
+            "ms_per_row": 0.0074,
+            "repeats": 5
+          },
+          "128": {
+            "batch_size": 128,
+            "median_seconds": 0.000248,
+            "rows_per_second": 516944.05,
+            "ms_per_row": 0.0019,
+            "repeats": 5
+          }
+        },
+        "best_rows_per_second": 516944.05,
+        "best_batch_size": 128
+      },
+      "cost": {
+        "usd_per_1000_predictions": 1.032e-07,
+        "usd_per_1m_predictions": 0.0001032,
+        "seconds_per_1000": 0.0019,
+        "pricing_tier": "cpu",
+        "hourly_rate_usd": 0.192,
+        "formula": "(1000 / rows_per_second) / 3600 * hourly_rate_usd",
+        "caveat": "compute only; excludes engineering, storage and serving overhead. A lower bound for large models."
+      },
+      "model_size_on_disk_mb": 0.001,
+      "peak_memory_mb": 374.6,
+      "notes": {
+        "strategy": "stratified",
+        "fitted_on": "train_clean (15,923 rows)",
+        "scored_on": "test (2,000 rows), once",
+        "uses_the_text": false,
+        "description": "samples a label from the training class distribution"
+      }
+    }
+  },
+  "floor": {
+    "accuracy_floor": 0.3475,
+    "macro_f1_floor": 0.1539,
+    "p95_latency_floor_ms": 0.1549,
+    "throughput_ceiling_rows_per_second": 1039779.79,
+    "cost_floor_usd_per_1000": 5.129e-08,
+    "interpretation": "A model must beat BOTH baselines on BOTH accuracy and macro F1 to have learned anything. The latency and cost figures are the harness overhead with no work done, so every later model's cost should be read as an increment above this floor, not as an absolute."
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cpu",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": "2.14.0+cpu",
+    "cuda_version": null,
+    "cuda_available": false
+  }
+}

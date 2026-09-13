@@ -1,0 +1,557 @@
+{
+  "phase": "05_cleaning_and_leakage",
+  "splits_used": [
+    "train",
+    "val",
+    "test"
+  ],
+  "split_policy": "all three read, for text comparison only. val and test are left byte-identical; every removal is applied to train. data/processed/{val,test}.parquet are unchanged.",
+  "normalization": {
+    "pipeline": "NFKD -> strip non-ASCII -> lowercase -> strip punctuation -> collapse whitespace -> strip",
+    "rows_changed": 0,
+    "rows_total": 20000,
+    "share_changed": 0.0,
+    "examples": [],
+    "conclusion": "no-op: the corpus arrives already normalized, so no cleaning transform is applied. Verified, not assumed."
+  },
+  "duplicates_within_split": {
+    "train": {
+      "n_rows": 16000,
+      "distinct_texts": 15969,
+      "repeated_texts": 31,
+      "redundant_rows": 31,
+      "repeated_texts_one_label": 1,
+      "repeated_texts_conflicting_labels": 30,
+      "conflicting_examples": [
+        {
+          "text": "i am not amazing or great at photography but i feel passionate about it",
+          "labels": [
+            [
+              "joy",
+              1
+            ],
+            [
+              "love",
+              1
+            ]
+          ],
+          "row_ids": [
+            "train_3508",
+            "train_8246"
+          ]
+        },
+        {
+          "text": "i began to feel accepted by gaia on her own terms",
+          "labels": [
+            [
+              "love",
+              1
+            ],
+            [
+              "joy",
+              1
+            ]
+          ],
+          "row_ids": [
+            "train_5277",
+            "train_15705"
+          ]
+        },
+        {
+          "text": "i bet taylor swift basks in the knowledge that the boys she writes songs about probably feel tortured",
+          "labels": [
+            [
+              "fear",
+              1
+            ],
+            [
+              "anger",
+              1
+            ]
+          ],
+          "row_ids": [
+            "train_8804",
+            "train_15572"
+          ]
+        },
+        {
+          "text": "i cant escape the tears of sadness and just true grief i feel at the loss of my sweet friend and sister",
+          "labels": [
+            [
+              "love",
+              1
+            ],
+            [
+              "joy",
+              1
+            ]
+          ],
+          "row_ids": [
+            "train_11013",
+            "train_12892"
+          ]
+        },
+        {
+          "text": "i could feel myself hit this strange foggy wall",
+          "labels": [
+            [
+              "fear",
+              1
+            ],
+            [
+              "surprise",
+              1
+            ]
+          ],
+          "row_ids": [
+            "train_13653",
+            "train_14314"
+          ]
+        },
+        {
+          "text": "i feel a remembrance of the strange by justin aryiku falls into the latter category",
+          "labels": [
+            [
+              "surprise",
+              1
+            ],
+            [
+              "fear",
+              1
+            ]
+          ],
+          "row_ids": [
+            "train_7578",
+            "train_11525"
+          ]
+        },
+        {
+          "text": "i feel im being generous with that statement",
+          "labels": [
+            [
+              "love",
+              1
+            ],
+            [
+              "joy",
+              1
+            ]
+          ],
+          "row_ids": [
+            "train_9071",
+            "train_9786"
+          ]
+        },
+        {
+          "text": "i feel kind of strange",
+          "labels": [
+            [
+              "fear",
+              1
+            ],
+            [
+              "surprise",
+              1
+            ]
+          ],
+          "row_ids": [
+            "train_8557",
+            "train_14107"
+          ]
+        },
+        {
+          "text": "i feel like a tortured artist when i talk to her",
+          "labels": [
+            [
+              "fear",
+              1
+            ],
+            [
+              "anger",
+              1
+            ]
+          ],
+          "row_ids": [
+            "train_9605",
+            "train_13236"
+          ]
+        },
+        {
+          "text": "i feel like i am very passionate about youtube and so id quite like to explain why i think youtube is the next best thing for entertainment",
+          "labels": [
+            [
+              "joy",
+              1
+            ],
+            [
+              "love",
+              1
+            ]
+          ],
+          "row_ids": [
+            "train_7333",
+            "train_13880"
+          ]
+        }
+      ]
+    },
+    "val": {
+      "n_rows": 2000,
+      "distinct_texts": 1998,
+      "repeated_texts": 2,
+      "redundant_rows": 2,
+      "repeated_texts_one_label": 0,
+      "repeated_texts_conflicting_labels": 2,
+      "conflicting_examples": [
+        {
+          "text": "i feel so tortured by it",
+          "labels": [
+            [
+              "fear",
+              1
+            ],
+            [
+              "anger",
+              1
+            ]
+          ],
+          "row_ids": [
+            "val_774",
+            "val_1993"
+          ]
+        },
+        {
+          "text": "i have had several new members tell me how comfortable they feel with how accepted they are by the existing members and that is great to hear",
+          "labels": [
+            [
+              "love",
+              1
+            ],
+            [
+              "joy",
+              1
+            ]
+          ],
+          "row_ids": [
+            "val_300",
+            "val_603"
+          ]
+        }
+      ]
+    },
+    "test": {
+      "n_rows": 2000,
+      "distinct_texts": 2000,
+      "repeated_texts": 0,
+      "redundant_rows": 0,
+      "repeated_texts_one_label": 0,
+      "repeated_texts_conflicting_labels": 0,
+      "conflicting_examples": []
+    }
+  },
+  "overlap_across_splits": {
+    "train_vs_val": {
+      "shared_texts": 5,
+      "rows_affected_in_train": 5,
+      "rows_affected_in_val": 5,
+      "share_of_val_rows_affected": 0.0025,
+      "labels_agree": 0,
+      "labels_disagree": 5,
+      "examples": [
+        {
+          "text": "i feel so blessed to be a part of your days",
+          "train_label": "love",
+          "val_label": "joy"
+        },
+        {
+          "text": "i feel completely blessed to be a part of this group",
+          "train_label": "love",
+          "val_label": "joy"
+        },
+        {
+          "text": "i miss our talks our cuddling our kissing and the feelings that you can only share with your beloved",
+          "train_label": "joy",
+          "val_label": "love"
+        },
+        {
+          "text": "i feel that being faithful isnt enough in your eyes",
+          "train_label": "joy",
+          "val_label": "love"
+        },
+        {
+          "text": "i honestly feel at heart we should be faithful to each other if its yo girl",
+          "train_label": "joy",
+          "val_label": "love"
+        }
+      ]
+    },
+    "train_vs_test": {
+      "shared_texts": 11,
+      "rows_affected_in_train": 11,
+      "rows_affected_in_test": 11,
+      "share_of_test_rows_affected": 0.0055,
+      "labels_agree": 0,
+      "labels_disagree": 11,
+      "examples": [
+        {
+          "text": "i feel cared for and accepted",
+          "train_label": "joy",
+          "test_label": "love"
+        },
+        {
+          "text": "i am feeling stressed and more than a bit anxious",
+          "train_label": "sadness",
+          "test_label": "anger"
+        },
+        {
+          "text": "i feel the need to pimp this since raini my beloved rocky casting director loves it so much",
+          "train_label": "love",
+          "test_label": "joy"
+        },
+        {
+          "text": "i realized what i am passionate about helping women feel accepted and appreciated",
+          "train_label": "love",
+          "test_label": "joy"
+        },
+        {
+          "text": "i found myself feeling inhibited and shushing her quite a lot",
+          "train_label": "fear",
+          "test_label": "sadness"
+        },
+        {
+          "text": "i could feel his breath on me and smell the sweet scent of him",
+          "train_label": "love",
+          "test_label": "joy"
+        }
+      ]
+    },
+    "val_vs_test": {
+      "shared_texts": 3,
+      "rows_affected_in_val": 3,
+      "rows_affected_in_test": 3,
+      "share_of_test_rows_affected": 0.0015,
+      "labels_agree": 0,
+      "labels_disagree": 3,
+      "examples": [
+        {
+          "text": "i feel not having a generous spirit or a forgiving nature closes me off from accepting gifts from the universe",
+          "val_label": "joy",
+          "test_label": "love"
+        },
+        {
+          "text": "i feel like i am in paradise kissing those sweet lips make me feel like i dive into a magical world of love",
+          "val_label": "love",
+          "test_label": "joy"
+        },
+        {
+          "text": "i don t always feel like i have amazing style and most days i choose comfort over anything else but there is one thing that i feel makes all the difference in how i feel about myself and that is makeup",
+          "val_label": "surprise",
+          "test_label": "joy"
+        }
+      ]
+    }
+  },
+  "label_contradictions": {
+    "collision_enrichment": [
+      {
+        "pair": "joy <-> love",
+        "observed": 29,
+        "observed_share": 0.5686,
+        "expected_share_by_chance": 0.0729,
+        "expected_count": 3.72,
+        "enrichment_ratio": 7.8
+      },
+      {
+        "pair": "fear <-> surprise",
+        "observed": 7,
+        "observed_share": 0.1373,
+        "expected_share_by_chance": 0.0112,
+        "expected_count": 0.57,
+        "enrichment_ratio": 12.25
+      },
+      {
+        "pair": "anger <-> fear",
+        "observed": 5,
+        "observed_share": 0.098,
+        "expected_share_by_chance": 0.0422,
+        "expected_count": 2.15,
+        "enrichment_ratio": 2.32
+      },
+      {
+        "pair": "anger <-> sadness",
+        "observed": 4,
+        "observed_share": 0.0784,
+        "expected_share_by_chance": 0.1031,
+        "expected_count": 5.26,
+        "enrichment_ratio": 0.76
+      },
+      {
+        "pair": "fear <-> sadness",
+        "observed": 3,
+        "observed_share": 0.0588,
+        "expected_share_by_chance": 0.0904,
+        "expected_count": 4.61,
+        "enrichment_ratio": 0.65
+      },
+      {
+        "pair": "joy <-> surprise",
+        "observed": 3,
+        "observed_share": 0.0588,
+        "expected_share_by_chance": 0.0319,
+        "expected_count": 1.63,
+        "enrichment_ratio": 1.84
+      },
+      {
+        "pair": "anger <-> joy",
+        "observed": 0,
+        "observed_share": 0.0,
+        "expected_share_by_chance": 0.1203,
+        "expected_count": 6.14,
+        "enrichment_ratio": 0.0
+      },
+      {
+        "pair": "anger <-> love",
+        "observed": 0,
+        "observed_share": 0.0,
+        "expected_share_by_chance": 0.0292,
+        "expected_count": 1.49,
+        "enrichment_ratio": 0.0
+      },
+      {
+        "pair": "anger <-> surprise",
+        "observed": 0,
+        "observed_share": 0.0,
+        "expected_share_by_chance": 0.0128,
+        "expected_count": 0.65,
+        "enrichment_ratio": 0.0
+      },
+      {
+        "pair": "fear <-> joy",
+        "observed": 0,
+        "observed_share": 0.0,
+        "expected_share_by_chance": 0.1054,
+        "expected_count": 5.37,
+        "enrichment_ratio": 0.0
+      },
+      {
+        "pair": "fear <-> love",
+        "observed": 0,
+        "observed_share": 0.0,
+        "expected_share_by_chance": 0.0256,
+        "expected_count": 1.3,
+        "enrichment_ratio": 0.0
+      },
+      {
+        "pair": "joy <-> sadness",
+        "observed": 0,
+        "observed_share": 0.0,
+        "expected_share_by_chance": 0.2574,
+        "expected_count": 13.13,
+        "enrichment_ratio": 0.0
+      },
+      {
+        "pair": "love <-> sadness",
+        "observed": 0,
+        "observed_share": 0.0,
+        "expected_share_by_chance": 0.0625,
+        "expected_count": 3.19,
+        "enrichment_ratio": 0.0
+      },
+      {
+        "pair": "love <-> surprise",
+        "observed": 0,
+        "observed_share": 0.0,
+        "expected_share_by_chance": 0.0077,
+        "expected_count": 0.4,
+        "enrichment_ratio": 0.0
+      },
+      {
+        "pair": "sadness <-> surprise",
+        "observed": 0,
+        "observed_share": 0.0,
+        "expected_share_by_chance": 0.0274,
+        "expected_count": 1.4,
+        "enrichment_ratio": 0.0
+      }
+    ],
+    "enrichment_caveat": "n = 51 conflicting texts, so per-pair counts are small and these ratios are descriptive, not a hypothesis test. Two results are large enough to be robust: joy<->love (29 observed vs 3.7 expected) and joy<->sadness (0 observed vs 13.1 expected, p ~ 3e-7 under the null).",
+    "texts_appearing_more_than_once": 52,
+    "of_those_with_conflicting_labels": 51,
+    "of_those_with_one_label_true_redundancy": 1,
+    "colliding_label_pairs": [
+      {
+        "pair": "joy <-> love",
+        "n": 29
+      },
+      {
+        "pair": "fear <-> surprise",
+        "n": 7
+      },
+      {
+        "pair": "anger <-> fear",
+        "n": 5
+      },
+      {
+        "pair": "anger <-> sadness",
+        "n": 4
+      },
+      {
+        "pair": "joy <-> surprise",
+        "n": 3
+      },
+      {
+        "pair": "fear <-> sadness",
+        "n": 3
+      }
+    ],
+    "test_rows_contradicted_elsewhere": 14,
+    "share_of_test_contradicted": 0.007,
+    "test_accuracy_ceiling_from_this_alone": 0.993,
+    "interpretation": "51 of 52 repeated texts carry conflicting labels, so the dataset was de-duplicated on the (text, label) pair rather than on text. Identical texts therefore survive only where annotators disagreed. These rows are adversarial, not advantageous: a model that memorises the training copy is guaranteed to miss the held-out copy. They set a hard ceiling on achievable test accuracy."
+  },
+  "cleaning_policy": {
+    "A": "remove training rows whose text also appears in val or test (leakage). val/test untouched.",
+    "B": "remove ALL copies of a training text that carries conflicting labels (unlearnable contradiction).",
+    "C": "collapse exact repeats within train (same text, same label) to one row.",
+    "not_applied": "no normalization transform (proved to be a no-op); no stopword removal; no stemming; no near-duplicate removal (deferred to Phase 9)."
+  },
+  "removals": {
+    "A_leakage_rows_removed_from_train": 16,
+    "B_conflicting_label_rows_removed_from_train": 60,
+    "C_redundant_repeat_rows_removed_from_train": 1,
+    "train_rows_before": 16000,
+    "train_rows_after": 15923,
+    "total_removed": 77,
+    "share_removed": 0.004812,
+    "val_rows_after": 2000,
+    "test_rows_after": 2000,
+    "val_test_modified": false
+  },
+  "clean_train_label_counts": {
+    "joy": 5340,
+    "sadness": 4661,
+    "anger": 2152,
+    "fear": 1923,
+    "love": 1283,
+    "surprise": 564
+  },
+  "artefacts": {
+    "frozen_raw": "data/processed/{train,val,test}.parquet (unchanged)",
+    "cleaned_training_data": "data/processed/train_clean.parquet"
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cpu",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": null,
+    "cuda_version": null,
+    "cuda_available": false
+  }
+}

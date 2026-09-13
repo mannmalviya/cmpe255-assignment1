@@ -1,0 +1,116 @@
+{
+  "phase": "15b_seed_variance",
+  "splits_used": [
+    "train_clean (train)",
+    "val (early stopping)",
+    "test (scored, no selection)"
+  ],
+  "policy": "identical protocol per seed; no choice made from these runs; the reported model remains seed 42",
+  "runs": [
+    {
+      "seed": 7,
+      "best_epoch": 4,
+      "best_val_macro_f1": 0.9167,
+      "test_macro_f1": 0.8895,
+      "test_accuracy": 0.9255,
+      "per_class_f1": {
+        "joy": 0.9443,
+        "sadness": 0.9646,
+        "anger": 0.9206,
+        "fear": 0.8899,
+        "love": 0.8314,
+        "surprise": 0.7862
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.6961,
+          "val_macro_f1": 0.9036,
+          "val_accuracy": 0.926,
+          "epoch_seconds": 28.7
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.1765,
+          "val_macro_f1": 0.9154,
+          "val_accuracy": 0.9415,
+          "epoch_seconds": 27.4
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.1204,
+          "val_macro_f1": 0.9094,
+          "val_accuracy": 0.935,
+          "epoch_seconds": 27.2
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.0747,
+          "val_macro_f1": 0.9167,
+          "val_accuracy": 0.941,
+          "epoch_seconds": 27.2
+        }
+      ]
+    },
+    {
+      "seed": 123,
+      "best_epoch": 4,
+      "best_val_macro_f1": 0.9154,
+      "test_macro_f1": 0.8913,
+      "test_accuracy": 0.931,
+      "per_class_f1": {
+        "joy": 0.9497,
+        "sadness": 0.9699,
+        "anger": 0.9304,
+        "fear": 0.8889,
+        "love": 0.8571,
+        "surprise": 0.7518
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.7141,
+          "val_macro_f1": 0.9038,
+          "val_accuracy": 0.928,
+          "epoch_seconds": 26.8
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.1785,
+          "val_macro_f1": 0.9041,
+          "val_accuracy": 0.929,
+          "epoch_seconds": 26.9
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.1193,
+          "val_macro_f1": 0.912,
+          "val_accuracy": 0.935,
+          "epoch_seconds": 27.2
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.0755,
+          "val_macro_f1": 0.9154,
+          "val_accuracy": 0.937,
+          "epoch_seconds": 28.2
+        }
+      ]
+    }
+  ],
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cuda:0",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": "2.11.0+cu128",
+    "cuda_version": "12.8",
+    "cuda_available": true
+  }
+}

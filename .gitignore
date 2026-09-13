@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+data/raw/
+*.pyc
+node_modules/
+.next/
+*.safetensors
+.env
+.env.local

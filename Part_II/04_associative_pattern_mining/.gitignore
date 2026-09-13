@@ -1,0 +1,7 @@
+.next/
+node_modules/
+backend/.venv/
+backend/__pycache__/
+backend/data/*.csv
+backend/artifacts/*.json
+!backend/artifacts/.gitkeep

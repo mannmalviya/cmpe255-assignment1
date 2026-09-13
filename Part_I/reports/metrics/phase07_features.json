@@ -1,0 +1,304 @@
+{
+  "phase": "07_features",
+  "splits_used": [
+    "train_clean (fit)",
+    "val (transform only)",
+    "test (transform only)"
+  ],
+  "split_policy": "every fit uses train_clean only. val and test are transformed with the fitted objects; they never inform a vocabulary, an IDF weight or a model parameter.",
+  "tfidf": {
+    "unigram_mindf1": {
+      "params": {
+        "ngram_range": [
+          1,
+          1
+        ],
+        "min_df": 1,
+        "sublinear_tf": true,
+        "lowercase": false,
+        "token_pattern": "\\S+"
+      },
+      "vocabulary_size": 15188,
+      "train_shape": [
+        15923,
+        15188
+      ],
+      "train_nnz": 270199,
+      "train_density": 0.00111727,
+      "mean_nonzeros_per_row_train": 16.97,
+      "mean_nonzeros_per_row_test": 16.52,
+      "fit_transform_seconds_train": 0.133,
+      "transform_seconds_val_plus_test": 0.028,
+      "vectorizer_disk_mb": 0.13,
+      "train_matrix_memory_mb": 3.153,
+      "test_rows_with_all_zero_vector": 0
+    },
+    "unigram_mindf2": {
+      "params": {
+        "ngram_range": [
+          1,
+          1
+        ],
+        "min_df": 2,
+        "sublinear_tf": true,
+        "lowercase": false,
+        "token_pattern": "\\S+"
+      },
+      "vocabulary_size": 7257,
+      "train_shape": [
+        15923,
+        7257
+      ],
+      "train_nnz": 262268,
+      "train_density": 0.00226967,
+      "mean_nonzeros_per_row_train": 16.47,
+      "mean_nonzeros_per_row_test": 16.25,
+      "fit_transform_seconds_train": 0.128,
+      "transform_seconds_val_plus_test": 0.029,
+      "vectorizer_disk_mb": 0.063,
+      "train_matrix_memory_mb": 3.062,
+      "test_rows_with_all_zero_vector": 0
+    },
+    "bigram_mindf2": {
+      "params": {
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "sublinear_tf": true,
+        "lowercase": false,
+        "token_pattern": "\\S+"
+      },
+      "vocabulary_size": 33242,
+      "train_shape": [
+        15923,
+        33242
+      ],
+      "train_nnz": 467011,
+      "train_density": 0.0008823,
+      "mean_nonzeros_per_row_train": 29.33,
+      "mean_nonzeros_per_row_test": 27.79,
+      "fit_transform_seconds_train": 0.31,
+      "transform_seconds_val_plus_test": 0.06,
+      "vectorizer_disk_mb": 0.298,
+      "train_matrix_memory_mb": 5.405,
+      "test_rows_with_all_zero_vector": 0
+    }
+  },
+  "embeddings": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "device": "cpu",
+    "tokenization": {
+      "tokenizer": "BertTokenizerFast",
+      "max_seq_length_set": 128,
+      "train_subword_tokens": {
+        "min": 4,
+        "median": 20.0,
+        "mean": 22.27,
+        "p95": 45.0,
+        "p99": 57.0,
+        "max": 87
+      },
+      "rows_exceeding_max_seq": 0,
+      "subword_to_word_ratio": 1.161
+    },
+    "splits": {
+      "train_clean": {
+        "n_rows": 15923,
+        "dim": 384,
+        "encode_seconds": 20.55,
+        "rows_per_second": 774.8,
+        "npy_disk_mb": 23.32,
+        "l2_normalized": true
+      },
+      "val": {
+        "n_rows": 2000,
+        "dim": 384,
+        "encode_seconds": 2.72,
+        "rows_per_second": 736.5,
+        "npy_disk_mb": 2.93,
+        "l2_normalized": true
+      },
+      "test": {
+        "n_rows": 2000,
+        "dim": 384,
+        "encode_seconds": 2.58,
+        "rows_per_second": 775.2,
+        "npy_disk_mb": 2.93,
+        "l2_normalized": true
+      }
+    },
+    "model_disk_mb": 8687.9,
+    "parameters_millions": 22.71
+  },
+  "embedding_separability": {
+    "sample_size": 4000,
+    "mean_cosine_all_pairs": 0.1754,
+    "per_class": {
+      "joy": {
+        "n_sampled": 1332,
+        "mean_within_class_cosine": 0.1757,
+        "ratio_to_corpus_mean": 1.002
+      },
+      "sadness": {
+        "n_sampled": 1156,
+        "mean_within_class_cosine": 0.2138,
+        "ratio_to_corpus_mean": 1.219
+      },
+      "anger": {
+        "n_sampled": 554,
+        "mean_within_class_cosine": 0.1923,
+        "ratio_to_corpus_mean": 1.097
+      },
+      "fear": {
+        "n_sampled": 504,
+        "mean_within_class_cosine": 0.2024,
+        "ratio_to_corpus_mean": 1.154
+      },
+      "love": {
+        "n_sampled": 306,
+        "mean_within_class_cosine": 0.1826,
+        "ratio_to_corpus_mean": 1.041
+      },
+      "surprise": {
+        "n_sampled": 148,
+        "mean_within_class_cosine": 0.1866,
+        "ratio_to_corpus_mean": 1.064
+      }
+    },
+    "nearest_confusable_class": {
+      "joy": {
+        "nearest_other_class": "sadness",
+        "mean_cosine": 0.1718,
+        "gap_within_minus_nearest": 0.0038
+      },
+      "sadness": {
+        "nearest_other_class": "anger",
+        "mean_cosine": 0.1903,
+        "gap_within_minus_nearest": 0.0235
+      },
+      "anger": {
+        "nearest_other_class": "sadness",
+        "mean_cosine": 0.1903,
+        "gap_within_minus_nearest": 0.002
+      },
+      "fear": {
+        "nearest_other_class": "sadness",
+        "mean_cosine": 0.1862,
+        "gap_within_minus_nearest": 0.0162
+      },
+      "love": {
+        "nearest_other_class": "sadness",
+        "mean_cosine": 0.1725,
+        "gap_within_minus_nearest": 0.01
+      },
+      "surprise": {
+        "nearest_other_class": "sadness",
+        "mean_cosine": 0.172,
+        "gap_within_minus_nearest": 0.0146
+      }
+    },
+    "class_mean_cosine_matrix": {
+      "joy": {
+        "joy": 0.1757,
+        "sadness": 0.1718,
+        "anger": 0.1551,
+        "fear": 0.159,
+        "love": 0.168,
+        "surprise": 0.1636
+      },
+      "sadness": {
+        "joy": 0.1718,
+        "sadness": 0.2138,
+        "anger": 0.1903,
+        "fear": 0.1862,
+        "love": 0.1725,
+        "surprise": 0.172
+      },
+      "anger": {
+        "joy": 0.1551,
+        "sadness": 0.1903,
+        "anger": 0.1923,
+        "fear": 0.1731,
+        "love": 0.1564,
+        "surprise": 0.1573
+      },
+      "fear": {
+        "joy": 0.159,
+        "sadness": 0.1862,
+        "anger": 0.1731,
+        "fear": 0.2024,
+        "love": 0.1558,
+        "surprise": 0.1665
+      },
+      "love": {
+        "joy": 0.168,
+        "sadness": 0.1725,
+        "anger": 0.1564,
+        "fear": 0.1558,
+        "love": 0.1826,
+        "surprise": 0.1569
+      },
+      "surprise": {
+        "joy": 0.1636,
+        "sadness": 0.172,
+        "anger": 0.1573,
+        "fear": 0.1665,
+        "love": 0.1569,
+        "surprise": 0.1866
+      }
+    },
+    "local_neighbourhood": {
+      "k": 10,
+      "mean_knn_purity_overall": 0.4921,
+      "knn_vote_accuracy_overall": 0.658,
+      "purity_expected_by_chance": 0.2367,
+      "per_class": {
+        "joy": {
+          "mean_knn_purity": 0.5594,
+          "knn_vote_accuracy": 0.7462
+        },
+        "sadness": {
+          "mean_knn_purity": 0.5753,
+          "knn_vote_accuracy": 0.8028
+        },
+        "anger": {
+          "mean_knn_purity": 0.4255,
+          "knn_vote_accuracy": 0.574
+        },
+        "fear": {
+          "mean_knn_purity": 0.4137,
+          "knn_vote_accuracy": 0.496
+        },
+        "love": {
+          "mean_knn_purity": 0.2856,
+          "knn_vote_accuracy": 0.3693
+        },
+        "surprise": {
+          "mean_knn_purity": 0.1811,
+          "knn_vote_accuracy": 0.1959
+        }
+      },
+      "note": "Measured on the raw pre-trained embeddings with no fitting of any kind. It is an upper-bound-free preview of how much class structure the representation already carries locally, and it is computed on the 4,000-row sample, not on test."
+    }
+  },
+  "peak_rss_mb": 948.2,
+  "artifacts_dir": "data/processed/features",
+  "artifacts_disk_mb": 34.7,
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cpu",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": "2.14.0+cpu",
+    "cuda_version": null,
+    "cuda_available": false
+  }
+}

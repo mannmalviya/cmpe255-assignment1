@@ -1,0 +1,662 @@
+{
+  "phase": "02_data_understanding",
+  "splits_used": [
+    "train",
+    "val",
+    "test"
+  ],
+  "split_policy": "dataset's own three-way split, frozen to data/processed/{train,val,test}.parquet. Never re-drawn. train+val for fitting and tuning; test scored once at the end.",
+  "source_files": {
+    "train": {
+      "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/data/raw/train.txt",
+      "bytes": 1658616
+    },
+    "val": {
+      "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/data/raw/val.txt",
+      "bytes": 204240
+    },
+    "test": {
+      "path": "/home/mann/SJSU_Classes/CMPE 255 (Data Science)/Assignments/Assignment1/data/raw/test.txt",
+      "bytes": 206760
+    }
+  },
+  "verification": "PASSED: row counts, label set and train label counts match the study specification exactly",
+  "structure": {
+    "combined": {
+      "n_rows": 20000,
+      "n_cols": 4,
+      "columns": [
+        "row_id",
+        "text",
+        "label",
+        "split"
+      ],
+      "dtypes": {
+        "row_id": "object",
+        "text": "object",
+        "label": "object",
+        "split": "object"
+      },
+      "null_cells": {
+        "row_id": 0,
+        "text": 0,
+        "label": 0,
+        "split": 0
+      },
+      "blank_text_rows": 0,
+      "memory_mb": 5.951
+    },
+    "per_split": {
+      "train": {
+        "n_rows": 16000,
+        "n_cols": 4,
+        "columns": [
+          "row_id",
+          "text",
+          "label",
+          "split"
+        ],
+        "dtypes": {
+          "row_id": "object",
+          "text": "object",
+          "label": "object",
+          "split": "object"
+        },
+        "null_cells": {
+          "row_id": 0,
+          "text": 0,
+          "label": 0,
+          "split": 0
+        },
+        "blank_text_rows": 0,
+        "memory_mb": 4.898
+      },
+      "val": {
+        "n_rows": 2000,
+        "n_cols": 4,
+        "columns": [
+          "row_id",
+          "text",
+          "label",
+          "split"
+        ],
+        "dtypes": {
+          "row_id": "object",
+          "text": "object",
+          "label": "object",
+          "split": "object"
+        },
+        "null_cells": {
+          "row_id": 0,
+          "text": 0,
+          "label": 0,
+          "split": 0
+        },
+        "blank_text_rows": 0,
+        "memory_mb": 0.6
+      },
+      "test": {
+        "n_rows": 2000,
+        "n_cols": 4,
+        "columns": [
+          "row_id",
+          "text",
+          "label",
+          "split"
+        ],
+        "dtypes": {
+          "row_id": "object",
+          "text": "object",
+          "label": "object",
+          "split": "object"
+        },
+        "null_cells": {
+          "row_id": 0,
+          "text": 0,
+          "label": 0,
+          "split": 0
+        },
+        "blank_text_rows": 0,
+        "memory_mb": 0.606
+      }
+    }
+  },
+  "labels": {
+    "train": {
+      "n": 16000,
+      "counts": {
+        "joy": 5362,
+        "sadness": 4666,
+        "anger": 2159,
+        "fear": 1937,
+        "love": 1304,
+        "surprise": 572
+      },
+      "share": {
+        "joy": 0.33513,
+        "sadness": 0.29163,
+        "anger": 0.13494,
+        "fear": 0.12106,
+        "love": 0.0815,
+        "surprise": 0.03575
+      },
+      "majority_class": "joy",
+      "majority_share": 0.33513,
+      "imbalance_ratio_max_over_min": 9.374
+    },
+    "val": {
+      "n": 2000,
+      "counts": {
+        "joy": 704,
+        "sadness": 550,
+        "anger": 275,
+        "fear": 212,
+        "love": 178,
+        "surprise": 81
+      },
+      "share": {
+        "joy": 0.352,
+        "sadness": 0.275,
+        "anger": 0.1375,
+        "fear": 0.106,
+        "love": 0.089,
+        "surprise": 0.0405
+      },
+      "majority_class": "joy",
+      "majority_share": 0.352,
+      "imbalance_ratio_max_over_min": 8.691
+    },
+    "test": {
+      "n": 2000,
+      "counts": {
+        "joy": 695,
+        "sadness": 581,
+        "anger": 275,
+        "fear": 224,
+        "love": 159,
+        "surprise": 66
+      },
+      "share": {
+        "joy": 0.3475,
+        "sadness": 0.2905,
+        "anger": 0.1375,
+        "fear": 0.112,
+        "love": 0.0795,
+        "surprise": 0.033
+      },
+      "majority_class": "joy",
+      "majority_share": 0.3475,
+      "imbalance_ratio_max_over_min": 10.53
+    }
+  },
+  "distribution_drift": {
+    "tvd_train_vs_val": 0.03168,
+    "max_abs_share_diff_train_vs_val": 0.01687,
+    "tvd_train_vs_test": 0.01494,
+    "max_abs_share_diff_train_vs_test": 0.01237
+  },
+  "characters": {
+    "combined": {
+      "rows_with_uppercase": 0,
+      "rows_with_digit": 0,
+      "rows_with_punctuation": 0,
+      "rows_with_non_ascii": 0,
+      "rows_with_leading_or_trailing_space": 0,
+      "rows_with_double_space": 0,
+      "rows_with_semicolon_in_text": 0,
+      "distinct_characters": 27,
+      "character_classes": {
+        "lowercase_letters": 1570700,
+        "uppercase_letters": 0,
+        "digits": 0,
+        "spaces": 362701,
+        "other": 0
+      },
+      "top_20_characters": [
+        [
+          " ",
+          362701
+        ],
+        [
+          "e",
+          211790
+        ],
+        [
+          "t",
+          139379
+        ],
+        [
+          "i",
+          136025
+        ],
+        [
+          "a",
+          118338
+        ],
+        [
+          "o",
+          109461
+        ],
+        [
+          "n",
+          104483
+        ],
+        [
+          "s",
+          87683
+        ],
+        [
+          "l",
+          86374
+        ],
+        [
+          "r",
+          72645
+        ],
+        [
+          "h",
+          71124
+        ],
+        [
+          "d",
+          59709
+        ],
+        [
+          "f",
+          50000
+        ],
+        [
+          "m",
+          45907
+        ],
+        [
+          "u",
+          44378
+        ],
+        [
+          "g",
+          40380
+        ],
+        [
+          "y",
+          36136
+        ],
+        [
+          "c",
+          32926
+        ],
+        [
+          "w",
+          31142
+        ],
+        [
+          "p",
+          26152
+        ]
+      ]
+    },
+    "per_split": {
+      "train": {
+        "rows_with_uppercase": 0,
+        "rows_with_digit": 0,
+        "rows_with_punctuation": 0,
+        "rows_with_non_ascii": 0,
+        "rows_with_leading_or_trailing_space": 0,
+        "rows_with_double_space": 0,
+        "rows_with_semicolon_in_text": 0,
+        "distinct_characters": 27,
+        "character_classes": {
+          "lowercase_letters": 1258872,
+          "uppercase_letters": 0,
+          "digits": 0,
+          "spaces": 290661,
+          "other": 0
+        },
+        "top_20_characters": [
+          [
+            " ",
+            290661
+          ],
+          [
+            "e",
+            169730
+          ],
+          [
+            "t",
+            111548
+          ],
+          [
+            "i",
+            109070
+          ],
+          [
+            "a",
+            94793
+          ],
+          [
+            "o",
+            87790
+          ],
+          [
+            "n",
+            83843
+          ],
+          [
+            "s",
+            70373
+          ],
+          [
+            "l",
+            69243
+          ],
+          [
+            "r",
+            58336
+          ],
+          [
+            "h",
+            56944
+          ],
+          [
+            "d",
+            47934
+          ],
+          [
+            "f",
+            40068
+          ],
+          [
+            "m",
+            36749
+          ],
+          [
+            "u",
+            35519
+          ],
+          [
+            "g",
+            32235
+          ],
+          [
+            "y",
+            28990
+          ],
+          [
+            "c",
+            26332
+          ],
+          [
+            "w",
+            24913
+          ],
+          [
+            "p",
+            20935
+          ]
+        ]
+      },
+      "val": {
+        "rows_with_uppercase": 0,
+        "rows_with_digit": 0,
+        "rows_with_punctuation": 0,
+        "rows_with_non_ascii": 0,
+        "rows_with_leading_or_trailing_space": 0,
+        "rows_with_double_space": 0,
+        "rows_with_semicolon_in_text": 0,
+        "distinct_characters": 27,
+        "character_classes": {
+          "lowercase_letters": 154963,
+          "uppercase_letters": 0,
+          "digits": 0,
+          "spaces": 35732,
+          "other": 0
+        },
+        "top_20_characters": [
+          [
+            " ",
+            35732
+          ],
+          [
+            "e",
+            20883
+          ],
+          [
+            "t",
+            13793
+          ],
+          [
+            "i",
+            13422
+          ],
+          [
+            "a",
+            11709
+          ],
+          [
+            "o",
+            10693
+          ],
+          [
+            "n",
+            10254
+          ],
+          [
+            "s",
+            8679
+          ],
+          [
+            "l",
+            8544
+          ],
+          [
+            "r",
+            7109
+          ],
+          [
+            "h",
+            7089
+          ],
+          [
+            "d",
+            5788
+          ],
+          [
+            "f",
+            4937
+          ],
+          [
+            "m",
+            4505
+          ],
+          [
+            "u",
+            4439
+          ],
+          [
+            "g",
+            4077
+          ],
+          [
+            "y",
+            3571
+          ],
+          [
+            "c",
+            3310
+          ],
+          [
+            "w",
+            3105
+          ],
+          [
+            "p",
+            2612
+          ]
+        ]
+      },
+      "test": {
+        "rows_with_uppercase": 0,
+        "rows_with_digit": 0,
+        "rows_with_punctuation": 0,
+        "rows_with_non_ascii": 0,
+        "rows_with_leading_or_trailing_space": 0,
+        "rows_with_double_space": 0,
+        "rows_with_semicolon_in_text": 0,
+        "distinct_characters": 27,
+        "character_classes": {
+          "lowercase_letters": 156865,
+          "uppercase_letters": 0,
+          "digits": 0,
+          "spaces": 36308,
+          "other": 0
+        },
+        "top_20_characters": [
+          [
+            " ",
+            36308
+          ],
+          [
+            "e",
+            21177
+          ],
+          [
+            "t",
+            14038
+          ],
+          [
+            "i",
+            13533
+          ],
+          [
+            "a",
+            11836
+          ],
+          [
+            "o",
+            10978
+          ],
+          [
+            "n",
+            10386
+          ],
+          [
+            "s",
+            8631
+          ],
+          [
+            "l",
+            8587
+          ],
+          [
+            "r",
+            7200
+          ],
+          [
+            "h",
+            7091
+          ],
+          [
+            "d",
+            5987
+          ],
+          [
+            "f",
+            4995
+          ],
+          [
+            "m",
+            4653
+          ],
+          [
+            "u",
+            4420
+          ],
+          [
+            "g",
+            4068
+          ],
+          [
+            "y",
+            3575
+          ],
+          [
+            "c",
+            3284
+          ],
+          [
+            "w",
+            3124
+          ],
+          [
+            "p",
+            2605
+          ]
+        ]
+      }
+    }
+  },
+  "coarse_size": {
+    "train": {
+      "chars": {
+        "min": 7,
+        "median": 86.0,
+        "mean": 96.85,
+        "max": 300
+      },
+      "words": {
+        "min": 2,
+        "median": 17.0,
+        "mean": 19.17,
+        "max": 66
+      }
+    },
+    "val": {
+      "chars": {
+        "min": 11,
+        "median": 85.0,
+        "mean": 95.35,
+        "max": 295
+      },
+      "words": {
+        "min": 2,
+        "median": 17.0,
+        "mean": 18.87,
+        "max": 61
+      }
+    },
+    "test": {
+      "chars": {
+        "min": 14,
+        "median": 86.0,
+        "mean": 96.59,
+        "max": 296
+      },
+      "words": {
+        "min": 3,
+        "median": 17.0,
+        "mean": 19.15,
+        "max": 61
+      }
+    }
+  },
+  "duplicate_preview": {
+    "note": "counted only, not removed. Phase 5 handles cleaning and leakage.",
+    "exact_duplicate_texts_within_train": 31,
+    "exact_duplicate_texts_across_all_splits": 52
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cpu",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": null,
+    "cuda_version": null,
+    "cuda_available": false
+  }
+}

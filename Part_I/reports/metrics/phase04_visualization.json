@@ -1,0 +1,71 @@
+{
+  "phase": "04_visualization",
+  "splits_used": [
+    "train"
+  ],
+  "split_policy": "train only. Figure 1b reuses the class SHARES already reported in Phase 2; no val or test text was read.",
+  "palette_validation": {
+    "tool": "dataviz skill scripts/validate_palette.js",
+    "command": "validate_palette.js \"#2a78d6,#eb6834,#1baf7a\" --mode light --pairs all",
+    "lightness_band": "PASS",
+    "chroma_floor": "PASS",
+    "cvd_separation": "PASS worst all-pairs dE 9.2 (deutan), tritan 9.6",
+    "normal_vision_floor": "PASS worst all-pairs dE 24.0",
+    "contrast_vs_surface": "WARN aqua #1baf7a at 2.74:1 -> relief rule applied: every aqua mark carries a direct value label",
+    "categorical_slots_used": 3,
+    "note": "Adding a fourth categorical slot requires re-running the validator."
+  },
+  "figures": [
+    {
+      "file": "fig01_class_balance.png",
+      "idea": "the training set is imbalanced 9.4:1, and the three splits nonetheless carry the same class mix",
+      "form": "horizontal bars (a) + grouped bars (b)",
+      "series": 3
+    },
+    {
+      "file": "fig02_length_distribution.png",
+      "idea": "documents are short with a thin right tail; 128 tokens covers the corpus",
+      "form": "histogram with percentile reference lines",
+      "series": 1
+    },
+    {
+      "file": "fig03_length_by_class.png",
+      "idea": "document length carries no class signal",
+      "form": "small multiples against a shared reference",
+      "series": 1
+    },
+    {
+      "file": "fig04_vocabulary_structure.png",
+      "idea": "Zipfian vocabulary with a very heavy head and a 51% hapax tail",
+      "form": "log-log rank-frequency (a) + cumulative coverage (b)",
+      "series": 1
+    },
+    {
+      "file": "fig05_distinctive_words.png",
+      "idea": "classes are separated by emotion adjectives, not by topic",
+      "form": "small-multiple horizontal bars, log-odds z",
+      "series": 1
+    },
+    {
+      "file": "fig06_class_overlap.png",
+      "idea": "all six classes sit in a narrow lexical band because they share the 'i feel ...' frame",
+      "form": "lower-triangle heatmap, sequential blue ramp",
+      "series": 1
+    }
+  ],
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cpu",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": null,
+    "cuda_version": null,
+    "cuda_available": false
+  }
+}

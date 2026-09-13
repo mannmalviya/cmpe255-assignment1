@@ -1,0 +1,502 @@
+{
+  "phase": "09_lsh",
+  "splits_used": {
+    "part_a_near_duplicates": [
+      "train_clean",
+      "val",
+      "test"
+    ],
+    "part_b_ann_benchmark": {
+      "index": "train_clean",
+      "queries": "test texts only, no labels read"
+    }
+  },
+  "split_policy": "Part A compares text across splits to find leakage, and modifies nothing. Part B uses test rows only as query vectors; no test label is read and nothing is fitted.",
+  "lsh_family": "random hyperplane (SimHash) for cosine similarity. P(same bit) = 1 - theta/pi; P(found) = 1 - (1 - (1-theta/pi)^n_bits)^n_tables",
+  "near_duplicates": {
+    "thresholds": [
+      0.9,
+      0.95,
+      0.99
+    ],
+    "exact_scan_seconds": 1.7,
+    "n_rows_scanned": 19923,
+    "results": {
+      "0.9": {
+        "n_pairs": 430,
+        "n_pairs_exact_same_text": 5,
+        "n_pairs_near_but_not_identical": 425,
+        "n_cross_split_pairs": 141,
+        "n_cross_split_near_but_not_identical": 138,
+        "cross_split_near_labels_agree": 122,
+        "cross_split_near_labels_disagree": 16,
+        "examples_cross_split_near": [
+          {
+            "sim": 0.9992,
+            "split_a": "train",
+            "split_b": "test",
+            "label_a": "sadness",
+            "label_b": "sadness",
+            "text_a": "i get scared i feel ignored i feel happy i get silly i choke on my own words i make wishes i have dreams and i still want to believe anything can happen in this world for an ordinary girl like you like me for an ordinary girl like you like me how are you",
+            "text_b": "i get scared i feel ignored i feel happy i get silly i choke on my own words i make wishes i have dreams and i still want to believe anything could happen in this world for an ordinary girl like you like me for an ordinary girl like you like me how are you"
+          },
+          {
+            "sim": 0.9981,
+            "split_a": "train",
+            "split_b": "val",
+            "label_a": "anger",
+            "label_b": "anger",
+            "text_a": "i didn t think that it would come that fast or would come at all but i suppose it is because i feel cranky today",
+            "text_b": "i didnt think that it would come that fast or would come at all but i suppose it is because i feel cranky today"
+          },
+          {
+            "sim": 0.9802,
+            "split_a": "train",
+            "split_b": "val",
+            "label_a": "fear",
+            "label_b": "surprise",
+            "text_a": "i am feel overwhelmed",
+            "text_b": "i feel very overwhelmed"
+          },
+          {
+            "sim": 0.9787,
+            "split_a": "train",
+            "split_b": "test",
+            "label_a": "anger",
+            "label_b": "anger",
+            "text_a": "i did not care much about the number of viewers and the viewer ratings before but as the drama iris gained huge success i began to feel greedy about being successful",
+            "text_b": "i did not care much about the number of viewers and the viewer ratings before but as the drama iris gained huge success i began to feel greedy"
+          },
+          {
+            "sim": 0.9781,
+            "split_a": "train",
+            "split_b": "val",
+            "label_a": "sadness",
+            "label_b": "sadness",
+            "text_a": "i feel like i am being punished for something that i didn t even do",
+            "text_b": "i feel like im being punished for something that i didnt do"
+          },
+          {
+            "sim": 0.978,
+            "split_a": "train",
+            "split_b": "val",
+            "label_a": "sadness",
+            "label_b": "sadness",
+            "text_a": "i feel really listless right now",
+            "text_b": "i just feel really listless right now"
+          }
+        ]
+      },
+      "0.95": {
+        "n_pairs": 55,
+        "n_pairs_exact_same_text": 5,
+        "n_pairs_near_but_not_identical": 50,
+        "n_cross_split_pairs": 23,
+        "n_cross_split_near_but_not_identical": 20,
+        "cross_split_near_labels_agree": 17,
+        "cross_split_near_labels_disagree": 3,
+        "examples_cross_split_near": [
+          {
+            "sim": 0.9992,
+            "split_a": "train",
+            "split_b": "test",
+            "label_a": "sadness",
+            "label_b": "sadness",
+            "text_a": "i get scared i feel ignored i feel happy i get silly i choke on my own words i make wishes i have dreams and i still want to believe anything can happen in this world for an ordinary girl like you like me for an ordinary girl like you like me how are you",
+            "text_b": "i get scared i feel ignored i feel happy i get silly i choke on my own words i make wishes i have dreams and i still want to believe anything could happen in this world for an ordinary girl like you like me for an ordinary girl like you like me how are you"
+          },
+          {
+            "sim": 0.9981,
+            "split_a": "train",
+            "split_b": "val",
+            "label_a": "anger",
+            "label_b": "anger",
+            "text_a": "i didn t think that it would come that fast or would come at all but i suppose it is because i feel cranky today",
+            "text_b": "i didnt think that it would come that fast or would come at all but i suppose it is because i feel cranky today"
+          },
+          {
+            "sim": 0.9802,
+            "split_a": "train",
+            "split_b": "val",
+            "label_a": "fear",
+            "label_b": "surprise",
+            "text_a": "i am feel overwhelmed",
+            "text_b": "i feel very overwhelmed"
+          },
+          {
+            "sim": 0.9787,
+            "split_a": "train",
+            "split_b": "test",
+            "label_a": "anger",
+            "label_b": "anger",
+            "text_a": "i did not care much about the number of viewers and the viewer ratings before but as the drama iris gained huge success i began to feel greedy about being successful",
+            "text_b": "i did not care much about the number of viewers and the viewer ratings before but as the drama iris gained huge success i began to feel greedy"
+          },
+          {
+            "sim": 0.9781,
+            "split_a": "train",
+            "split_b": "val",
+            "label_a": "sadness",
+            "label_b": "sadness",
+            "text_a": "i feel like i am being punished for something that i didn t even do",
+            "text_b": "i feel like im being punished for something that i didnt do"
+          },
+          {
+            "sim": 0.978,
+            "split_a": "train",
+            "split_b": "val",
+            "label_a": "sadness",
+            "label_b": "sadness",
+            "text_a": "i feel really listless right now",
+            "text_b": "i just feel really listless right now"
+          }
+        ]
+      },
+      "0.99": {
+        "n_pairs": 9,
+        "n_pairs_exact_same_text": 5,
+        "n_pairs_near_but_not_identical": 4,
+        "n_cross_split_pairs": 5,
+        "n_cross_split_near_but_not_identical": 2,
+        "cross_split_near_labels_agree": 2,
+        "cross_split_near_labels_disagree": 0,
+        "examples_cross_split_near": [
+          {
+            "sim": 0.9992,
+            "split_a": "train",
+            "split_b": "test",
+            "label_a": "sadness",
+            "label_b": "sadness",
+            "text_a": "i get scared i feel ignored i feel happy i get silly i choke on my own words i make wishes i have dreams and i still want to believe anything can happen in this world for an ordinary girl like you like me for an ordinary girl like you like me how are you",
+            "text_b": "i get scared i feel ignored i feel happy i get silly i choke on my own words i make wishes i have dreams and i still want to believe anything could happen in this world for an ordinary girl like you like me for an ordinary girl like you like me how are you"
+          },
+          {
+            "sim": 0.9981,
+            "split_a": "train",
+            "split_b": "val",
+            "label_a": "anger",
+            "label_b": "anger",
+            "text_a": "i didn t think that it would come that fast or would come at all but i suppose it is because i feel cranky today",
+            "text_b": "i didnt think that it would come that fast or would come at all but i suppose it is because i feel cranky today"
+          }
+        ]
+      }
+    }
+  },
+  "ann_benchmark": {
+    "index_rows": 15923,
+    "query_rows": 2000,
+    "dim": 384,
+    "k": 10,
+    "exact_total_seconds": 0.564,
+    "exact_ms_per_query": 0.2818,
+    "runs": [
+      {
+        "n_bits": 8,
+        "n_tables": 1,
+        "build_seconds": 0.005,
+        "index_memory_mb": 0.13,
+        "mean_recall_at_10": 0.0539,
+        "median_candidates": 110,
+        "mean_candidates": 111.7,
+        "candidate_fraction_of_index": 0.00702,
+        "queries_with_no_candidate": 0,
+        "total_query_seconds": 0.095,
+        "mean_query_ms": 0.0476,
+        "speedup_vs_exact": 5.92
+      },
+      {
+        "n_bits": 8,
+        "n_tables": 4,
+        "build_seconds": 0.014,
+        "index_memory_mb": 0.53,
+        "mean_recall_at_10": 0.2061,
+        "median_candidates": 503,
+        "mean_candidates": 563.2,
+        "candidate_fraction_of_index": 0.03537,
+        "queries_with_no_candidate": 0,
+        "total_query_seconds": 0.343,
+        "mean_query_ms": 0.1713,
+        "speedup_vs_exact": 1.65
+      },
+      {
+        "n_bits": 8,
+        "n_tables": 8,
+        "build_seconds": 0.027,
+        "index_memory_mb": 1.07,
+        "mean_recall_at_10": 0.4168,
+        "median_candidates": 1353,
+        "mean_candidates": 1583.2,
+        "candidate_fraction_of_index": 0.09943,
+        "queries_with_no_candidate": 0,
+        "total_query_seconds": 1.05,
+        "mean_query_ms": 0.525,
+        "speedup_vs_exact": 0.54
+      },
+      {
+        "n_bits": 8,
+        "n_tables": 16,
+        "build_seconds": 0.074,
+        "index_memory_mb": 2.13,
+        "mean_recall_at_10": 0.6253,
+        "median_candidates": 2661,
+        "mean_candidates": 2765.6,
+        "candidate_fraction_of_index": 0.17369,
+        "queries_with_no_candidate": 0,
+        "total_query_seconds": 1.705,
+        "mean_query_ms": 0.8525,
+        "speedup_vs_exact": 0.33
+      },
+      {
+        "n_bits": 12,
+        "n_tables": 1,
+        "build_seconds": 0.007,
+        "index_memory_mb": 0.14,
+        "mean_recall_at_10": 0.0192,
+        "median_candidates": 13,
+        "mean_candidates": 20.1,
+        "candidate_fraction_of_index": 0.00126,
+        "queries_with_no_candidate": 93,
+        "total_query_seconds": 0.057,
+        "mean_query_ms": 0.0284,
+        "speedup_vs_exact": 9.92
+      },
+      {
+        "n_bits": 12,
+        "n_tables": 4,
+        "build_seconds": 0.029,
+        "index_memory_mb": 0.56,
+        "mean_recall_at_10": 0.0699,
+        "median_candidates": 59,
+        "mean_candidates": 72.9,
+        "candidate_fraction_of_index": 0.00458,
+        "queries_with_no_candidate": 0,
+        "total_query_seconds": 0.112,
+        "mean_query_ms": 0.0559,
+        "speedup_vs_exact": 5.04
+      },
+      {
+        "n_bits": 12,
+        "n_tables": 8,
+        "build_seconds": 0.059,
+        "index_memory_mb": 1.11,
+        "mean_recall_at_10": 0.1462,
+        "median_candidates": 158,
+        "mean_candidates": 193.7,
+        "candidate_fraction_of_index": 0.01217,
+        "queries_with_no_candidate": 0,
+        "total_query_seconds": 0.184,
+        "mean_query_ms": 0.092,
+        "speedup_vs_exact": 3.06
+      },
+      {
+        "n_bits": 12,
+        "n_tables": 16,
+        "build_seconds": 0.133,
+        "index_memory_mb": 2.22,
+        "mean_recall_at_10": 0.2291,
+        "median_candidates": 277,
+        "mean_candidates": 315.3,
+        "candidate_fraction_of_index": 0.0198,
+        "queries_with_no_candidate": 0,
+        "total_query_seconds": 0.296,
+        "mean_query_ms": 0.1482,
+        "speedup_vs_exact": 1.9
+      },
+      {
+        "n_bits": 16,
+        "n_tables": 1,
+        "build_seconds": 0.016,
+        "index_memory_mb": 0.14,
+        "mean_recall_at_10": 0.0067,
+        "median_candidates": 1,
+        "mean_candidates": 2.9,
+        "candidate_fraction_of_index": 0.00018,
+        "queries_with_no_candidate": 787,
+        "total_query_seconds": 0.035,
+        "mean_query_ms": 0.0174,
+        "speedup_vs_exact": 16.2
+      },
+      {
+        "n_bits": 16,
+        "n_tables": 4,
+        "build_seconds": 0.066,
+        "index_memory_mb": 0.58,
+        "mean_recall_at_10": 0.0216,
+        "median_candidates": 6,
+        "mean_candidates": 9.2,
+        "candidate_fraction_of_index": 0.00058,
+        "queries_with_no_candidate": 89,
+        "total_query_seconds": 0.085,
+        "mean_query_ms": 0.0423,
+        "speedup_vs_exact": 6.66
+      },
+      {
+        "n_bits": 16,
+        "n_tables": 8,
+        "build_seconds": 0.134,
+        "index_memory_mb": 1.16,
+        "mean_recall_at_10": 0.0454,
+        "median_candidates": 16,
+        "mean_candidates": 22.9,
+        "candidate_fraction_of_index": 0.00144,
+        "queries_with_no_candidate": 9,
+        "total_query_seconds": 0.127,
+        "mean_query_ms": 0.0637,
+        "speedup_vs_exact": 4.42
+      },
+      {
+        "n_bits": 16,
+        "n_tables": 16,
+        "build_seconds": 0.284,
+        "index_memory_mb": 2.32,
+        "mean_recall_at_10": 0.0819,
+        "median_candidates": 34,
+        "mean_candidates": 44.5,
+        "candidate_fraction_of_index": 0.00279,
+        "queries_with_no_candidate": 0,
+        "total_query_seconds": 0.2,
+        "mean_query_ms": 0.1002,
+        "speedup_vs_exact": 2.81
+      },
+      {
+        "n_bits": 20,
+        "n_tables": 1,
+        "build_seconds": 0.023,
+        "index_memory_mb": 0.15,
+        "mean_recall_at_10": 0.0026,
+        "median_candidates": 0,
+        "mean_candidates": 0.3,
+        "candidate_fraction_of_index": 2e-05,
+        "queries_with_no_candidate": 1596,
+        "total_query_seconds": 0.02,
+        "mean_query_ms": 0.0101,
+        "speedup_vs_exact": 27.91
+      },
+      {
+        "n_bits": 20,
+        "n_tables": 4,
+        "build_seconds": 0.092,
+        "index_memory_mb": 0.6,
+        "mean_recall_at_10": 0.0071,
+        "median_candidates": 1,
+        "mean_candidates": 1.2,
+        "candidate_fraction_of_index": 7e-05,
+        "queries_with_no_candidate": 954,
+        "total_query_seconds": 0.068,
+        "mean_query_ms": 0.0339,
+        "speedup_vs_exact": 8.31
+      },
+      {
+        "n_bits": 20,
+        "n_tables": 8,
+        "build_seconds": 0.189,
+        "index_memory_mb": 1.21,
+        "mean_recall_at_10": 0.0144,
+        "median_candidates": 2,
+        "mean_candidates": 2.4,
+        "candidate_fraction_of_index": 0.00015,
+        "queries_with_no_candidate": 517,
+        "total_query_seconds": 0.105,
+        "mean_query_ms": 0.0524,
+        "speedup_vs_exact": 5.38
+      },
+      {
+        "n_bits": 20,
+        "n_tables": 16,
+        "build_seconds": 0.418,
+        "index_memory_mb": 2.41,
+        "mean_recall_at_10": 0.0281,
+        "median_candidates": 3,
+        "mean_candidates": 5.2,
+        "candidate_fraction_of_index": 0.00033,
+        "queries_with_no_candidate": 213,
+        "total_query_seconds": 0.173,
+        "mean_query_ms": 0.0867,
+        "speedup_vs_exact": 3.25
+      }
+    ],
+    "true_neighbour_similarity": {
+      "nn_1": {
+        "median": 0.6324,
+        "p10": 0.5042,
+        "p90": 0.8019
+      },
+      "nn_5": {
+        "median": 0.5678,
+        "p10": 0.4466,
+        "p90": 0.714
+      },
+      "nn_10": {
+        "median": 0.5396,
+        "p10": 0.4227,
+        "p90": 0.67
+      }
+    },
+    "theory_vs_observed_at_16_tables": [
+      {
+        "n_bits": 8,
+        "n_tables": 16,
+        "predicted_p_found_at_median_10th_nn": 0.5331,
+        "observed_recall_at_10": 0.6253
+      },
+      {
+        "n_bits": 12,
+        "n_tables": 16,
+        "predicted_p_found_at_median_10th_nn": 0.1489,
+        "observed_recall_at_10": 0.2291
+      },
+      {
+        "n_bits": 16,
+        "n_tables": 16,
+        "predicted_p_found_at_median_10th_nn": 0.034,
+        "observed_recall_at_10": 0.0819
+      },
+      {
+        "n_bits": 20,
+        "n_tables": 16,
+        "predicted_p_found_at_median_10th_nn": 0.0074,
+        "observed_recall_at_10": 0.0281
+      }
+    ],
+    "verdict": "LSH LOSES to exact brute force on this corpus at every setting. The best recall reached is 62.5% (8 bits x 16 tables) while scanning 17.4% of the index and running 4.2x SLOWER than the exact search it approximates. Two causes, both measured: (1) the index is small, so exact search is one 15,923 x 384 BLAS matmul at 0.234 ms/query, and LSH's bucket lookups cost more than the arithmetic they avoid; (2) true 10th-nearest neighbours sit at only 0.54 cosine, so the S-curve cannot separate them from the bulk."
+  },
+  "near_duplicate_leakage_into_test": {
+    "0.9": {
+      "test_rows_with_a_near_duplicate_in_train": 45,
+      "share_of_test": 0.0225,
+      "of_those_at_least_one_shares_the_label": 42,
+      "optimistic_leakage_share_of_test": 0.021
+    },
+    "0.95": {
+      "test_rows_with_a_near_duplicate_in_train": 9,
+      "share_of_test": 0.0045,
+      "of_those_at_least_one_shares_the_label": 8,
+      "optimistic_leakage_share_of_test": 0.004
+    },
+    "0.99": {
+      "test_rows_with_a_near_duplicate_in_train": 1,
+      "share_of_test": 0.0005,
+      "of_those_at_least_one_shares_the_label": 1,
+      "optimistic_leakage_share_of_test": 0.0005
+    }
+  },
+  "figures": [
+    "fig10_lsh.png"
+  ],
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 7435HS",
+    "cpu_cores_physical": 8,
+    "cpu_cores_logical": 16,
+    "ram_total_gb": 15.3,
+    "os": "Linux 6.17.0-22-generic",
+    "python_version": "3.12.3",
+    "device_used": "cpu",
+    "gpu_model": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_memory_mib": 8188,
+    "driver_version": "580.126.09",
+    "torch_version": "2.14.0+cpu",
+    "cuda_version": null,
+    "cuda_available": false
+  }
+}
