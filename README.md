@@ -2,7 +2,6 @@
 
 ## Part I
 
-- **YouTube Video:**
 - **Medium Article:** [Small Language Models versus Classical Machine Learning for Sentiment Classification](https://medium.com/@mann.malviya/small-language-models-versus-classical-machine-learning-for-sentiment-classification-860bb6caca3f)
 - **Code:** [`Part_I/`](./Part_I)
 
@@ -10,8 +9,6 @@
 
 ## Part II
 
-- **YouTube Video:**
-- **Medium Article:**
 - **Code:** [`Part_II/`](./Part_II)
 
 | # | System Title & Directory | Domain & Methodology | Backend Port | Frontend Port | Primary Screenshot Preview |
