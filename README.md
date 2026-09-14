@@ -2,6 +2,7 @@
 
 ## Part I
 
+- **YouTube Video:** [Watch on YouTube](https://youtu.be/EQZp2wG8PWk)
 - **Medium Article:** [Small Language Models versus Classical Machine Learning for Sentiment Classification](https://medium.com/@mann.malviya/small-language-models-versus-classical-machine-learning-for-sentiment-classification-860bb6caca3f)
 - **Code:** [`Part_I/`](./Part_I)
 
